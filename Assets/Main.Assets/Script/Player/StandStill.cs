@@ -150,7 +150,6 @@ public class StandStill : MonoBehaviour
         {
             // 動いている判定にする
             _moveFoot = true;
-            countNum = true;
 
             asibumisitaka = true;
 
