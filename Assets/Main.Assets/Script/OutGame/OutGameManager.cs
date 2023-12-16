@@ -42,11 +42,13 @@ public class OutGameManager : MonoBehaviour
     /// <summary>
     /// 背景画像のフェードの設定
     /// </summary>
+    [SerializeField]
     private FadeManager.FadeSetting _blackFadeOut;
 
     /// <summary>
     /// シーン遷移時のフェードの設定
     /// </summary>
+    [SerializeField]
     private FadeManager.FadeSetting _endFadeOut;
 
     /// <summary>

@@ -11,6 +11,7 @@ TagManager:
   - Idle
   - Hand
   - Ground
+  - Audience
   layers:
   - Default
   - TransparentFX

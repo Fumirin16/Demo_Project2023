@@ -71,11 +71,14 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField]
     private GameObject[] _buttonObj = new GameObject[2];
 
+    [SerializeField]
+    private Image[] _buttonImage= new Image[2];
+
     /// <summary>
     /// 選択状態のボタンの画像を取得数変数
     /// </summary>
     [SerializeField]
-    private TextMeshProUGUI[] _buttonText = new TextMeshProUGUI[2];
+    private Image[] _buttonSelect = new Image[2];
 
     /// <summary>
     /// カメラを取得する変数
@@ -147,6 +150,8 @@ public class TitleUIManager : MonoBehaviour
         for (int i = 0; i < _buttonObj.Length; i++)
         {
             _buttonObj[i].SetActive(false);
+            _buttonSelect[i].enabled = false;
+            _buttonImage[i].enabled = false;
         }
 
         // 初期に選択状態にするオブジェクトを設定する
@@ -175,7 +180,7 @@ public class TitleUIManager : MonoBehaviour
         StartCoroutine("Fade_UI");
 
         // ｙボタンが押された場合
-        if (Input.GetKeyDown(KeyCode.JoystickButton3)==!_isStepScene)
+        if (Input.GetKeyDown(KeyCode.JoystickButton3)&&!_isStepScene)
         {
             // ボタンが押されたときのSEを鳴らす
             audioManager.PlaySESound(SEData.SE.ClickButton);
@@ -201,13 +206,13 @@ public class TitleUIManager : MonoBehaviour
 
         if (_saveButton == _buttonObj[0])
         {
-            _buttonText[0].color = Color.white;
-            _buttonText[1].color = Color.black;
+            _buttonSelect[0].enabled = true;
+            _buttonSelect[1].enabled = false;
         }
         if (_saveButton == _buttonObj[1])
         {
-            _buttonText[0].color = Color.black;
-            _buttonText[1].color = Color.white;
+            _buttonSelect[0].enabled = false;
+            _buttonSelect[1].enabled = true;
         }
 
         // ボタンが押された場合
@@ -265,6 +270,7 @@ public class TitleUIManager : MonoBehaviour
             for (int i = 0; i < _buttonObj.Length; i++)
             {
                 _buttonObj[i].SetActive(true);
+                _buttonImage[i].enabled = true;
             }
 
             // ボタンを押せるようにする

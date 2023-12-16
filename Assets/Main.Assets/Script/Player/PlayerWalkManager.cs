@@ -47,25 +47,21 @@ public class PlayerWalkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // プレイヤーを移動させる動力を保存 
-        float moveSpeed = StandStill.powerSource* _moveSpeed;
-        //Debug.Log("modeSpeed : " + moveSpeed);
+        if (StandStill.powerSource >= 0.9)
+        {
+            // プレイヤーを移動させる動力を保存 
+            float moveSpeed = StandStill.powerSource * _moveSpeed;
+            //Debug.Log("modeSpeed : " + moveSpeed);
 
-        // ジョイスティックの入力を保存する
-        //float stickHorizontal = Input.GetAxis("Horizontal");
-        //Debug.Log("stickHorizontal : " + stickHorizontal);
+            // カメラの向きを取得
+            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
+            //Debug.Log("cameraForward : " + cameraForward);
 
-        // カメラの向きを取得
-        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
-        //Debug.Log("cameraForward : " + cameraForward);
-
-        // カメラの向きかラプレイヤーの移動方向を設定する      
-        //Vector3 moveForward = cameraForward * stickHorizontal;
-        //Debug.Log("moveForward : " + moveForward);
-
-        // プレイヤーを移動させる
-        _rb.velocity = cameraForward * moveSpeed + new Vector3(0, _rb.velocity.y, 0);
-        //Debug.Log(_rb.velocity);
+            Vector3 moveForward = cameraForward * moveSpeed;
+            // プレイヤーを移動させる
+            _rb.AddForce(moveForward);
+            Debug.Log(_rb.velocity);
+        }
     }
 
     #endregion ---Methods---

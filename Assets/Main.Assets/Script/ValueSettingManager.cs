@@ -13,7 +13,7 @@ public class ValueSettingManager : ScriptableObject
 
     // === Player ===
     [Header("=== PLAYER MOCOPI ===")]
-    [Range(0f,100f),Tooltip("�����݂����Ƃ��̃v���C���[�̑���")]
+    [Range(0f,1000f),Tooltip("�����݂����Ƃ��̃v���C���[�̑���")]
     public float MOCOPI_PlayerMoveSpeed = 1f;
 
     [Range(0f,5f),Tooltip("�����݂����Ƃ��̏��Ƒ��̋��������ꂽ�Ƃ��̔��������l")]

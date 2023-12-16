@@ -102,7 +102,7 @@ public class StandStill : MonoBehaviour
     /// </summary>
     void WalkPower()
     {
-        if (_reactionValume < _foot.distance&&_moveFoot)
+        if (_reactionValume < _foot.distance && _moveFoot)
         {
             if (audioManager.CheckPlaySound(audioManager.seAudioSource))
             {
@@ -150,6 +150,7 @@ public class StandStill : MonoBehaviour
         {
             // 動いている判定にする
             _moveFoot = true;
+            countNum = true;
 
             asibumisitaka = true;
 
