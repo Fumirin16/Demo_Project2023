@@ -91,7 +91,7 @@ public class AroundGuardsmanController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             audioManager.PlaySESound(SEData.SE.FoundSecurity);
-            //Debug.Log("Ž‹ŠE“ü‚Á‚½");
+            Debug.Log("Ž‹ŠE“ü‚Á‚½");
             _targetFlag = true;
             _haken.gameObject.SetActive(true);
         }

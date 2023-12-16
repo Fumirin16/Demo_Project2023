@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca194aa37857da43b02eec6ce22211e, type: 3}
   m_Name: ValueSettingTable
   m_EditorClassIdentifier: 
-  MOCOPI_PlayerMoveSpeed: 1
-  FootDistanceFoor: 0.1
-  PlayerRotateSpeed: 0.5
+  MOCOPI_PlayerMoveSpeed: 7.6
+  FootDistanceFoor: 0.001
+  PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.5
   smoothTime: 1
   guardMoveSpeed: 2
@@ -62,5 +62,5 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: b735150c0582a824ab6a0207978acdfc, type: 3}
     volume: 1
   GameLimitTime: 90
-  gameOver: 0
+  gameOver: 1
   gameClear: 0

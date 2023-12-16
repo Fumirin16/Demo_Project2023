@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.JoystickButton2))
         {
-            if (!audioManager.CheckPlaySound(audioManager.seAudioSource))
+           if (!audioManager.CheckPlaySound(audioManager.seAudioSource))
             {
                 audioManager.StopSound(audioManager.seAudioSource);
             }

@@ -13,7 +13,7 @@ public class ValueSettingManager : ScriptableObject
 
     // === Player ===
     [Header("=== PLAYER MOCOPI ===")]
-    [Range(0f,100f),Tooltip("足踏みしたときのプレイヤーの速さ")]
+    [Range(0f,1000f),Tooltip("足踏みしたときのプレイヤーの速さ")]
     public float MOCOPI_PlayerMoveSpeed = 1f;
 
     [Range(0f,5f),Tooltip("足踏みしたときの床と足の距離が離れたときの判定をする値")]
