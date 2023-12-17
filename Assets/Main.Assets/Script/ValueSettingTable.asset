@@ -15,11 +15,14 @@ MonoBehaviour:
   MOCOPI_PlayerMoveSpeed: 7.6
   FootDistanceFoor: 0.001
   PlayerRotateSpeed: 2
-  JOYSTIC_PlayerMoveSpeed: 0.5
+  JOYSTIC_PlayerMoveSpeed: 0.1
   smoothTime: 1
   guardMoveSpeed: 2
   guardAngularSpeed: 120
   guardAcceleration: 8
+  ClearCount: 0
+  ClearTime: 0
+  ClearHuman: 0
   masterVolume: 1
   bgmMasterVolume: 1
   seMasterVolume: 1
