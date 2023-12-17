@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2519352823830269520}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 426448250539110622}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2932068155257788947}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4873181289031955510}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7215596432977669451}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3272930386746886417}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:Reference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3059708478406458359}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1496484799361744966}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5108275846226870393}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8436505505332882793}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 315013261942149364}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8210073934644750759}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6361631555673882667}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: kutu:pCube5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8975293172441390784}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5192509037816434279}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightFootEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2927650675146094022}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4807409200509732500}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8212681970464096692}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -602,7 +602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7287478521365678272}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightKneeEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -633,7 +633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8169532822326992042}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8645864452585211465}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3700944901103107926}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6443722574486550730}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -760,7 +760,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1568129979072637835}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:ChestOriginEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1621618722413585579}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1089637308337375091}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8388068135556264254}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -887,7 +887,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4910360073174664086}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightHipEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -918,7 +918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2419720889745381698}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftWristEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -951,7 +951,7 @@ GameObject:
   - component: {fileID: 614524249404877920}
   - component: {fileID: 2053573390429036178}
   - component: {fileID: 7063066105991370304}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: kao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1032,7 +1032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4853718734039088435}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3369856188641281936}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1096,7 +1096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2058821898291865632}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1128,7 +1128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2115944758733781623}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1160,7 +1160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7290287242238309569}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1195,7 +1195,7 @@ GameObject:
   - component: {fileID: 8260678365749687058}
   - component: {fileID: 3561703858510883808}
   - component: {fileID: 339854663219870756}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _pCylinder3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1276,7 +1276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4235904373537197837}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1308,7 +1308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5629921084016303688}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,7 +1343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181514672748704054}
   - component: {fileID: 5609595624374994766}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1429,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2876799042535719669}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1461,7 +1461,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6567305833643024095}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1492,7 +1492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7595190563121463022}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,7 +1524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 434512815547914984}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1556,7 +1556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8220502024428778262}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightWristEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,7 +1589,7 @@ GameObject:
   - component: {fileID: 6339842816193992111}
   - component: {fileID: 5098773231228992377}
   - component: {fileID: 1917005289871274875}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1670,7 +1670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2952355836219913511}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1701,7 +1701,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579519673795641809}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,7 +1734,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4832853352864808313}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftAnkleEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1765,7 +1765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2064777996236510940}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1797,7 +1797,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5190291403456300475}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1829,7 +1829,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1213122106821680643}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1861,7 +1861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5361172527752276184}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Spine3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1895,7 +1895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8004102024118525374}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightToeBaseEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1926,7 +1926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4351565777211988730}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1957,7 +1957,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768709511941233836}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1990,7 +1990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604968518142043421}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:HeadEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2021,7 +2021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 638524236740693722}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2053,7 +2053,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8590270335191790569}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2084,7 +2084,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2468078267234252501}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2118,7 +2118,7 @@ GameObject:
   - component: {fileID: 7200195242326126385}
   - component: {fileID: 57597444424606442}
   - component: {fileID: 7916074514006630729}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _pCube1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2199,7 +2199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2546266498708442045}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2231,7 +2231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7488887696932882692}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftToeBaseEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2262,7 +2262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2052866972859452416}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _onna_mob_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2294,7 +2294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8863941387868645536}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftHipEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2325,7 +2325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7866732122225049825}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: karada:group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2361,7 +2361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091088198282211112}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2392,7 +2392,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7756774633030510749}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2425,7 +2425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7367348203382966100}
   - component: {fileID: 7441797477203240235}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _fuku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2528,7 +2528,7 @@ GameObject:
   - component: {fileID: 1439942868440403769}
   - component: {fileID: 3803419918481879153}
   - component: {fileID: 2055312131454944319}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: doutai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2609,7 +2609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4859926112041744729}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:HeadEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2640,7 +2640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4085357788638262171}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _pCylinder1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2673,7 +2673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5024063650522073580}
   - component: {fileID: 2883292278531718083}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _pCylinder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2761,7 +2761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7131144308523924252}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightElbowEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2792,7 +2792,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2324114727278842666}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2825,7 @@ GameObject:
   - component: {fileID: 8883618003548408459}
   - component: {fileID: 6073477490489679295}
   - component: {fileID: 8307199999519082110}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: kutu_migi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2906,7 +2906,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1404534950784326220}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2937,7 +2937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 452281658610423989}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftFootEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2968,7 +2968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1150057885617612185}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3001,7 +3001,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2420006862956305260}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3035,7 +3035,7 @@ GameObject:
   - component: {fileID: 3586049942914493058}
   - component: {fileID: 5035902083488038509}
   - component: {fileID: 5581881819083699849}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: kami
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3118,7 +3118,7 @@ GameObject:
   - component: {fileID: 7660391706387650412}
   - component: {fileID: 393178228433860035}
   - component: {fileID: 273661612510744340}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: karada:migi_me
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3199,7 +3199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3472142645592509832}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3233,7 +3233,7 @@ GameObject:
   - component: {fileID: 9209311275776360191}
   - component: {fileID: 1394418502098418745}
   - component: {fileID: 1508823770257229750}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3314,7 +3314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3059662799671781059}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3346,7 +3346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4666764546298277121}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3378,7 +3378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6923117599133238014}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: group1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3418,7 +3418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074142743803368527}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3450,7 +3450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 807279010760356624}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Solving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3482,7 +3482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1145794129885159796}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3514,7 +3514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2801264347750271627}
   - component: {fileID: 1164318120224951719}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _kao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3603,7 +3603,7 @@ GameObject:
   - component: {fileID: 9085870210527284872}
   - component: {fileID: 1256132202771191915}
   - component: {fileID: 873680508013179897}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: karada:hidari_me
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3684,7 +3684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9146722540770782429}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3715,7 +3715,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8415754644213842265}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3746,7 +3746,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7693761824849143889}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3777,7 +3777,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1762028504337807901}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftShoulderEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3808,7 +3808,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4016143085027631744}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3839,7 +3839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565899341900812724}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3871,7 +3871,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2234935923079092397}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3903,7 +3903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9085659902351185069}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3935,7 +3935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6412178218425716180}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightHandMiddle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3966,7 +3966,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1399319503469225750}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftKneeEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3997,7 +3997,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2702323734568941788}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4031,7 +4031,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3089263050227269547}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4062,7 +4062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7698163260051171091}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4094,7 +4094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 434289550588303106}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:HipsEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4125,7 +4125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4225631244670841428}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _doutai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4158,7 +4158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 597428157521849025}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: asi:SleepingGirls1group2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4191,7 +4191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2037537864692096367}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4223,7 +4223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 598468479330417009}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4255,7 +4255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7918069165561875713}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4288,7 +4288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6300359439485162964}
   - component: {fileID: 4898484972541398622}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4384,7 +4384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6723002018064249150}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4416,7 +4416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1960638154234151996}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4448,7 +4448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5158377515394247317}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4479,7 +4479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2469077610812818075}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4513,7 +4513,7 @@ GameObject:
   - component: {fileID: 7382111501267667807}
   - component: {fileID: 5107685482332330960}
   - component: {fileID: 5349928568602130542}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: karada:hidari_matuge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4594,7 +4594,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7213141469022646449}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4628,7 +4628,7 @@ GameObject:
   - component: {fileID: 5259455542079773890}
   - component: {fileID: 8967407853332831712}
   - component: {fileID: 8673984451551249431}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: karada:migi_matuge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4709,7 +4709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9217136726475400774}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightForeFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4741,7 +4741,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8358178027479198865}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftElbowEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4772,7 +4772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7980230177214775059}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4803,7 +4803,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3951745281601112344}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4835,7 +4835,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8085494251267222713}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4866,7 +4866,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8593068133800214334}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4898,7 +4898,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 44484330605920270}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightAnkleEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3328784932119924499}
   - component: {fileID: 9088712853004826526}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _kutu_hidari
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5017,7 +5017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3708178272266910844}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5049,7 +5049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5588972358634133244}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: karada:karada1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5084,7 +5084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2932134628272746966}
   - component: {fileID: 2550964497961278520}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5170,7 +5170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1907673584617577527}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5202,7 +5202,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8113538310804035515}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5236,7 +5236,7 @@ GameObject:
   - component: {fileID: 3992216289837831477}
   - component: {fileID: 2885472440253752127}
   - component: {fileID: 4032797379618534382}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5317,7 +5317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1143996672640807849}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftUpleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5349,7 +5349,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2372342921134819032}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5380,7 +5380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7307737711726647076}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5412,7 +5412,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 276052410559132140}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5446,7 +5446,7 @@ GameObject:
   - component: {fileID: 5299566180402284258}
   - component: {fileID: 4284978820390480579}
   - component: {fileID: 202747175999897327}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: kutu_hidari
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5527,7 +5527,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8642073602505616409}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5559,7 +5559,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100706740812540487}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:ChestEndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5590,7 +5590,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5522241890543985131}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightShoulder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5622,7 +5622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4763403444264821064}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _transform3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5653,7 +5653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3062283676144009307}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5686,7 +5686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317824138935640726}
   - component: {fileID: 5508496547479310928}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _kutu_migi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5773,7 +5773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8768131703255534897}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: RightUpleg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5807,7 +5807,7 @@ GameObject:
   - component: {fileID: 8414800299275064999}
   - component: {fileID: 6468670388798438399}
   - component: {fileID: 7771317742091449592}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: fuku
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5888,7 +5888,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5352802094110818575}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Spine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5922,7 +5922,7 @@ GameObject:
   - component: {fileID: 7508512913271044024}
   - component: {fileID: 4158170182052750641}
   - component: {fileID: 2081479637618154336}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6003,7 +6003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2720430835311353376}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightShoulderEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6034,7 +6034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6996464403974369500}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftForeFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6066,7 +6066,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 977966808079841528}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:RightHandThumb1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6097,7 +6097,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6449820347784760824}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6129,7 +6129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8313984806069865192}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _polySurface15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6162,7 +6162,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8334586171606564954}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6195,7 +6195,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4737377052158071803}
   - component: {fileID: 334091476305798023}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: _kami
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6281,7 +6281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4009531264297359157}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6313,7 +6313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2054515134934634849}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LeftToeBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6344,7 +6344,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8109612618754680505}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: onna_mob_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6385,7 +6385,7 @@ GameObject:
   - component: {fileID: 5775885749149983836}
   - component: {fileID: 3524463026529687172}
   - component: {fileID: 6618975613963607544}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: debu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6488,7 +6488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2251658818b334c49bdba8e2adc4a5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _setting: {fileID: 0}
+  smoothTime: 1
 --- !u!1 &9111485733114565888
 GameObject:
   m_ObjectHideFlags: 0
@@ -6498,7 +6498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997483820896487260}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: YZE01:Neck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6530,7 +6530,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4204582705234060298}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Character_Ctrl:RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
