@@ -1,64 +1,79 @@
-//using System;
-//using System.Collections;
-//using System.Collections.Generic;
-//using System.Drawing;
-//using Unity.VisualScripting;
-//using UnityEditor.PackageManager.UI;
-//using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager.UI;
+using UnityEngine;
 
-//public class CameratoAudioManager : MonoBehaviour
-//{
-//    [SerializeField]
-//    private Transform lookAtObj;
+public class CameratoAudioManager : MonoBehaviour
+{
+    [SerializeField]
+    private Transform lookAtObj;
 
-//    private bool isRay = false;
+    [SerializeField]
+    private LayerMask layer;
 
-//    private List<GameObject> hitObj = new List<GameObject>();
+    [SerializeField]
+    private GameObject player;
 
-//    private int count = 0;
+    private List<GameObject> rendereHit = new List<GameObject>();
 
-//    //private List<SpriteRenderer> hitObj = new List<SpriteRenderer>();
+    private GameObject[] saveHit;
 
-//    // Start is called before the first frame update
-//    void Start()
-//    {
+    [SerializeField]
+    private float radian=1.0f;
 
-//    }
+    // Start is called before the first frame update
+    void Start()
+    {
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        // ２点間のベクトルを正規化する
-//        Vector3 positionVector = (lookAtObj.transform.position - this.transform.position).normalized;
+    }
 
-//        // Rayをカメラからプレイヤーに飛ばす
-//        Ray ray = new Ray(this.transform.position, positionVector);
+    // Update is called once per frame
+    void Update()
+    {
+        // ２点間のベクトルを正規化する
+        Vector3 positionVector = (lookAtObj.transform.position - this.transform.position).normalized;
 
-//        // Rayを可視化するデバック
-//        Debug.DrawRay(this.transform.position, positionVector,UnityEngine.Color.red);
+        // Rayをカメラからプレイヤーに飛ばす
+        Ray ray = new Ray(this.transform.position, positionVector);
 
-//        RaycastHit hit;
-//        if (Physics.SphereCast(ray,1f,out hit))
-//        {
-//            if (hit.collider.CompareTag("Audience"))
-//            {
-//                hitObj.Add(hit.collider.gameObject);
-//            }
-//        }
+        // Rayを可視化するデバック
+        Debug.DrawRay(this.transform.position, positionVector, UnityEngine.Color.red);
 
-//        if (count > 100)
-//        {
-//            foreach (var num in hitObj)
-//            {
-//                Debug.Log("当たったオブジェクト : " + num);
-//            }
-//        }
+        RaycastHit[] _hits = Physics.SphereCastAll(ray, radian, positionVector.magnitude, layer);
 
-//        if (count > 600)
-//        {
-//            count = 0;
-//        }
+        saveHit = rendereHit.ToArray();
+        rendereHit.Clear();
+        // 遮蔽物は一時的にすべて描画機能を無効にする。
+        foreach (RaycastHit _hit in _hits)
+        {
+            // 遮蔽物が被写体の場合は例外とする
+            if (_hit.collider.gameObject == player)
+            {
+                continue;
+            }
 
-//        count++;
-//    }
-//}
+            // 遮蔽物の Renderer コンポーネントを無効にする
+            GameObject _renderer = _hit.collider.gameObject.transform.GetChild(12).gameObject;
+            if (_renderer != null)
+            {
+                rendereHit.Add(_renderer);
+                _renderer.SetActive(false);
+            }
+        }
+
+        foreach (GameObject num in saveHit.Except(rendereHit))
+        {
+            if (num != null)
+            {
+                num.SetActive(true);
+            }
+        }
+    }
+}
+
+
