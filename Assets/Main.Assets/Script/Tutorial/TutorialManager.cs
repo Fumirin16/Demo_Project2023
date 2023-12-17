@@ -54,7 +54,7 @@ public class TutorialManager : MonoBehaviour
         }
         if(_phaseCount == 3)
         {
-            _fadeAnimator.Play("Fade");
+            _fadeAnimator.Play("FadeOut");
         }
     }
 }
