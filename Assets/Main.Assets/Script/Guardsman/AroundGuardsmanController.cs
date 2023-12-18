@@ -75,7 +75,7 @@ public class AroundGuardsmanController : MonoBehaviour
 
         //エージェントが現在設定された目標地点に行くように設定
         _agent.destination = _points[_destPoint].position;
-
+        Debug.Log(_points[_destPoint].position);
         // 配列内の次の位置を目標地点に設定し必要ならば出発地点にもどる
         _destPoint = (_destPoint + 1) % _points.Length;
 
