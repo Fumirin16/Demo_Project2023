@@ -71,5 +71,5 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: b735150c0582a824ab6a0207978acdfc, type: 3}
     volume: 1
   GameLimitTime: 90
-  gameOver: 1
+  gameOver: 0
   gameClear: 0

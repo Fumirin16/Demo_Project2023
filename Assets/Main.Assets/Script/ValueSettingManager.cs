@@ -97,14 +97,14 @@ public class ValueSettingManager : ScriptableObject
     /// <summary>
     /// �Q�[���I�[�o�[�̔����ۑ�����ϐ�
     /// </summary>
-    [HideInInspector]
-    public bool gameOver;
+    //[HideInInspector]
+    public bool gameOver = false;
 
     /// <summary>
     /// �Q�[���N���A�̔����ۑ�����ϐ�
     /// </summary>
-    [HideInInspector]
-    public bool gameClear;
+    //[HideInInspector]
+    public bool gameClear = false;
 
     #endregion ---Fields---
 }

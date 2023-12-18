@@ -89,6 +89,9 @@ public class OutGameManager : MonoBehaviour
     [SerializeField]
     private GameObject _guardObj;
 
+    [SerializeField]
+    private GameObject _guardAnimatorObj;
+
     [Space(10)]
 
     /// <summary>
@@ -103,7 +106,8 @@ public class OutGameManager : MonoBehaviour
 
     private void Start()
     {
-
+        Debug.Log("判定Over : " + settingManager.gameOver);
+        Debug.Log("判定clear : " + settingManager.gameClear);
     }
 
     private void Update()
@@ -185,7 +189,7 @@ public class OutGameManager : MonoBehaviour
         _guardObj.GetComponent<NavMeshAgent>().enabled = false;
 
         // 警備員のアニメーションを止める
-        _guardObj.GetComponent<Animator>().enabled = false;
+        _guardAnimatorObj.GetComponent<Animator>().enabled = false;
     }
 
     #endregion ---Methods---

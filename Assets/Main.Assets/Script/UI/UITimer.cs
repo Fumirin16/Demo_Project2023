@@ -38,7 +38,7 @@ public class UITimer : MonoBehaviour
         //スライダーの現在値の設定
         timeSlider.value += Time.deltaTime;
 
-        if(timeSlider.value == maxTime)
+        if (timeSlider.value == maxTime)
         {
             // ゲームオーバーの判定をtrueにする
             settingManager.gameOver = true;
