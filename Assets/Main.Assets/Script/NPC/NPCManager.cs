@@ -29,6 +29,8 @@ public class NPCManager : MonoBehaviour
     /// </summary>
     [SerializeField] ValueSettingManager _setting;
 
+     Animator _animator;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -42,6 +44,8 @@ public class NPCManager : MonoBehaviour
         _pos = transform.position;
         // 値を参照したものを保存する
         smoothTime = _setting.smoothTime;
+
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -51,5 +55,13 @@ public class NPCManager : MonoBehaviour
         // SmoothDamp(現在位置, 目的地, 現在の速度, _target へ到達するまでのおおよその時間。値が小さいほど、_target に速く到達)
         transform.position = Vector3.SmoothDamp(_current, _pos, ref _velocity, smoothTime);
     }
+
+    //public void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Player")
+    //    {
+    //        _animator.Play("reaction");
+    //    }
+    //}
     #endregion ---Methods---
 }

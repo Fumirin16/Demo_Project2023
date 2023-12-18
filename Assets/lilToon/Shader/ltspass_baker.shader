@@ -73,6 +73,7 @@ Shader "Hidden/ltsother_baker"
     {
         HLSLINCLUDE
             #define LIL_FEATURE_SHADOW
+            #define LIL_FEATURE_RIMLIGHT
             #define LIL_FEATURE_CLIPPING_CANCELLER
             #define LIL_OPTIMIZE_APPLY_SHADOW_FA
             #define LIL_OPTIMIZE_USE_FORWARDADD

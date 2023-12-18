@@ -42,8 +42,6 @@ public class AroundGuardsmanController : MonoBehaviour
         //autoBraking を無効にすると目標地点の間を継続的に移動
         //つまり、エージェントは目標地点に近づいても速度を落とさない
         _agent.autoBraking = false;
-
-        GotoNextPoint();
     }
 
     // Update is called once per frame
@@ -75,7 +73,6 @@ public class AroundGuardsmanController : MonoBehaviour
 
         //エージェントが現在設定された目標地点に行くように設定
         _agent.destination = _points[_destPoint].position;
-        Debug.Log(_points[_destPoint].position);
         // 配列内の次の位置を目標地点に設定し必要ならば出発地点にもどる
         _destPoint = (_destPoint + 1) % _points.Length;
 

@@ -93,6 +93,7 @@ Shader "_lil/[Optional] lilToonFakeShadow"
         Tags {"RenderType" = "Transparent" "Queue" = "AlphaTest+55" "ShaderModel" = "4.5"}
         HLSLINCLUDE
             #define LIL_FEATURE_SHADOW
+            #define LIL_FEATURE_RIMLIGHT
             #define LIL_FEATURE_CLIPPING_CANCELLER
             #define LIL_OPTIMIZE_APPLY_SHADOW_FA
             #define LIL_OPTIMIZE_USE_FORWARDADD
@@ -192,6 +193,7 @@ Shader "_lil/[Optional] lilToonFakeShadow"
         Tags {"RenderType" = "Transparent" "Queue" = "AlphaTest+55"}
         HLSLINCLUDE
             #define LIL_FEATURE_SHADOW
+            #define LIL_FEATURE_RIMLIGHT
             #define LIL_FEATURE_CLIPPING_CANCELLER
             #define LIL_OPTIMIZE_APPLY_SHADOW_FA
             #define LIL_OPTIMIZE_USE_FORWARDADD

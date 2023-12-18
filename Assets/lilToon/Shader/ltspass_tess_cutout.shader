@@ -615,6 +615,7 @@ Shader "Hidden/ltspass_tess_cutout"
         Tags { "ShaderModel" = "4.5"}
         HLSLINCLUDE
             #define LIL_FEATURE_SHADOW
+            #define LIL_FEATURE_RIMLIGHT
             #define LIL_FEATURE_CLIPPING_CANCELLER
             #define LIL_OPTIMIZE_APPLY_SHADOW_FA
             #define LIL_OPTIMIZE_USE_FORWARDADD
@@ -1013,6 +1014,7 @@ Shader "Hidden/ltspass_tess_cutout"
         Tags {}
         HLSLINCLUDE
             #define LIL_FEATURE_SHADOW
+            #define LIL_FEATURE_RIMLIGHT
             #define LIL_FEATURE_CLIPPING_CANCELLER
             #define LIL_OPTIMIZE_APPLY_SHADOW_FA
             #define LIL_OPTIMIZE_USE_FORWARDADD

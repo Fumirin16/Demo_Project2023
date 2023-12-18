@@ -8,8 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: aiStandardSurface13
-  m_Shader: {fileID: 4800000, guid: efa77a80ca0344749b4f19fdd5891cbe, type: 3}
-  m_ValidKeywords: []
+  m_Shader: {fileID: 4800000, guid: 51b2dee0ab07bd84d8147601ff89e511, type: 3}
+  m_ValidKeywords:
+  - _METALLICGLOSSMAP
+  - _REQUIRE_UV2
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -559,8 +561,8 @@ Material:
     - _RimApplyTransparency: 1
     - _RimBackfaceMask: 1
     - _RimBlendMode: 1
-    - _RimBlur: 0.65
-    - _RimBorder: 0.56700003
+    - _RimBlur: 1
+    - _RimBorder: 0.623
     - _RimDirRange: 0
     - _RimDirStrength: 0
     - _RimEnableLighting: 1
@@ -630,7 +632,7 @@ Material:
     - _UseBacklight: 0
     - _UseBump2ndMap: 0
     - _UseBumpMap: 0
-    - _UseClippingCanceller: 0
+    - _UseClippingCanceller: 1
     - _UseDither: 0
     - _UseEmission: 0
     - _UseEmission2nd: 0
@@ -723,7 +725,7 @@ Material:
     - _OutlineTex_ScrollRotate: {r: 0, g: 0, b: 0, a: 0}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectionCubeColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 1, g: 0.032075405, b: 0.28473756, a: 1}
+    - _RimColor: {r: 1, g: 0.032075405, b: 0.2847374, a: 0.083}
     - _RimIndirColor: {r: 1, g: 1, b: 1, a: 1}
     - _SPECULAR_COLOR: {r: 1, g: 1, b: 1, a: 1}
     - _Shadow2ndColor: {r: 0.2278391, g: 0.21293166, b: 0.31132078, a: 1}

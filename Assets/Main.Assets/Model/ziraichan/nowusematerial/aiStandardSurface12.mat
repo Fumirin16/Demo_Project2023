@@ -8,8 +8,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: aiStandardSurface12
-  m_Shader: {fileID: 4800000, guid: df12117ecd77c31469c224178886498e, type: 3}
-  m_ValidKeywords: []
+  m_Shader: {fileID: 4800000, guid: 9294844b15dca184d914a632279b24e1, type: 3}
+  m_ValidKeywords:
+  - _METALLICGLOSSMAP
+  - _REQUIRE_UV2
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -630,7 +632,7 @@ Material:
     - _UseBacklight: 0
     - _UseBump2ndMap: 0
     - _UseBumpMap: 0
-    - _UseClippingCanceller: 0
+    - _UseClippingCanceller: 1
     - _UseDither: 0
     - _UseEmission: 0
     - _UseEmission2nd: 0
