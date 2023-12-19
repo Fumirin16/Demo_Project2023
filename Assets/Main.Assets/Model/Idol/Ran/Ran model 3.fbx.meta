@@ -1,0 +1,266 @@
+fileFormatVersion: 2
+guid: f811824506d62234599ec3aa78b5dd88
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 8
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: hair
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hair
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: hair2
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Ran model 3(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair
+      parentName: hair
+      position: {x: 0.00011370086, y: 0.027439576, z: -0.00023271589}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: hair2
+      parentName: hair
+      position: {x: -4.440892e-19, y: 0.027998911, z: -0.002036283}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.565059, y: 1.5158007, z: 0.565059}
+    - name: choker
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0.025788816, z: -0.00074268633}
+      rotation: {x: 0.088005975, y: -0, z: -0, w: 0.99612}
+      scale: {x: 0.898749, y: 0.09694671, z: 0.9729756}
+    - name: upper_body
+      parentName: Ran model 3(Clone)
+      position: {x: 5.07675e-18, y: 0.018918106, z: -0.0015399533}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: face_parts
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0.027781863, z: 0.0008608559}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_eyebrow
+      parentName: face_parts
+      position: {x: -0, y: -0.028079148, z: -0.00085878506}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_eyebrow
+      parentName: face_parts
+      position: {x: -0, y: -0.028079148, z: -0.00085878506}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_eye
+      parentName: face_parts
+      position: {x: -0.000582785, y: -0.00008955382, z: -0.00007365165}
+      rotation: {x: 0.75283235, y: -0.10302173, z: 0.12143939, w: 0.6386568}
+      scale: {x: 0.20906, y: 0.007378121, z: 0.20906}
+    - name: left_eye
+      parentName: face_parts
+      position: {x: -0.000582785, y: -0.00008955382, z: -0.00007365165}
+      rotation: {x: 0.75283235, y: -0.10302173, z: 0.12143939, w: 0.6386568}
+      scale: {x: 0.20906, y: 0.007378121, z: 0.20906}
+    - name: right_eyelashes
+      parentName: face_parts
+      position: {x: -0, y: -0.0278158, z: -0.0008481778}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_eyelashes
+      parentName: face_parts
+      position: {x: -0, y: -0.0278158, z: -0.0008481778}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: left_eyelid
+      parentName: face_parts
+      position: {x: -0, y: -0.028079148, z: -0.0007197391}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_eyelid
+      parentName: face_parts
+      position: {x: -0, y: -0.028079148, z: -0.0007197391}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: face2
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: cloak
+      parentName: Ran model 3(Clone)
+      position: {x: -0.0021654805, y: 0.020695247, z: -0.0030397945}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pants
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0.012621215, z: -0.00038516434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: aiguillette
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCube21
+      parentName: aiguillette
+      position: {x: 0.0024432, y: 0.023868363, z: 0.00034455754}
+      rotation: {x: 0, y: 0.018258415, z: -0, w: 0.99983335}
+      scale: {x: 0.20259924, y: 4.799621, z: 0.11337965}
+    - name: pTorus1
+      parentName: aiguillette
+      position: {x: 0.0025598088, y: 0.02375081, z: -0.00077949086}
+      rotation: {x: -0.04012062, y: 0.032777544, z: -0.70596766, w: 0.7063467}
+      scale: {x: 1.9001731, y: 1, z: 1.373226}
+    - name: boots
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: right_boot
+      parentName: boots
+      position: {x: 0.00004360218, y: 0.0014563454, z: 0.00017778206}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0394273, y: 1.0394273, z: 1.0394273}
+    - name: left_boot
+      parentName: boots
+      position: {x: 0.00004360218, y: 0.0014563454, z: 0.00017778206}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0394273, y: 1.0394273, z: 1.0394273}
+    - name: tie
+      parentName: Ran model 3(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCube22
+      parentName: tie
+      position: {x: -0, y: 0.023856651, z: 0.0010936684}
+      rotation: {x: -0.15773442, y: 0, z: -0, w: 0.9874816}
+      scale: {x: 0.7937822, y: 0.7937822, z: 0.13210846}
+    - name: pCube23
+      parentName: tie
+      position: {x: -0, y: 0.020747649, z: 0.0014993551}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 7.1143475, z: 0.10623235}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.08
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
