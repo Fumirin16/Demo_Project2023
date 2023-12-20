@@ -30,6 +30,9 @@ public class PlayerWalkManager : MonoBehaviour
     [SerializeField]
     private ValueSettingManager setttingManager;
 
+    [SerializeField]
+    private StandStill _power;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -47,10 +50,12 @@ public class PlayerWalkManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StandStill.powerSource >= 0.9)
+        float power = _power.moveWalkPower;
+
+        if (_power.moveWalkPower >= 0.9)
         {
             // プレイヤーを移動させる動力を保存 
-            float moveSpeed = StandStill.powerSource * _moveSpeed;
+            float moveSpeed = power * _moveSpeed;
             //Debug.Log("modeSpeed : " + moveSpeed);
 
             // カメラの向きを取得

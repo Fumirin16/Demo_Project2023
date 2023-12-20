@@ -13,11 +13,14 @@ public class ValueSettingManager : ScriptableObject
 
     // === Player ===
     [Header("=== PLAYER MOCOPI ===")]
-    [Range(0f,1000f),Tooltip("�����݂����Ƃ��̃v���C���[�̑���")]
+    [Range(1f,1000f),Tooltip("�����݂����Ƃ��̃v���C���[�̑���")]
     public float MOCOPI_PlayerMoveSpeed = 1f;
 
     [Range(0f,5f),Tooltip("�����݂����Ƃ��̏��Ƒ��̋��������ꂽ�Ƃ��̔��������l")]
     public float FootDistanceFoor = 0.1f;
+
+    [Range(1,100)]
+    public int movePower = 1;
 
     [Header("=== PLAYER JOYSTIC ===")]
     [Range(0f, 10f),Tooltip("�R���g���[���[�ő��삵���Ƃ��Ƀv���C���[����]���鑬��")]
@@ -91,7 +94,7 @@ public class ValueSettingManager : ScriptableObject
     // === MainGameUI ===
     [Header("=== UI TIMER ===")]
     [Range(0f, 180f),Tooltip("���C���Q�[���̐�������")]
-    public float GameLimitTime = 90f;
+    public float GameLimitTime = 128f;
 
     // === InGame ===
     /// <summary>

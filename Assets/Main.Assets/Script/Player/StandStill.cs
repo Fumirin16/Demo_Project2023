@@ -30,8 +30,10 @@ public class StandStill : MonoBehaviour
     /// <summary>
     /// 歩かせる強さを保存する変数
     /// </summary>
-    [NonSerialized]
-    public static float powerSource = 0f;
+    private float powerSource = 0f;
+
+    [HideInInspector]
+    public float moveWalkPower = 0f;
 
     /// <summary>
     /// 足が動いているかの判定をする変数
@@ -49,6 +51,7 @@ public class StandStill : MonoBehaviour
 
     bool asibumisitaka;
 
+    [HideInInspector]
     public int WalkCount;
 
     #endregion --- Fields ---
@@ -64,6 +67,8 @@ public class StandStill : MonoBehaviour
         // 右足の初期位置を保存する
         _foot = new FootPosition(_footObj.transform.position, _footObj.transform.position, 0);
         //Debug.Log("StandStill  initiFoot : " + _foot);
+
+        powerSource = settingManager.movePower;
     }
 
     // Update is called once per frame
@@ -116,7 +121,7 @@ public class StandStill : MonoBehaviour
                 asibumisitaka = false;
             }
 
-            powerSource = 1;
+            moveWalkPower = powerSource;
         }
     }
 
@@ -133,7 +138,7 @@ public class StandStill : MonoBehaviour
             _moveFoot = false;
 
             // 動力を０にする
-            powerSource = 0;
+            moveWalkPower = 0f;
 
             //Debug.Log("StandStill  入っている。");
         }

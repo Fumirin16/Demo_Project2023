@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 //  ゲームがゲームオーバー・クリアになった時の処理
@@ -104,6 +105,12 @@ public class OutGameManager : MonoBehaviour
 
     #region ---Methods---
 
+    private void Awake()
+    {
+        settingManager.gameOver = false;
+        settingManager.gameClear = false;
+    }
+
     private void Start()
     {
         Debug.Log("判定Over : " + settingManager.gameOver);
@@ -116,14 +123,14 @@ public class OutGameManager : MonoBehaviour
         if (settingManager.gameOver)
         {
             audioManager.StopSound(audioManager.bgmAudioSource);
-            StartCoroutine(Direction_UI(_overText, 4));
+            StartCoroutine(Direction_UI(_overText, 4,settingManager.gameOver));
         }
 
         // ゲームクリア時の処理
         if (settingManager.gameClear)
         {
             audioManager.StopSound(audioManager.bgmAudioSource);
-            StartCoroutine(Direction_UI(_clearText, 3));
+            StartCoroutine(Direction_UI(_clearText, 3, settingManager.gameClear));
         }
     }
 
@@ -133,7 +140,7 @@ public class OutGameManager : MonoBehaviour
     /// <param name="textWord"> 表示したい文字 </param>
     /// <param name="sceneNumber"> 遷移したいシーンの番号  </param>
     /// <returns>  ?      </returns>
-    private IEnumerator Direction_UI(string textWord, int sceneNumber)
+    private IEnumerator Direction_UI(string textWord, int sceneNumber,bool ingame)
     {
         // プレイヤーと警備員の動きを止める関数の呼び出し
         DontMove_AntherScript();
@@ -159,6 +166,7 @@ public class OutGameManager : MonoBehaviour
             // フェードが終わった場合
             if (FadeManager.fadeOut)
             {
+                ingame = false;
                 // シーンを遷移する
                 _transSystem.Trans_Scene(sceneNumber);
             }
