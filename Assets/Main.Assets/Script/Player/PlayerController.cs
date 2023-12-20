@@ -68,6 +68,11 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.Joystick1Button11))
+        {
+
+        }
+
         if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.JoystickButton2))
         {
            if (!audioManager.CheckPlaySound(audioManager.seAudioSource))
