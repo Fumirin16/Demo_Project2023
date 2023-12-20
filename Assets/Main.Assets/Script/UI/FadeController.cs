@@ -14,12 +14,11 @@ public class FadeController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _countdownText;
     [SerializeField] Image _countdownImage;
     [SerializeField] Image _fadePanel;
-
     [SerializeField] Animator _animator;
     [SerializeField] NavMeshAgent guardsman;
     [SerializeField] NavMeshAgent guardsman2;
-
-    public Animator _idleAnim;
+    [SerializeField] Animator _maoAnim;
+    [SerializeField] Animator _ranAnim;
     float _countdown = 4f;
     int _count;
 
@@ -66,7 +65,8 @@ public class FadeController : MonoBehaviour
                 guardsman2.enabled = true;
                 _controller.enabled = true;
                 _controller2.enabled = true;
-                _idleAnim.Play("dance");
+                _maoAnim.Play("dance");
+                _ranAnim.Play("dance");
 
                 _countdownText.gameObject.SetActive(false);
                 _countdownImage.gameObject.SetActive(false);
