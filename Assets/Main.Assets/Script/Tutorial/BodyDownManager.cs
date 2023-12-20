@@ -64,18 +64,12 @@ public class BodyDownManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
-        {
-            _active = false;
-            Debug.Log("ataltuteru");
-        }
+        _active = false;
+        Debug.Log("ataltuteru");
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player")
-        {
-            _active = true;
-            Debug.Log("nai");
-        }
+        _active = true;
+        Debug.Log("nai");
     }
 }
