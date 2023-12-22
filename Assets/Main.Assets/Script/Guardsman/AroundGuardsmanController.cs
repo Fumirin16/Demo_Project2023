@@ -13,6 +13,8 @@ public class AroundGuardsmanController : MonoBehaviour
     int _destPoint = 0;
     // ‹ŠE“ü‚Á‚Ä‚é‚©“ü‚Á‚Ä‚È‚¢‚©”»’è‚·‚é•Ï”
     bool _targetFlag = false;
+
+    bool _SEflag = true;
     // Guardsman‚ÌNavMeshAgentæ“¾
     NavMeshAgent _agent;
 
@@ -87,18 +89,23 @@ public class AroundGuardsmanController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            audioManager.PlaySESound(SEData.SE.FoundSecurity);
-            Debug.Log("‹ŠE“ü‚Á‚½");
-            _targetFlag = true;
-            _haken.gameObject.SetActive(true);
+            if(_SEflag)
+            {
+                audioManager.PlaySESound(SEData.SE.FoundSecurity);
+                Debug.Log("‹ŠE“ü‚Á‚½");
+                _targetFlag = true;
+                _haken.gameObject.SetActive(true);
+                _SEflag = false;
+            }
         }
     }
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("‹ŠE‚Å‚½");
+            Debug.Log("‹ŠE‚Å‚½");
             _targetFlag = false;
+            _SEflag = true;
             _haken.gameObject.SetActive(false);
         }
     }

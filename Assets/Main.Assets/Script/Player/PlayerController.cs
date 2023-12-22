@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// カメラが切り替え判定
     /// </summary>
-    bool _cameraActive;
+    bool _cameraActive = true;
 
     /// <summary>
     /// カメラオブジェクト参照する変数
