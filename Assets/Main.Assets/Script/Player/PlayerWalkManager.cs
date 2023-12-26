@@ -58,7 +58,6 @@ public class PlayerWalkManager : MonoBehaviour
     private void FixedUpdate()
     {
         float power = _power.moveWalkPower;
-
         if (_power.moveWalkPower >= 0.9)
         {
             // プレイヤーを移動させる動力を保存 
@@ -73,6 +72,10 @@ public class PlayerWalkManager : MonoBehaviour
             // プレイヤーを移動させる
             _rb.AddForce(moveForward);
             Debug.Log(moveForward);
+        }
+        else
+        {
+            _rb.velocity = new Vector3(0, 0, 0);
         }
     }
 

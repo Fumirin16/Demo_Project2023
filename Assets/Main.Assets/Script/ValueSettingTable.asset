@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MOCOPI_PlayerMoveSpeed: 1
   FootDistanceFoor: 0.001
-  movePower: 100
+  movePower: 1
   PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.05
   smoothTime: 1
@@ -72,5 +72,5 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: b735150c0582a824ab6a0207978acdfc, type: 3}
     volume: 1
   GameLimitTime: 128
-  gameOver: 0
+  gameOver: 1
   gameClear: 0
