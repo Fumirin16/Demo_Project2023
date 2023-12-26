@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MOCOPI_PlayerMoveSpeed: 10
   FootDistanceFoor: 0.001
-  movePower: 10
+  movePower: 1
   PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.05
   smoothTime: 1

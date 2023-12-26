@@ -24,9 +24,6 @@ public class PlayerWalkManager : MonoBehaviour
     [SerializeField]
     private GameObject _playerCamera;
 
-    [SerializeField]
-    private GameObject obj;
-
     /// <summary>
     /// 値を参照する変数
     /// </summary>
@@ -40,11 +37,6 @@ public class PlayerWalkManager : MonoBehaviour
 
     #region ---Methods---
 
-    private void Awake()
-    {
-        this.transform.position=obj.transform.position;
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +47,8 @@ public class PlayerWalkManager : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    // Update is called once per frame
+    void Update()
     {
         float power = _power.moveWalkPower;
 
@@ -66,13 +59,13 @@ public class PlayerWalkManager : MonoBehaviour
             //Debug.Log("modeSpeed : " + moveSpeed);
 
             // カメラの向きを取得
-            Vector3 cameraForward = Vector3.Scale(_playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
+            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
             //Debug.Log("cameraForward : " + cameraForward);
 
             Vector3 moveForward = cameraForward * moveSpeed;
             // プレイヤーを移動させる
             _rb.AddForce(moveForward);
-            Debug.Log(moveForward);
+            Debug.Log(_rb.velocity);
         }
     }
 
