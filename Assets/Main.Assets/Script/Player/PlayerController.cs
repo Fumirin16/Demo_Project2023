@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     /// 左右回転の数値を取得する変数
     /// </summary>
     float _rot;
+    float _vertical;
 
     /// <summary>
     /// 回転スピードを取得する変数数字が大きいほど速くなる
@@ -64,9 +65,12 @@ public class PlayerController : MonoBehaviour
     {
         // 左右回転の数値取得
         _rot = Input.GetAxis("Horizontal");
+        _vertical = Input.GetAxis("Vertical");
 
         // 回転
         transform.Rotate(new Vector3(0, _rot * -_rotateSpeed, 0));
+
+        _mainCamera.transform.Rotate(_vertical * _rotateSpeed, 0, 0);
 
         // 前後移動
         // 前

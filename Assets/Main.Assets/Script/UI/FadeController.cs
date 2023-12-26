@@ -17,7 +17,7 @@ public class FadeController : MonoBehaviour
     [SerializeField] NavMeshAgent guardsman;
     [SerializeField] Animator _maoAnim;
     [SerializeField] Animator _ranAnim;
-    float _countdown = 4f;
+    static float _countdown = 4f;
     int _count;
 
     void Start()
@@ -54,7 +54,7 @@ public class FadeController : MonoBehaviour
             _count = (int)_countdown;
             _countdownText.text = _count.ToString();
 
-            if (_countdown <= 0)
+            if (FadeTimeOver())
             {
                 _timer.enabled = true;
                 guardsman.enabled = true;
@@ -71,5 +71,10 @@ public class FadeController : MonoBehaviour
             }
             yield return null;
         }
+    }
+
+    public static bool FadeTimeOver()
+    {
+        return _countdown <= 0;
     }
 }
