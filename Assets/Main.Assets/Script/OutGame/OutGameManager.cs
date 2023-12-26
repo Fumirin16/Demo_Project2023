@@ -188,7 +188,7 @@ public class OutGameManager : MonoBehaviour
         _playerObj.GetComponent<PlayerWalkManager>().enabled = false;
 
         // カメラ移動を止める
-        _cameraObj.GetComponent<CinemachineBrain>().enabled = false;
+        //_cameraObj.GetComponent<CinemachineBrain>().enabled = false;
 
         // 警備員の移動を止める 
         _guardObj.GetComponent<AroundGuardsmanController>().enabled = false;
