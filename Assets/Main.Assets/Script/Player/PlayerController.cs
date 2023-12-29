@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;  // ナビゲーション使う際に必要
 
 // 作成者：地引翼
 // プレイヤーの動き
@@ -38,6 +39,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject _subCamera;
 
     /// <summary>
+    /// カメラオブジェクト参照する変数
+    /// </summary>
+    [SerializeField] Animator _animator;
+
+    /// <summary>
     /// ValueSettingManager参照する変数
     /// </summary>
     public ValueSettingManager settingManager;
@@ -46,6 +52,9 @@ public class PlayerController : MonoBehaviour
     /// AudioManager参照する変数
     /// </summary>
     public AudioManager audioManager;
+
+    [SerializeField] NavMeshAgent _agent;
+    [SerializeField] AroundGuardsmanController _controller;
 
     #endregion ---Fields---
 
@@ -117,6 +126,26 @@ public class PlayerController : MonoBehaviour
                 _subCamera.SetActive(false);
                 _cameraActive = true;
             }
+        }
+    }
+
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.tag == "Guardman")
+    //    {
+    //        _animator.Play("GameOver");
+    //        Debug.Log("aaaaaa");
+    //    }
+    //}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Guardman"))
+        {
+            _controller.enabled = false;
+            _agent.enabled = false;
+            _animator.Play("GameOver");
+            //Debug.Log("aaaaaa");
         }
     }
     #endregion ---Methods---

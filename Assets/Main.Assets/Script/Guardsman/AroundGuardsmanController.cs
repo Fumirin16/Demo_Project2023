@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;  // ナビゲーション使う際に必要
 using UnityEngine.UI;  // UI関連に必要
@@ -85,25 +83,25 @@ public class AroundGuardsmanController : MonoBehaviour
     }
 
     //視界に入ったら追いかけてくる
-    public void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             if(_SEflag)
             {
                 audioManager.PlaySESound(SEData.SE.FoundSecurity);
-                Debug.Log("視界入った");
+                //Debug.Log("視界入った");
                 _targetFlag = true;
                 _haken.gameObject.SetActive(true);
                 _SEflag = false;
             }
         }
     }
-    public void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("視界でた");
+            //Debug.Log("視界でた");
             _targetFlag = false;
             _SEflag = true;
             _haken.gameObject.SetActive(false);

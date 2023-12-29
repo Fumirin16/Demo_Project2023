@@ -64,7 +64,7 @@ public class kakiwakeManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.CompareTag("Enemy"))
         {
             hitolist.Add(other.gameObject);
         }

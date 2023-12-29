@@ -6950,11 +6950,11 @@ MonoBehaviour:
   - {fileID: 1702434519}
   - {fileID: 1071618890}
   _buttonImage:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 258515940}
+  - {fileID: 1352320955}
   _buttonSelect:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1797981063}
+  - {fileID: 2129877658}
   _cameraObj: {fileID: 1339781612}
   _titleCanvas: {fileID: 1121400741}
   audioManager: {fileID: 7802592933832084545}

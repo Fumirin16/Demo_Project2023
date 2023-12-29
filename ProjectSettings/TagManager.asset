@@ -12,6 +12,7 @@ TagManager:
   - Hand
   - Ground
   - Audience
+  - Guardman
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,7 @@ public class AddForce : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag == "Player")
+        if(collision.collider.CompareTag("Player"))
         {
             Debug.Log("aaaaa");
             _rb.AddForce(force, ForceMode.Impulse);

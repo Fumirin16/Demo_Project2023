@@ -26,7 +26,7 @@ public class IncubationGuardsmanController : MonoBehaviour
     // ゲームオーバー当たり判定
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             // ゲームオーバーの判定をtrueにする
             settingManager.gameOver = true;
