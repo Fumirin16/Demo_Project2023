@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // 警備員のゲームオーバー判定
@@ -10,7 +12,16 @@ public class GuardsmanCollision : MonoBehaviour
     /// </summary>
     [SerializeField] ValueSettingManager _settingManager;
 
-    // ゲームオーバー当たり判定
+    /// <summary>
+    ///  警備員オブジェクト取得
+    /// </summary>
+    [SerializeField] GameObject _guardsmanObj;
+
+    /// <summary>
+    ///  プレイヤーオブジェクト取得
+    /// </summary>
+    [SerializeField] GameObject _playerObj;
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -18,6 +29,9 @@ public class GuardsmanCollision : MonoBehaviour
             // ゲームオーバーの判定をtrueにする
             //_settingManager.gameOver = true;
 
+            // プレイヤーのほうに向かせる
+            _guardsmanObj.transform.LookAt(_playerObj.transform.position);
+            
             //Debug.Log("ゲームオーバー");
         }
     }

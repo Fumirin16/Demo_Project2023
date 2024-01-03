@@ -6,6 +6,8 @@ public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField] ValueSettingManager _settingManager;
 
+    [SerializeField] Animator _guardsmanAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,6 @@ public class PlayerAnimation : MonoBehaviour
     public void GoGameOver()
     {
         _settingManager.gameOver = true;
+        _guardsmanAnim.enabled = false;
     }
 }

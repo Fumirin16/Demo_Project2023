@@ -1,6 +1,6 @@
 using UnityEngine;
-using UnityEngine.AI;  // ナビゲーション使う際に必要
-using UnityEngine.UI;  // UI関連に必要
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 // Navigationを用いた巡回型警備員の動き
 // 作成者：地引翼

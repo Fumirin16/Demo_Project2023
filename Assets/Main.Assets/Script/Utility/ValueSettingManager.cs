@@ -48,17 +48,6 @@ public class ValueSettingManager : ScriptableObject
     [Range(0f, 100f),Tooltip("�x�����̍ō������x�̒l�iNavMeshAgent->Acceleration�j")]
     public float guardAcceleration = 8f;
 
-    // === GuardMan ===
-    [Header("=== TUTORIAL ===")]
-    [Tooltip("")]
-    public int ClearCount;
-
-    [Tooltip("")]
-    public float ClearTime;
-
-    [Tooltip("")]
-    public int ClearHuman;
-
     // === Audio ===
     [Header("=== AUDIO ===")]
     /// <summary>

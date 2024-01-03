@@ -22,12 +22,12 @@ public class NPCManager : MonoBehaviour
     /// <summary>
     /// _posへ到達するまで何秒の変数。値が小さいほど、_target に速く到達
     /// </summary>
-    float smoothTime;
+    [SerializeField] float smoothTime;
 
     /// <summary>
     /// ValueSettingManagerへ参照するための変数
     /// </summary>
-    [SerializeField] ValueSettingManager _setting;
+    //[SerializeField] ValueSettingManager _setting;
 
      Animator _audienceAnim;
 
@@ -43,7 +43,7 @@ public class NPCManager : MonoBehaviour
         // 初期位置を保存
         _pos = transform.position;
         // 値を参照したものを保存する
-        smoothTime = _setting.smoothTime;
+        //smoothTime = _setting.smoothTime;
 
         _audienceAnim = GetComponent<Animator>();
     }
@@ -63,9 +63,10 @@ public class NPCManager : MonoBehaviour
 
     //public void OnCollisionEnter(Collision collision)
     //{
-    //    if(collision.gameObject.tag == "Player")
+    //    if (collision.gameObject.tag == "Player")
     //    {
-    //        _animator.Play("reaction");
+    //        _audienceAnim.Play("hit");
+    //        Debug.Log("hit");
     //    }
     //}
     #endregion ---Methods---
