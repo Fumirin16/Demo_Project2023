@@ -2751,19 +2751,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 656561240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1211244525}
-        m_TargetAssemblyTypeName: TranstionScenes, Assembly-CSharp
-        m_MethodName: Trans_Scene
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &656561240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3959,7 +3947,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: 2}
+  m_AnchoredPosition: {x: 57, y: 28}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &843969248
@@ -3982,7 +3970,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B ( A )"
+  m_text: "A\u30DC\u30BF\u30F3\n\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac00f53b566c25a4499a0f1900ef0ea8, type: 2}
   m_sharedMaterial: {fileID: -4573256625932420253, guid: ac00f53b566c25a4499a0f1900ef0ea8, type: 2}
@@ -4016,7 +4004,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7232,17 +7220,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202414504}
   m_Mesh: {fileID: -6602441374692447843, guid: 61a3c3b1c527dc340a9b796ffa09fd21, type: 3}
---- !u!114 &1211244525 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5834727805382032830, guid: 02dcd621ff8b85f4994df847d862e0d5, type: 3}
-  m_PrefabInstance: {fileID: 149887229}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6022959ccedf4d4097a1effc2947e97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1242877813
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11713,10 +11690,10 @@ PrefabInstance:
     - target: {fileID: 4377230494871250557, guid: 01511f1527ce04646afd74ba1cb7d4bd, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: f4529717f0bae1346a443dfd57682dff, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4377230494871250557, guid: 01511f1527ce04646afd74ba1cb7d4bd, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5798795115440836357, guid: 01511f1527ce04646afd74ba1cb7d4bd, type: 3}
       propertyPath: m_Name

@@ -102,19 +102,20 @@ public class StandStill : MonoBehaviour
     /// </summary>
     void WalkPower()
     {
-        if (_reactionValume < _foot.distance && _moveFoot)
+        if (_reactionValume < _foot.distance && _moveFoot&& asibumisitaka)
         {
             if (audioManager.CheckPlaySound(audioManager.seAudioSource))
             {
-                audioManager.PlaySESound(SEData.SE.Walk);
+                audioManager.PlaySESound(SEData.SE.WalkMini);
             }
             //Debug.Log("aaaaaaaaaaaaaaaaaaaaaa");
 
-            if(asibumisitaka)
-            {
-                WalkCount++;
-                asibumisitaka = false;
-            }
+            //if(asibumisitaka)
+            //{
+            //    WalkCount++;
+            //    asibumisitaka = false;
+            //}
+            WalkCount++;
 
             moveWalkPower = powerSource;
         }

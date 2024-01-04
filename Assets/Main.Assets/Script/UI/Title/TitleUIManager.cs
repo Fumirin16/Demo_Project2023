@@ -242,7 +242,7 @@ public class TitleUIManager : MonoBehaviour
     private void Update()
     {
         // 再生してからUI演出の処理を稼働させるための処理
-        if (_titleStartVideo.isPlaying&&_uiCounter==10)
+        if (_titleStartVideo.isPlaying && _uiCounter == 10)
         {
             _audioSystem.ChangeBGMVolume(1);
 
@@ -260,16 +260,15 @@ public class TitleUIManager : MonoBehaviour
                 // タイトルスタートが流れ終わった場合
                 if (!_titleStartVideo.isPlaying)
                 {
+                    _titleStartVideo.Stop();
                     // タイトルロゴを表示
                     _titleLogoObj.SetActive(true);
-
-                    // タイトルスタートを非表示
-                    _titleStartobj.SetActive(false);
 
                     // タイトルロゴを再生する
                     _titleLogoVideo.Play();
 
-
+                    // タイトルスタートを非表示
+                    _titleStartobj.SetActive(false);
 
                     _uiCounter = 1;
                 }
@@ -297,7 +296,7 @@ public class TitleUIManager : MonoBehaviour
             case (int)UIdirecton.Select:
                 // 現在、選択されているボタンの情報を保存する
                 _buttonObj = EventSystem.current.currentSelectedGameObject;
-
+                Debug.Log("_buttonobj : " + _buttonObj);
                 // 選択されているボタンがスタートボタンな場合
                 if (_buttonObj == _startButtonObj)
                 {
@@ -310,6 +309,9 @@ public class TitleUIManager : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Z))
                     {
+                        Debug.Log("Input");
+                        _audioSystem.PlaySESound(SEData.SE.ClickButton);
+
                         // タイトルロゴを非表示
                         _titleLogoObj.SetActive(false);
 
@@ -332,6 +334,8 @@ public class TitleUIManager : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.Y))
                     {
+                        _audioSystem.PlaySESound(SEData.SE.ClickButton);
+
                         // タイトルロゴを非表示
                         _titleLogoObj.SetActive(false);
 
@@ -366,7 +370,7 @@ public class TitleUIManager : MonoBehaviour
                     _creditButtonObj.transform.localScale = _creditScale;
                 }
                 // 選択されているボタンがクレジットボタンな場合
-                if(_buttonObj == _creditButtonObj)
+                if (_buttonObj == _creditButtonObj)
                 {
                     // アイドル紹介ボタンの選択中の画像を非表示
                     _idolButtonImage.enabled = false;
@@ -392,6 +396,12 @@ public class TitleUIManager : MonoBehaviour
 
             // スタートボタンのAボタンが押された後にカメラを動かす演出
             case (int)UIdirecton.ClickAButton:
+                _audioSystem.StopSound(_audioSystem.bgmAudioSource);
+                if (_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+                {
+                    _audioSystem.PlaySESound(SEData.SE.Walk);
+                }
+
                 // カメラを移動する位置を設定する
                 float _positionValue = ((Time.time - _time) / _distance) * _cameraMoveSpeed;
 
@@ -400,12 +410,19 @@ public class TitleUIManager : MonoBehaviour
 
                 if (_endPosition == _mainCamera.transform.position)
                 {
+                    _audioSystem.StopSound(_audioSystem.seAudioSource);
                     _transScene.Trans_Scene(3);
                 }
                 break;
 
             // スタートボタンのYボタンが押された後にカメラを動かす演出
             case (int)UIdirecton.ClickYButton:
+                _audioSystem.StopSound(_audioSystem.bgmAudioSource);
+                if (_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+                {
+                    _audioSystem.PlaySESound(SEData.SE.Walk);
+                }
+
                 // カメラを移動する位置を設定する
                 float _postionValue = ((Time.time - _time) / _distance) * _cameraMoveSpeed;
 
@@ -414,6 +431,7 @@ public class TitleUIManager : MonoBehaviour
 
                 if (_endPosition == _mainCamera.transform.position)
                 {
+                    _audioSystem.StopSound(_audioSystem.seAudioSource);
                     _transScene.Trans_Scene(4);
                 }
                 break;
@@ -424,9 +442,11 @@ public class TitleUIManager : MonoBehaviour
 
     public void OnClikButton(int transSceneNum)
     {
+        _audioSystem.PlaySESound(SEData.SE.ClickButton);
+
+        _titleLogoVideo.Stop();
         // タイトルロゴを非表示
         _titleLogoObj.SetActive(false);
-
 
         // スタートボタンをアクティブにする
         _startButtonObj.SetActive(false);

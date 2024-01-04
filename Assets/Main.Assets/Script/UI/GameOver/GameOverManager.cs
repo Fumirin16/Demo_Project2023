@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
+using JetBrains.Annotations;
 
 // 作成者：山﨑晶 
 // ゲームオーバーのUI演出処理
@@ -55,6 +56,10 @@ public class GameOverManager : MonoBehaviour
     private Vector3 _buttonScale = new Vector3(1, 1, 1);
 
     private float _changeScale = 1.1f;
+
+    private bool _isClick = false;
+
+    private int _SceneNum;
 
     #endregion ---Fields---
 
@@ -123,6 +128,17 @@ public class GameOverManager : MonoBehaviour
                 _toBackButton.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
                 _toBackScale.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
             }
+
+
+            if (!_gameOverVideo.isPlaying)
+            {
+                _transSystem.Trans_Scene(0);
+            }
+        }
+
+        if (_isClick&& _audioiSystem.CheckPlaySound(_audioiSystem.seAudioSource))
+        {
+            _transSystem.Trans_Scene(_SceneNum);
         }
     }
 
@@ -130,7 +146,13 @@ public class GameOverManager : MonoBehaviour
     {
         _audioiSystem.StopSound(_audioiSystem.bgmAudioSource);
 
-        _transSystem.Trans_Scene(SceneNum);
+        _audioiSystem.PlaySESound(SEData.SE.ClickButton);
+
+        //_isClick = true;
+
+        _SceneNum = SceneNum;
+
+        _gameOverVideo.Stop();
     }
 
     #endregion ---Methods---

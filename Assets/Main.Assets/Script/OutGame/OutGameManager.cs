@@ -123,14 +123,28 @@ public class OutGameManager : MonoBehaviour
         if (settingManager.gameOver)
         {
             audioManager.StopSound(audioManager.bgmAudioSource);
-            StartCoroutine(Direction_UI(_overText, 6,settingManager.gameOver));
+
+            // プレイヤーと警備員の動きを止める関数の呼び出し
+            DontMove_AntherScript();
+
+            // シーンを遷移する
+            _transSystem.Trans_Scene(6);
+
+            //StartCoroutine(Direction_UI(_overText, 6,settingManager.gameOver));
         }
 
         // ゲームクリア時の処理
         if (settingManager.gameClear)
         {
             audioManager.StopSound(audioManager.bgmAudioSource);
-            StartCoroutine(Direction_UI(_clearText, 5, settingManager.gameClear));
+
+            // プレイヤーと警備員の動きを止める関数の呼び出し
+            DontMove_AntherScript();
+
+            // シーンを遷移する
+            _transSystem.Trans_Scene(5);
+
+            //StartCoroutine(Direction_UI(_clearText, 5, settingManager.gameClear));
         }
     }
 
