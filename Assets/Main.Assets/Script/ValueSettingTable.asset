@@ -21,9 +21,6 @@ MonoBehaviour:
   guardMoveSpeed: 2
   guardAngularSpeed: 120
   guardAcceleration: 8
-  ClearCount: 0
-  ClearTime: 0
-  ClearHuman: 0
   masterVolume: 1
   bgmMasterVolume: 1
   seMasterVolume: 1
@@ -77,6 +74,9 @@ MonoBehaviour:
   - se: 10
     audioClip: {fileID: 8300000, guid: b735150c0582a824ab6a0207978acdfc, type: 3}
     volume: 1
+  - se: 8
+    audioClip: {fileID: 8300000, guid: 575de072acc87bd4ebbd40732ea3b60c, type: 3}
+    volume: 1
   GameLimitTime: 128
-  gameOver: 1
+  gameOver: 0
   gameClear: 0
