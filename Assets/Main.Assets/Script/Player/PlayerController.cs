@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
     {
         // ¶‰E‰ñ“]‚Ì”’læ“¾
         _rot = Input.GetAxis("Horizontal");
-        _vertical = Input.GetAxis("Vertical");
+        //_vertical = Input.GetAxis("Vertical");
 
         // ‰ñ“]
         transform.Rotate(new Vector3(0, _rot * -_rotateSpeed, 0));

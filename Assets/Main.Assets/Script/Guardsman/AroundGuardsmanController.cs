@@ -53,12 +53,13 @@ public class AroundGuardsmanController : MonoBehaviour
             GotoNextPoint();
         }
 
-        if (_targetFlag == true)
+        if (_targetFlag)
         {
             _agent.destination = _target.transform.position;
         }
-        if (_targetFlag == false)
+        if (!_targetFlag)
         {
+            //Debug.Log(_destPoint);
             _agent.destination = _points[_destPoint].position;
         }
     }
@@ -83,7 +84,7 @@ public class AroundGuardsmanController : MonoBehaviour
     }
 
     //Ž‹ŠE‚É“ü‚Á‚½‚ç’Ç‚¢‚©‚¯‚Ä‚­‚é
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
