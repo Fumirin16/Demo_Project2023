@@ -232,9 +232,6 @@ public class TitleUIManager : MonoBehaviour
         // メインカメラの初期位置と移動先位置の距離を計算する
         _distance = Vector3.Distance(_startPostion, _endPosition);
 
-        // タイトルのBGMを再生する
-        _audioSystem.PlayBGMSound(BGMData.BGM.Title);
-
         // 初期に選択状態にしておくボタンを設定する
         EventSystem.current.SetSelectedGameObject(_startButtonObj);
     }
@@ -245,8 +242,13 @@ public class TitleUIManager : MonoBehaviour
     private void Update()
     {
         // 再生してからUI演出の処理を稼働させるための処理
-        if (_titleStartVideo.isPlaying)
+        if (_titleStartVideo.isPlaying&&_uiCounter==10)
         {
+            _audioSystem.ChangeBGMVolume(1);
+
+            // タイトルのBGMを再生する
+            _audioSystem.PlayBGMSound(BGMData.BGM.Title);
+
             _uiCounter = 0;
         }
 
