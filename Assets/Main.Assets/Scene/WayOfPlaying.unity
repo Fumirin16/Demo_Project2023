@@ -919,7 +919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &84118387
 Transform:
   m_ObjectHideFlags: 0
@@ -3752,15 +3752,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406687074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19e23f60369b4eb41b2e44ca73a79528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCamera: {fileID: 0}
-  obj: {fileID: 0}
+  _playerCamera: {fileID: 1193330091}
+  obj: {fileID: 406687074}
   setttingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
-  _power: {fileID: 0}
+  _power: {fileID: 353350463}
 --- !u!114 &406687083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18347,6 +18347,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4283547649279712027, guid: 95310354f6659384bb943862a09ab417, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283547649279712027, guid: 95310354f6659384bb943862a09ab417, type: 3}
+      propertyPath: m_WarningMessage
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7645038821838255155, guid: 95310354f6659384bb943862a09ab417, type: 3}
       propertyPath: audioManager
       value: 
@@ -18354,6 +18362,10 @@ PrefabInstance:
     - target: {fileID: 7645038822003111025, guid: 95310354f6659384bb943862a09ab417, type: 3}
       propertyPath: m_Name
       value: obj_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7645038822003111025, guid: 95310354f6659384bb943862a09ab417, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7645038822003111038, guid: 95310354f6659384bb943862a09ab417, type: 3}
       propertyPath: m_RootOrder

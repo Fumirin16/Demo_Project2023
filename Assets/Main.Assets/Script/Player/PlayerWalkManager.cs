@@ -71,7 +71,7 @@ public class PlayerWalkManager : MonoBehaviour
             Vector3 moveForward = cameraForward * moveSpeed;
             // プレイヤーを移動させる
             _rb.AddForce(moveForward);
-            //Debug.Log(moveForward);
+            Debug.Log(moveForward);
         }
         else
         {

@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] AroundGuardsmanController _controller;
 
+    [SerializeField] GameObject _gameoverObj;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -144,7 +146,9 @@ public class PlayerController : MonoBehaviour
         {
             _controller.enabled = false;
             _agent.enabled = false;
-            _animator.Play("GameOver");
+            _gameoverObj.SetActive(true);
+            _gameoverObj.transform .position = transform.position;
+            //_animator.Play("GameOver");
             //Debug.Log("aaaaaa");
         }
     }
