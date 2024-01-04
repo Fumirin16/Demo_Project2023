@@ -155,6 +155,7 @@ public class SEData
         Correct,
         Squwat,
         Walk,
+        WalkMini,
         WalkVoice,
         BodyDownVoice,
         KakiwakeVoice,

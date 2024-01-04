@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Video;
 
 // 作成者：山﨑晶 
 // ゲームオーバーのUI演出処理
@@ -11,63 +12,49 @@ public class GameOverManager : MonoBehaviour
 {
     #region ---Fields---
 
-    /// <summary>
-    ///  FadeManager
-    /// </summary>
     [SerializeField]
-    private FadeManager _fadeSystem;
+    private VideoPlayer _gameOverVideo;
 
-    /// <summary>
-    /// 背景をフェードインする設定
-    /// </summary>
     [SerializeField]
-    private FadeManager.FadeSetting _backGroundFadeIn;
+    private float _activTime = 3f;
 
-    /// <summary>
-    ///  アイドルの画像
-    /// </summary>
     [SerializeField]
-    private GameObject _idolImage;
+    private GameObject _oneMoreObj;
 
-    /// <summary>
-    /// 　観客の画像
-    /// </summary>
     [SerializeField]
-    private GameObject _audienceImage;
+    private GameObject _oneMoreSelect;
 
-    /// <summary>
-    /// プレイヤーの画像
-    /// </summary>
+    private Image _onemoreImage;
+
+    private RectTransform _onemoreScale;
+
     [SerializeField]
-    private GameObject _playerImage;
+    private RectTransform _onemoreButton;
 
-    /// <summary>
-    /// メイン画面に戻るボタンのオブジェクト
-    /// </summary>
     [SerializeField]
-    private GameObject _returnButton;
+    private GameObject _toBackObj;
 
-    /// <summary>
-    /// タイトル画面に戻るボタンのオブジェクト
-    /// </summary>
     [SerializeField]
-    private GameObject _backButton;
+    private GameObject _toBackSelect;
 
-    /// <summary>
-    /// ボタンが選択されてないときに表示する画像
-    /// </summary>
+    private Image _toBackImage;
+
+    private RectTransform _toBackScale;
+
     [SerializeField]
-    private GameObject[] _selectButton = new GameObject[2];
+    private RectTransform _toBackButton;
 
-    /// <summary>
-    /// ボタンがを表示する判定
-    /// </summary>
-    private bool _isButton = false;
+    [SerializeField]
+    private AudioManager _audioiSystem;
 
-    /// <summary>
-    /// 現在選択しているオブジェクトを保存
-    /// </summary>
-    private GameObject _button;
+    [SerializeField]
+    private TranstionScenes _transSystem;
+
+    private GameObject _buttonObj;
+
+    private Vector3 _buttonScale = new Vector3(1, 1, 1);
+
+    private float _changeScale = 1.1f;
 
     #endregion ---Fields---
 
@@ -76,66 +63,74 @@ public class GameOverManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // ボタンを非表示にする
-        _returnButton.SetActive(false);
-        _backButton.SetActive(false);
+        _onemoreImage=_oneMoreSelect.GetComponent<Image>();
+        _onemoreScale = _oneMoreSelect.GetComponent<RectTransform>();
 
-        // 画像を非表示にする
-        _idolImage.SetActive(false);
-        _audienceImage.SetActive(false);
-        _playerImage.SetActive(false);
+        _toBackImage=_toBackSelect.GetComponent<Image>();
+        _toBackScale = _toBackSelect.GetComponent<RectTransform>();
 
-        // 選択画像を非表示にする
-        foreach (GameObject selectImage in _selectButton)
-        {
-            selectImage.SetActive(false);
-        }
+        _gameOverVideo.Play();
+
+        _onemoreImage.enabled = true;
+
+        _toBackImage.enabled = false;
+
+        _oneMoreObj.SetActive(false);
+
+        _toBackObj.SetActive(false);
+
+        _audioiSystem.PlayBGMSound(BGMData.BGM.OverEnd);
 
         // 初期に選択状態にするオブジェクトを設定する
-        EventSystem.current.SetSelectedGameObject(_returnButton);
+        EventSystem.current.SetSelectedGameObject(_oneMoreObj);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 現在選択しているボタンを保存する
-        _button = EventSystem.current.currentSelectedGameObject;
+        if (Time.time >= _activTime)
+        {
+            if (!_oneMoreObj.activeSelf || !_toBackObj.activeSelf)
+            {
+                _oneMoreObj.SetActive(true);
+                _toBackObj.SetActive(true);
+            }
 
-        // フェードインが終わった場合
-        if (FadeManager.fadeIn)
-        {
-            // 画像を表示する
-            _idolImage.SetActive(true);
-            _audienceImage.SetActive(true);
-            _playerImage.SetActive(true);
+            // 現在、選択されているボタンの情報を保存する
+            _buttonObj = EventSystem.current.currentSelectedGameObject;
 
-            // ボタンを表示するようにする
-            _isButton = true;
-        }
-        else if (!FadeManager.fadeIn)
-        {
-            _fadeSystem.FadeIn(_backGroundFadeIn);
-        }
+            if (_buttonObj == _oneMoreObj)
+            {
+                _onemoreImage.enabled = true;
 
-        // ボタンが表示される判定trueになった場合
-        if (_isButton)
-        {
-            // ボタンを表示にする
-            _returnButton.SetActive(true);
-            _backButton.SetActive(true);
-        }
+                _toBackImage.enabled = false;
 
-        // ボタンが選択されている状態を表現する
-        if (_button == _returnButton && _isButton)
-        {
-            _selectButton[0].SetActive(false);
-            _selectButton[1].SetActive(true);
+                _onemoreButton.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
+                _onemoreScale.transform.localScale=new Vector3(_changeScale, _changeScale, _changeScale);
+
+                _toBackButton.transform.localScale = _buttonScale;
+                _toBackScale.transform.localScale = _buttonScale;
+            }
+            if (_buttonObj == _toBackObj)
+            {
+                _onemoreImage.enabled = false;
+
+                _toBackImage.enabled = true;
+
+                _onemoreButton.transform.localScale = _buttonScale;
+                _onemoreScale.transform.localScale = _buttonScale;
+
+                _toBackButton.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
+                _toBackScale.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
+            }
         }
-        if (_button == _backButton && _isButton)
-        {
-            _selectButton[0].SetActive(true);
-            _selectButton[1].SetActive(false);
-        }
+    }
+
+    public void OnClickButton(int SceneNum)
+    {
+        _audioiSystem.StopSound(_audioiSystem.bgmAudioSource);
+
+        _transSystem.Trans_Scene(SceneNum);
     }
 
     #endregion ---Methods---

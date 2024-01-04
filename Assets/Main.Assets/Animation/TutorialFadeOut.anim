@@ -308,5 +308,5 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: b271ee06623998a469ddeb53054b36c4, type: 3}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 4
     messageOptions: 0

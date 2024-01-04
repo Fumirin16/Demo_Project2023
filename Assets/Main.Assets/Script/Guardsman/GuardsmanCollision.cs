@@ -27,7 +27,7 @@ public class GuardsmanCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             // ゲームオーバーの判定をtrueにする
-            //_settingManager.gameOver = true;
+            _settingManager.gameOver = true;
 
             // プレイヤーのほうに向かせる
             _guardsmanObj.transform.LookAt(_playerObj.transform.position);

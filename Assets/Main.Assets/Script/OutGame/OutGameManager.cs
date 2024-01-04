@@ -123,14 +123,14 @@ public class OutGameManager : MonoBehaviour
         if (settingManager.gameOver)
         {
             audioManager.StopSound(audioManager.bgmAudioSource);
-            StartCoroutine(Direction_UI(_overText, 4,settingManager.gameOver));
+            StartCoroutine(Direction_UI(_overText, 6,settingManager.gameOver));
         }
 
         // ゲームクリア時の処理
         if (settingManager.gameClear)
         {
             audioManager.StopSound(audioManager.bgmAudioSource);
-            StartCoroutine(Direction_UI(_clearText, 3, settingManager.gameClear));
+            StartCoroutine(Direction_UI(_clearText, 5, settingManager.gameClear));
         }
     }
 
