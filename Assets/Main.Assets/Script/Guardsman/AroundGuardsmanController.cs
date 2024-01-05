@@ -7,27 +7,53 @@ using UnityEngine.UI;
 
 public class AroundGuardsmanController : MonoBehaviour
 {
-    // なんかいれる
-    int _destPoint = 0;
-    // 視界入ってるか入ってないか判定する変数
+    #region ---Fields---
+
+    /// <summary>
+    ///  次向かう地点の変数
+    /// </summary>
+    int _nextPoint = 0;
+
+    /// <summary>
+    ///  視界入ってるか入ってないか判定する変数
+    /// </summary>
     bool _targetFlag = false;
 
+    /// <summary>
+    ///  SEを一度だけ鳴らす判定する変数
+    /// </summary>
     bool _SEflag = true;
-    // GuardsmanのNavMeshAgent取得
+
+    /// <summary>
+    ///  NavMeshAgent取得
+    /// </summary>
     NavMeshAgent _agent;
 
-    // 警備員の中継ポイント
+    /// <summary>
+    ///  警備員の中継ポイントを取得
+    /// </summary>
+    [Tooltip("警備員の中継ポイントをアタッチ")]
     [SerializeField] Transform[] _points;
 
+    /// <summary>
+    ///  playerオブジェクトを取得
+    /// </summary>
     [Tooltip("Playerのオブジェクト入れる")]
     [SerializeField] GameObject _target;
 
+    /// <summary>
+    ///　UIImage取得
+    /// </summary>
     [Tooltip("見つかった時のUI")]
     [SerializeField] Image _haken;
 
+    // スクリプト参照変数
     [SerializeField] ValueSettingManager settingManager;
+    [SerializeField] AudioManager audioManager;
 
-    [SerializeField] AudioManager audioManager; 
+    #endregion ---Fields---
+
+    #region ---Methods---
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +86,7 @@ public class AroundGuardsmanController : MonoBehaviour
         if (!_targetFlag)
         {
             //Debug.Log(_destPoint);
-            _agent.destination = _points[_destPoint].position;
+            _agent.destination = _points[_nextPoint].position;
         }
     }
 
@@ -73,13 +99,13 @@ public class AroundGuardsmanController : MonoBehaviour
         }
 
         //エージェントが現在設定された目標地点に行くように設定
-        _agent.destination = _points[_destPoint].position;
+        _agent.destination = _points[_nextPoint].position;
         // 配列内の次の位置を目標地点に設定し必要ならば出発地点にもどる
-        _destPoint = (_destPoint + 1) % _points.Length;
+        _nextPoint = (_nextPoint + 1) % _points.Length;
 
-        if (_destPoint == 4)
+        if (_nextPoint == 4)
         {
-            _destPoint = 0;
+            _nextPoint = 0;
         }
     }
 
@@ -108,4 +134,5 @@ public class AroundGuardsmanController : MonoBehaviour
             _haken.gameObject.SetActive(false);
         }
     }
+    #endregion ---Methods---
 }
