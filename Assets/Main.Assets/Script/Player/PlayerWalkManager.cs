@@ -18,6 +18,8 @@ public class PlayerWalkManager : MonoBehaviour
     /// </summary>
     private float _moveSpeed;
 
+    private Vector3 _startPos;
+
     /// <summary>
     /// プレイヤーのカメラを取得する変数
     /// </summary>
@@ -36,6 +38,8 @@ public class PlayerWalkManager : MonoBehaviour
     [SerializeField]
     private StandStill _power;
 
+    public bool _isActive=false;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -43,6 +47,7 @@ public class PlayerWalkManager : MonoBehaviour
     private void Awake()
     {
         //this.transform.position=new Vector3(obj.transform.localPosition.x,this.transform.position.y,obj.transform.localPosition.z);
+        _startPos = this.transform.position;
     }
     // Start is called before the first frame update
     void Start()
@@ -57,26 +62,35 @@ public class PlayerWalkManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (!_isActive)
+        {
+            this.transform.position = _startPos;
+        }
+
         float power = _power.moveWalkPower;
         if (_power.moveWalkPower >= 0.9)
         {
             // プレイヤーを移動させる動力を保存 
-            float moveSpeed = power * _moveSpeed;
+            //float moveSpeed = power * _moveSpeed;
             //Debug.Log("modeSpeed : " + moveSpeed);
 
             // カメラの向きを取得
             Vector3 cameraForward = Vector3.Scale(_playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
             //Debug.Log("cameraForward : " + cameraForward);
 
-            Vector3 moveForward = cameraForward * moveSpeed;
+            Vector3 moveForward = cameraForward * power;
             // プレイヤーを移動させる
             _rb.AddForce(moveForward);
             //Debug.Log(moveForward);
         }
         else
         {
-            _rb.velocity = new Vector3(0, 0, 0);
+            //_rb.velocity = new Vector3(0, 0, 0);
         }
+
+
+
     }
 
     #endregion ---Methods---

@@ -13,7 +13,7 @@ public class IdolSystemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _audioSystem.PlayBGMSound(BGMData.BGM.Title);
+        //_audioSystem.PlayBGMSound(BGMData.BGM.Title);
     }
 
     // Update is called once per frame

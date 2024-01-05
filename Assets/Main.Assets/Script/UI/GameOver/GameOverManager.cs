@@ -88,7 +88,10 @@ public class GameOverManager : MonoBehaviour
 
         _toBackObj.SetActive(false);
 
-        _audioiSystem.PlayBGMSound(BGMData.BGM.OverEnd);
+        _isClick = false;
+        time = 0;
+
+        _SceneNum = 0;
 
         // 初期に選択状態にするオブジェクトを設定する
         EventSystem.current.SetSelectedGameObject(_oneMoreObj);
@@ -108,7 +111,7 @@ public class GameOverManager : MonoBehaviour
 
             // 現在、選択されているボタンの情報を保存する
             _buttonObj = EventSystem.current.currentSelectedGameObject;
-
+            Debug.Log(_buttonObj);
             if (_buttonObj == _oneMoreObj)
             {
                 _onemoreImage.enabled = true;
@@ -134,17 +137,15 @@ public class GameOverManager : MonoBehaviour
                 _toBackScale.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
             }
 
-
+            //if (time > _limitTime)
+            //{
+            //    if (!_gameOverVideo.isPlaying)
+            //    {
+            //        _transSystem.Trans_Scene(0);
+            //    }
+            //}
 
         }
-
-        //if (Time.time > _limitTime)
-        //{
-        //    if (!_gameOverVideo.isPlaying)
-        //    {
-        //        _transSystem.Trans_Scene(0);
-        //    }
-        //}
 
         if (_isClick&& _audioiSystem.CheckPlaySound(_audioiSystem.seAudioSource))
         {
