@@ -141,11 +141,19 @@ public class OutGameManager : MonoBehaviour
             // プレイヤーと警備員の動きを止める関数の呼び出し
             DontMove_AntherScript();
 
-            // シーンを遷移する
-            _transSystem.Trans_Scene(5);
-
-            //StartCoroutine(Direction_UI(_clearText, 5, settingManager.gameClear));
+            StartCoroutine(GameClear());
         }
+    }
+
+    IEnumerator GameClear()
+    {
+        _logoText.text = _clearText;
+
+        // 待ち時間
+        yield return new WaitForSeconds(3);
+
+        // シーンを遷移する
+        _transSystem.Trans_Scene(5);
     }
 
     /// <summary>

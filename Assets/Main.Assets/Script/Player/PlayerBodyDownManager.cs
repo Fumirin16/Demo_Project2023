@@ -28,18 +28,19 @@ public class PlayerBodyDownManager : MonoBehaviour
     void Update()
     {
         float _distance = Vector3.Distance(_hip.transform.position, _root.transform.position);
-        //Debug.Log(_distance);
+        Debug.Log(_distance);
 
         if (_distance <= _cheackDis&&!_isDown)
         {
             Debug.Log("‹ß‚Ã‚¢‚½");
             _isDown = true;
 
-            //_audioSystem.PlaySESound(SEData.SE.Squwat);
+            _audioSystem.PlaySESound(SEData.SE.Squwat);
         }
         if(_distance >= _cheackDis && _isDown)
         {
             _isDown = false;
+            Debug.Log("‰“‚­‚È‚Á‚½");
         }
     }
 }

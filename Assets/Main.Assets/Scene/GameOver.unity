@@ -507,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameOverVideo: {fileID: 1003732567}
-  _activTime: 4
+  _activTime: 8
   _oneMoreObj: {fileID: 1720723359}
   _oneMoreSelect: {fileID: 651050283}
   _onemoreButton: {fileID: 1806851636}
