@@ -7,7 +7,7 @@ using TMPro;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] _panel;
+    [SerializeField] GameObject[] _phase;
     public int _phaseCount;
 
     public GameObject _bodyDownobj; 
@@ -19,21 +19,17 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeField] Animator _fadeAnimator;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     // Update is called once per frame
     void Update()
     {
         _phaseCount = Mathf.Clamp(_phaseCount, 0, 3);
-        _panel[_phaseCount].SetActive(true);
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        _phase[_phaseCount].SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.A))
         {
             if (_pushFlag == false)
             {
-                _panel[_phaseCount].SetActive(false);
+                _phase[_phaseCount].SetActive(false);
                 _phaseCount++;
                 _pushFlag = true;
             }
@@ -42,19 +38,24 @@ public class TutorialManager : MonoBehaviour
         {
             _pushFlag = false;
         }
-        if (_phaseCount == 1)
+        switch(_phaseCount)
         {
-            _bodyDownobj.SetActive(true);
-        }
-        if(_phaseCount == 2)
-        {
-            _kakiwakeobj.SetActive(true);
-            _kakiwakeobj_2.SetActive(true);
-            _mobobj.SetActive(true);
-        }
-        if(_phaseCount == 3)
-        {
-            _fadeAnimator.Play("FadeOut");
+            case 1:
+                _kakiwakeobj.SetActive(true);
+                _kakiwakeobj_2.SetActive(true);
+                _mobobj.SetActive(true);
+                break;
+            case 2:
+                _kakiwakeobj.SetActive(false);
+                _kakiwakeobj_2.SetActive(false);
+                _mobobj.SetActive(false);
+                _bodyDownobj.SetActive(true);
+                break;
+            case 3:
+                _fadeAnimator.Play("FadeOut");
+                break;
+                default:
+                break;
         }
     }
 }
