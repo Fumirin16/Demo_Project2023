@@ -27,6 +27,7 @@ public class FadeController : MonoBehaviour
         guardsman.enabled = false;
         _controller.enabled = false;
         _audio.PlaySESound(SEData.SE.Buzzer);
+        _countdown = 4f;
     }
 
     void Update()

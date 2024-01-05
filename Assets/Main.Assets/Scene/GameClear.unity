@@ -862,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b0ea1adb977624bb211a8d09b7abea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transTIme: 20
+  _transTIme: 180
   _transSystem: {fileID: 2017576432}
 --- !u!4 &2073825501
 Transform:

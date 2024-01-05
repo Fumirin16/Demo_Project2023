@@ -63,6 +63,8 @@ public class GameOverManager : MonoBehaviour
 
     private float _limitTime = 120f;
 
+    private float time;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -95,7 +97,8 @@ public class GameOverManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= _activTime)
+        time++;
+        if (time >= _activTime)
         {
             if (!_oneMoreObj.activeSelf || !_toBackObj.activeSelf)
             {
@@ -135,13 +138,13 @@ public class GameOverManager : MonoBehaviour
 
         }
 
-        if (Time.time > _limitTime)
-        {
-            if (!_gameOverVideo.isPlaying)
-            {
-                _transSystem.Trans_Scene(0);
-            }
-        }
+        //if (Time.time > _limitTime)
+        //{
+        //    if (!_gameOverVideo.isPlaying)
+        //    {
+        //        _transSystem.Trans_Scene(0);
+        //    }
+        //}
 
         if (_isClick&& _audioiSystem.CheckPlaySound(_audioiSystem.seAudioSource))
         {

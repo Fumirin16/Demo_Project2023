@@ -125,13 +125,16 @@ public class GameClearManager : MonoBehaviour
     [SerializeField]
     private TranstionScenes _transSystem;
 
+
+    private float time;
     #endregion ---Fields---
 
     #region ---Methods---
 
     private void Update()
     {
-        if (Time.time <= _transTIme)
+        time ++;
+        if (time >= 600)
         {
             _transSystem.Trans_Scene(0);
         }

@@ -79,9 +79,9 @@ public class PlayerController : MonoBehaviour
         //_vertical = Input.GetAxis("Vertical");
 
         // ‰ñ“]
-        transform.Rotate(new Vector3(0, _rot * -_rotateSpeed, 0));
+        transform.Rotate(new Vector3(0, _rot * _rotateSpeed, 0));
 
-        _mainCamera.transform.Rotate(_vertical * _rotateSpeed, 0, 0);
+        //_mainCamera.transform.Rotate(_vertical * _rotateSpeed, 0, 0);
 
         // ‘OŒãˆÚ“®
         // ‘O

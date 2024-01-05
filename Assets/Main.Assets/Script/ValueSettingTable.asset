@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca194aa37857da43b02eec6ce22211e, type: 3}
   m_Name: ValueSettingTable
   m_EditorClassIdentifier: 
-  MOCOPI_PlayerMoveSpeed: 2
+  MOCOPI_PlayerMoveSpeed: 1000
   FootDistanceFoor: 0.001
-  movePower: 1
+  movePower: 2
   PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.05
   smoothTime: 1
@@ -79,4 +79,4 @@ MonoBehaviour:
     volume: 1
   GameLimitTime: 128
   gameOver: 0
-  gameClear: 0
+  gameClear: 1

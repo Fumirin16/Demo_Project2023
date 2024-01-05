@@ -296,7 +296,7 @@ public class TitleUIManager : MonoBehaviour
             case (int)UIdirecton.Select:
                 // 現在、選択されているボタンの情報を保存する
                 _buttonObj = EventSystem.current.currentSelectedGameObject;
-                Debug.Log("_buttonobj : " + _buttonObj);
+                //Debug.Log("_buttonobj : " + _buttonObj);
                 // 選択されているボタンがスタートボタンな場合
                 if (_buttonObj == _startButtonObj)
                 {
@@ -309,7 +309,7 @@ public class TitleUIManager : MonoBehaviour
 
                     if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Z))
                     {
-                        Debug.Log("Input");
+                        //Debug.Log("Input");
                         _audioSystem.PlaySESound(SEData.SE.ClickButton);
 
                         // タイトルロゴを非表示
