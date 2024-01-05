@@ -6,6 +6,11 @@ using TMPro;
 
 public class kakiwakeManager : MonoBehaviour
 {
+    #region ---Fields---
+
+    /// <summary>
+    /// エリアに入ったら
+    /// </summary>
     public static List<GameObject> hitolist = new List<GameObject>();
     // カウントのテキスト
     public TextMeshProUGUI _Text;
@@ -24,24 +29,25 @@ public class kakiwakeManager : MonoBehaviour
 
     public GameObject _vcam;
 
+    [SerializeField] GameObject _panel;
+    #endregion ---Fields---
 
-    private void OnEnable()
+    #region ---Methods---
+
+    void OnEnable()
     {
         _audioManager.PlaySESound(SEData.SE.KakiwakeVoice);
-        Debug.Log("kakiwake");
+        _panel.gameObject.SetActive(true);
         _vcam.SetActive(true);
     }
 
-    private void Start()
+    void Start()
     {
-        //_audioManager.PlaySESound(SEData.SE.KakiwakeVoice);
         _tutorialManager = obj.GetComponent<TutorialManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(hitolist.Count);
         _Text.text = hitolist.Count.ToString();
 
         if(hitolist.Count > 5)
@@ -62,11 +68,13 @@ public class kakiwakeManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        // タグ：Enemy
         if(other.gameObject.CompareTag("Enemy"))
         {
             hitolist.Add(other.gameObject);
         }
     }
+    #endregion ---Methods---
 }

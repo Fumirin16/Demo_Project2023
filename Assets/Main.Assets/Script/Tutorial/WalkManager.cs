@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -11,13 +9,21 @@ public class WalkManager : MonoBehaviour
     #region ---Fields---
 
     /// <summary>
+    /// 足踏みの成功回数取得
+    /// </summary>
+    [Tooltip("足踏みの成功回数")]
+    [SerializeField] int _clearCount = 4;
+
+    /// <summary>
     /// 足踏みした回数を表示するテキスト変数
     /// </summary>
+    [Tooltip("足踏みした回数を表示するテキスト")]
     [SerializeField] TextMeshProUGUI _countText;
 
     /// <summary>
     /// パネルオブジェクト取得
     /// </summary>
+    [Tooltip("WalkPanelアタッチ")]
     [SerializeField] GameObject _walkPanel;
 
     /// <summary>
@@ -28,17 +34,12 @@ public class WalkManager : MonoBehaviour
     /// <summary>
     /// StandStill参照するための変数
     /// </summary>
-     [SerializeField] StandStill _standStill;
+    [SerializeField] StandStill _standStill;
 
     /// <summary>
     /// TutorialManager参照するための変数
     /// </summary>
     [SerializeField] TutorialManager _tutorialManager;
-
-    /// <summary>
-    /// TutorialManager参照するための変数
-    /// </summary>
-    public int _clearCount = 3;
 
     /// <summary>
     /// 音が鳴り終わったか判定するbool
@@ -50,6 +51,8 @@ public class WalkManager : MonoBehaviour
     /// </summary>
     bool SEflag = true;
 
+    [SerializeField] GameObject _panel;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -58,6 +61,7 @@ public class WalkManager : MonoBehaviour
     {
         // ボイス再生
         _audioManager.PlaySESound(SEData.SE.WalkVoice);
+        _panel.gameObject.SetActive(true);
     }
 
     void Update()
@@ -65,17 +69,22 @@ public class WalkManager : MonoBehaviour
         // 足踏みした回数をText表示
         _countText.text = _standStill.WalkCount.ToString();
 
+        // 指定した回数以上足踏み出来たらずっとOK表示
         if(_standStill.WalkCount > _clearCount)
         {
             _countText.text = "OK";
         }
+
+        // OKサウンドを鳴らす
         if (SEflag && _standStill.WalkCount > _clearCount)
         {
             _audioManager.PlaySESound(SEData.SE.Correct);
             SEflag = false;
             isAudioEnd = true;
         }
-        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && isAudioEnd || Input.GetKeyDown(KeyCode.Space))
+
+        // SEが鳴り終わったら
+        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && isAudioEnd)
         {
             _walkPanel.SetActive(false);
             _tutorialManager._phaseCount++;

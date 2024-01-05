@@ -1,38 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 //　しゃがんだ時の判定
 
 public class BodyDownManager : MonoBehaviour
 {
-    // 経過時間
-    float _count;
-    // しゃがみ出来ているかできていないか
-    bool _active = true;
-    // カウントのテキスト
-    public TextMeshProUGUI _countTimeText;
-    // 音が鳴り終わったか
-    private bool isAudioEnd;
-    // 音が一度だけ再生するフラグ
-    bool SEflag = true;
-    // パネルを非表示にする
+    #region ---Fields---
+
+    /// <summary>
+    /// しゃがむ時間取得
+    /// </summary>
+    [Tooltip("しゃがむ時間秒")]
+    [SerializeField] int _clearCount = 3;
+
+    /// <summary>
+    /// 経過時間を表示するText型
+    /// </summary>
+    [Tooltip("経過時間を表示するText")] 
+    [SerializeField] TextMeshProUGUI _countTimeText;
+
+    /// <summary>
+    /// パネルオブジェクト取得
+    /// </summary>
+    [Tooltip("BodyDownPanelアタッチ")]
     [SerializeField] GameObject _bodyDownPanel;
-    // audio付ける
+
+    /// <summary>
+    /// AudioManager参照するための変数
+    /// </summary>
     [SerializeField] AudioManager _audioManager;
 
-    public TutorialManager _tutorialManager;
+    /// <summary>
+    /// TutorialManager参照するための変数
+    /// </summary>
+    [SerializeField] TutorialManager _tutorialManager;
 
-    private void OnEnable()
+    /// <summary>
+    /// 経過時間を格納
+    /// </summary>
+    float _count;
+
+    /// <summary>
+    /// 視界に入ったか判定をとる
+    /// </summary>
+    bool _active = true;
+
+    /// <summary>
+    /// 音が鳴り終わったか判定するbool
+    /// </summary>
+    bool isAudioEnd;
+
+    /// <summary>
+    /// SEを一度だけ再生させるbool
+    /// </summary>
+    bool SEflag = true;
+
+    [SerializeField] GameObject _panel;
+
+    #endregion ---Fields---
+
+    #region ---Methods---
+
+    void OnEnable()
     {
         _audioManager.PlaySESound(SEData.SE.BodyDownVoice);
-        Debug.Log("syagami");
+        _panel.gameObject.SetActive(true);
     }
 
     void Update()
     {
+        // 視界から外れてたら時間加算
         if (_active)
         {
             _count += Time.deltaTime;
@@ -41,19 +78,25 @@ public class BodyDownManager : MonoBehaviour
         {
             _count = 0;
         }
+
+        // 経過時間表示
         _countTimeText.text = _count.ToString("F1");
 
-        if (_count >3)
+        // 指定した回数以上足踏み出来たらずっとOK表示
+        if (_count > _clearCount)
         {
             _countTimeText.text = "OK";
         }
 
-        if (SEflag && _count > 3)
+        // OKサウンドを鳴らす
+        if (SEflag && _count > _clearCount)
         {
             _audioManager.PlaySESound(SEData.SE.Correct);
             SEflag = false;
             isAudioEnd = true;
         }
+
+        // SEが鳴り終わったら
         if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && isAudioEnd)
         {
             _bodyDownPanel.SetActive(false);
@@ -62,14 +105,13 @@ public class BodyDownManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         _active = false;
-        Debug.Log("ataltuteru");
     }
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         _active = true;
-        Debug.Log("nai");
     }
+    #endregion ---Methods---
 }
