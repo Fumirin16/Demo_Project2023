@@ -10,6 +10,7 @@ public class FadeController : MonoBehaviour
     [SerializeField] UITimer _timer;
     [SerializeField] AroundGuardsmanController _controller;
     [SerializeField] AudioManager _audio;
+    [SerializeField] PlayerWalkManager _walk;
     [SerializeField] TextMeshProUGUI _countdownText;
     [SerializeField] Image _countdownImage;
     [SerializeField] Image _fadePanel;
@@ -26,8 +27,11 @@ public class FadeController : MonoBehaviour
         _fadePanel.enabled = true;
         guardsman.enabled = false;
         _controller.enabled = false;
-        _audio.PlaySESound(SEData.SE.Buzzer);
         _countdown = 4f;
+
+        _walk._isActive = false;
+
+        _audio.PlaySESound(SEData.SE.Buzzer);
     }
 
     void Update()
@@ -67,6 +71,8 @@ public class FadeController : MonoBehaviour
                 _countdownImage.gameObject.SetActive(false);
 
                 _audio.PlayBGMSound(BGMData.BGM.Main);
+
+                _walk._isActive = true;
 
                 yield break;
             }

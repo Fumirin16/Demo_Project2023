@@ -3,10 +3,7 @@ using Mocopi.Receiver;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 //  ゲームがゲームオーバー・クリアになった時の処理
@@ -16,90 +13,53 @@ public class OutGameManager : MonoBehaviour
 {
     #region ---Fields---
 
-    /// <summary>
-    /// 「FadeSystem」を参照する変数
-    /// </summary>
     [SerializeField]
-    private FadeManager _fadeSystem;
+    private ValueSettingManager _settingManager;
 
-    /// <summary>
-    /// 「TranstionScene」を参照する変数
-    /// </summary>
+    [SerializeField]
+    private AudioManager _audioSystem;
+
     [SerializeField]
     private TranstionScenes _transSystem;
 
-    /// <summary>
-    /// 「AudioManager」を参照する変数
-    /// </summary>
     [SerializeField]
-    private AudioManager audioManager;
+    private GameObject _noActiveArea;
 
-    /// <summary>
-    /// 値を管理するアセットから値を参照する変数
-    /// </summary>
     [SerializeField]
-    private ValueSettingManager settingManager;
+    private GameObject _TargetObj;
 
-    /// <summary>
-    /// 背景画像のフェードの設定
-    /// </summary>
     [SerializeField]
-    private FadeManager.FadeSetting _blackFadeOut;
+    private GameObject _mainCamera;
 
-    /// <summary>
-    /// シーン遷移時のフェードの設定
-    /// </summary>
     [SerializeField]
-    private FadeManager.FadeSetting _endFadeOut;
-
-    /// <summary>
-    ///  テキストを取得する変数
-    /// </summary>
+    private GameObject _leftCamera;
     [SerializeField]
-    private TextMeshProUGUI _logoText;
+    private GameObject _rightCamera;
 
-    /// <summary>
-    /// ゲームオーバー時に表示する文字を保存する変数
-    /// </summary>
     [SerializeField]
-    private string _overText;
+    private GameObject _clearText;
 
-    /// <summary>
-    /// ゲームクリア時に表示する文字を保存する変数
-    /// </summary>
     [SerializeField]
-    private string _clearText;
+    private Vector3 _cameraMove;
 
-    [Space(10)]
+    [SerializeField]
+    private float _cameraSpeed;
 
-    /// <summary>
-    /// プレイヤーのオブジェクトを取得する変数
-    /// </summary>
     [SerializeField]
     private GameObject _playerObj;
 
-    /// <summary>
-    /// カメラのオブジェクトを取得する変数
-    /// </summary>
-    [SerializeField]
-    private GameObject _cameraObj;
-
-    /// <summary>
-    /// 警備員のオブジェクトを取得する変数
-    /// </summary>
     [SerializeField]
     private GameObject _guardObj;
 
     [SerializeField]
     private GameObject _guardAnimatorObj;
 
-    [Space(10)]
+    private Vector3 _endPos;
 
-    /// <summary>
-    /// テキストを表示してからシーン遷移するまでの待ち時間を保存する変数
-    /// </summary>
-    [SerializeField, Range(0f, 10f)]
-    private int _waitTime = 3;
+    private bool _isMemory = false;
+
+    [SerializeField]
+    private CameratoAudioManager _cameraSystem;
 
     #endregion ---Fields---
 
@@ -107,22 +67,21 @@ public class OutGameManager : MonoBehaviour
 
     private void Awake()
     {
-        settingManager.gameOver = false;
-        settingManager.gameClear = false;
+        _settingManager.gameOver = false;
+        _settingManager.gameClear = false;
     }
 
     private void Start()
     {
-        Debug.Log("判定Over : " + settingManager.gameOver);
-        Debug.Log("判定clear : " + settingManager.gameClear);
+        _noActiveArea.SetActive(false);
     }
 
     private void Update()
     {
         // ゲームオーバー時の処理  
-        if (settingManager.gameOver)
+        if (_settingManager.gameOver)
         {
-            audioManager.StopSound(audioManager.bgmAudioSource);
+            _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
             // プレイヤーと警備員の動きを止める関数の呼び出し
             DontMove_AntherScript();
@@ -130,69 +89,68 @@ public class OutGameManager : MonoBehaviour
             // シーンを遷移する
             _transSystem.Trans_Scene(6);
 
-            //StartCoroutine(Direction_UI(_overText, 6,settingManager.gameOver));
+            //StartCoroutine(Direction_UI(_overText, 6,_settingManager.gameOver));
         }
 
         // ゲームクリア時の処理
-        if (settingManager.gameClear)
+        if (_settingManager.gameClear)
         {
-            audioManager.StopSound(audioManager.bgmAudioSource);
+            if (!_isMemory)
+            {
+                _endPos = _playerObj.transform.position;
+                _isMemory = true;
+            }
+            _playerObj.transform.position = _endPos;
+
+            _audioSystem.StopSound(_audioSystem.seAudioSource);
 
             // プレイヤーと警備員の動きを止める関数の呼び出し
             DontMove_AntherScript();
 
+            _noActiveArea.SetActive(true);
+
+            if (_cameraSystem._nomal)
+            {
+                _mainCamera.transform.rotation = Quaternion.Slerp(_mainCamera.transform.rotation, Quaternion.LookRotation((_TargetObj.transform.position - _mainCamera.transform.position).normalized), _cameraSpeed * Time.deltaTime);
+            }
+            if (_cameraSystem._nomalDiffPos || _cameraSystem._stickButton)
+            {
+                _leftCamera.transform.rotation = Quaternion.Slerp(_leftCamera.transform.rotation, Quaternion.LookRotation((_TargetObj.transform.position - _leftCamera.transform.position).normalized), _cameraSpeed * Time.deltaTime);
+            }
+            if (_cameraSystem._switchButton)
+            {
+                if (_leftCamera.GetComponent<Camera>().enabled)
+                {
+                    _leftCamera.transform.rotation = Quaternion.Slerp(_leftCamera.transform.rotation, Quaternion.LookRotation((_TargetObj.transform.position - _leftCamera.transform.position).normalized), _cameraSpeed * Time.deltaTime);
+                }
+                else if (_rightCamera.GetComponent<Camera>().enabled)
+                {
+                    _rightCamera.transform.rotation = Quaternion.Slerp(_rightCamera.transform.rotation, Quaternion.LookRotation((_TargetObj.transform.position - _rightCamera.transform.position).normalized), _cameraSpeed * Time.deltaTime);
+                }
+
+            }
+
+
             StartCoroutine(GameClear());
+
         }
     }
+
 
     IEnumerator GameClear()
     {
-        _logoText.text = _clearText;
+        // 待ち時間
+        yield return new WaitForSeconds(10);
+
+        _clearText.SetActive(true);
 
         // 待ち時間
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
+
+        _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
         // シーンを遷移する
         _transSystem.Trans_Scene(5);
-    }
-
-    /// <summary>
-    /// UI演出の関数
-    /// </summary>
-    /// <param name="textWord"> 表示したい文字 </param>
-    /// <param name="sceneNumber"> 遷移したいシーンの番号  </param>
-    /// <returns>  ?      </returns>
-    private IEnumerator Direction_UI(string textWord, int sceneNumber,bool ingame)
-    {
-        // プレイヤーと警備員の動きを止める関数の呼び出し
-        DontMove_AntherScript();
-
-        // 背景画像をフェードをする
-        _fadeSystem.FadeOut(_blackFadeOut);
-
-        // フェードが終わった場合
-        if (FadeManager.fadeOut)
-        {
-            // テキストを表示
-            _logoText.text = textWord;
-
-            // フェードの判定をオフにする
-            FadeManager.fadeOut = false;
-
-            // 待ち時間
-            yield return new WaitForSeconds(_waitTime);
-
-            // シーン遷移のフェードをする
-            _fadeSystem.FadeOut(_endFadeOut);
-
-            // フェードが終わった場合
-            if (FadeManager.fadeOut)
-            {
-                ingame = false;
-                // シーンを遷移する
-                _transSystem.Trans_Scene(sceneNumber);
-            }
-        }
     }
 
     /// <summary>
@@ -216,7 +174,7 @@ public class OutGameManager : MonoBehaviour
         _guardObj.GetComponent<AroundGuardsmanController>().enabled = false;
 
         // 警備員の動作を止める
-        _guardObj.GetComponent<NavMeshAgent>().enabled = false;
+        _guardObj.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
 
         // 警備員のアニメーションを止める
         _guardAnimatorObj.GetComponent<Animator>().enabled = false;
