@@ -19,7 +19,7 @@ public class IdolSystemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton3))
+        if (Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             _audioSystem.PlaySESound(SEData.SE.ClickButton);
 

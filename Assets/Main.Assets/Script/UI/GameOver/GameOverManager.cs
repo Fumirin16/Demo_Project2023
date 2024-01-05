@@ -61,6 +61,8 @@ public class GameOverManager : MonoBehaviour
 
     private int _SceneNum;
 
+    private float _limitTime = 120f;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -130,6 +132,11 @@ public class GameOverManager : MonoBehaviour
             }
 
 
+
+        }
+
+        if (Time.time > _limitTime)
+        {
             if (!_gameOverVideo.isPlaying)
             {
                 _transSystem.Trans_Scene(0);
@@ -148,7 +155,7 @@ public class GameOverManager : MonoBehaviour
 
         _audioiSystem.PlaySESound(SEData.SE.ClickButton);
 
-        //_isClick = true;
+        _isClick = true;
 
         _SceneNum = SceneNum;
 
