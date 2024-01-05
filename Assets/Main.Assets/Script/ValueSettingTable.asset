@@ -66,7 +66,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: cd0e3a8166b623d40bc4063859b3c81a, type: 3}
     volume: 1
   - se: 8
-    audioClip: {fileID: 8300000, guid: 2c37bf9d85dc46c4c818690e7be62759, type: 3}
+    audioClip: {fileID: 8300000, guid: 575de072acc87bd4ebbd40732ea3b60c, type: 3}
     volume: 1
   - se: 10
     audioClip: {fileID: 8300000, guid: 4f9bd71db4ec70e47b8d7e8cb9f4c53e, type: 3}
@@ -75,8 +75,8 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: b735150c0582a824ab6a0207978acdfc, type: 3}
     volume: 1
   - se: 9
-    audioClip: {fileID: 8300000, guid: 575de072acc87bd4ebbd40732ea3b60c, type: 3}
+    audioClip: {fileID: 8300000, guid: 2c37bf9d85dc46c4c818690e7be62759, type: 3}
     volume: 1
   GameLimitTime: 128
   gameOver: 0
-  gameClear: 1
+  gameClear: 0

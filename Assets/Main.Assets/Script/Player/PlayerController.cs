@@ -147,6 +147,7 @@ public class PlayerController : MonoBehaviour
             _controller.enabled = false;
             _agent.enabled = false;
             _gameoverObj.SetActive(true);
+            gameObject.SetActive(false);
             _gameoverObj.transform .position = transform.position;
             //_animator.Play("GameOver");
             //Debug.Log("aaaaaa");

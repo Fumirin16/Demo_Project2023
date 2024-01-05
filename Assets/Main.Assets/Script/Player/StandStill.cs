@@ -116,7 +116,7 @@ public class StandStill : MonoBehaviour
             //    asibumisitaka = false;
             //}
             WalkCount++;
-
+            asibumisitaka = false;
             moveWalkPower = powerSource;
         }
     }
