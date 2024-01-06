@@ -130,23 +130,18 @@ public class OutGameManager : MonoBehaviour
 
             }
 
+            _clearText.SetActive(true);
 
-            StartCoroutine(GameClear());
+            if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            {
+                GameClear();
+            }
 
         }
     }
 
-
-    IEnumerator GameClear()
+    public void  GameClear()
     {
-        // 待ち時間
-        yield return new WaitForSeconds(10);
-
-        _clearText.SetActive(true);
-
-        // 待ち時間
-        yield return new WaitForSeconds(5);
-
         _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
         // シーンを遷移する
@@ -159,7 +154,7 @@ public class OutGameManager : MonoBehaviour
     private void DontMove_AntherScript()
     {
         //  プレイヤーのMocopiを止める
-        _playerObj.GetComponent<MocopiAvatar>().enabled = false;
+        //_playerObj.GetComponent<MocopiAvatar>().enabled = false;
 
         // プレイヤーのジョイコンを止める
         _playerObj.GetComponent<PlayerController>().enabled = false;

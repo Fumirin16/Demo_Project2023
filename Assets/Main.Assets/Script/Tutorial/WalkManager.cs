@@ -12,7 +12,7 @@ public class WalkManager : MonoBehaviour
     /// 足踏みの成功回数取得
     /// </summary>
     [Tooltip("足踏みの成功回数")]
-    [SerializeField] int _clearCount = 4;
+    [SerializeField] int _clearCount = 3;
 
     /// <summary>
     /// 足踏みした回数を表示するテキスト変数

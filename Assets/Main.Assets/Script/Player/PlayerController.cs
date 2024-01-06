@@ -83,35 +83,35 @@ public class PlayerController : MonoBehaviour
 
         //_mainCamera.transform.Rotate(_vertical * _rotateSpeed, 0, 0);
 
-        // 前後移動
-        // 前
-        if (Input.GetKey(KeyCode.JoystickButton1) || Input.GetKey(KeyCode.W))
-        {
-            transform.position += transform.forward * _positionSpeed;
+        //// 前後移動
+        //// 前
+        //if (Input.GetKey(KeyCode.JoystickButton1) || Input.GetKey(KeyCode.W))
+        //{
+        //    transform.position += transform.forward * _positionSpeed;
 
-            if (audioManager.CheckPlaySound(audioManager.seAudioSource))
-            {
-                audioManager.PlaySESound(SEData.SE.Walk);
-            }
-        }
-        // 後ろ
-        if (Input.GetKey(KeyCode.JoystickButton2) || Input.GetKey(KeyCode.S))
-        {
-            transform.position -= transform.forward * _positionSpeed;
+        //    if (audioManager.CheckPlaySound(audioManager.seAudioSource))
+        //    {
+        //        audioManager.PlaySESound(SEData.SE.Walk);
+        //    }
+        //}
+        //// 後ろ
+        //if (Input.GetKey(KeyCode.JoystickButton2) || Input.GetKey(KeyCode.S))
+        //{
+        //    transform.position -= transform.forward * _positionSpeed;
 
-            if (audioManager.CheckPlaySound(audioManager.seAudioSource))
-            {
-                audioManager.PlaySESound(SEData.SE.Walk);
-            }
-        }
+        //    if (audioManager.CheckPlaySound(audioManager.seAudioSource))
+        //    {
+        //        audioManager.PlaySESound(SEData.SE.Walk);
+        //    }
+        //}
 
-        if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.JoystickButton2))
-        {
-            if (!audioManager.CheckPlaySound(audioManager.seAudioSource))
-            {
-                audioManager.StopSound(audioManager.seAudioSource);
-            }
-        }
+        //if (Input.GetKeyUp(KeyCode.JoystickButton1) || Input.GetKeyUp(KeyCode.JoystickButton2))
+        //{
+        //    if (!audioManager.CheckPlaySound(audioManager.seAudioSource))
+        //    {
+        //        audioManager.StopSound(audioManager.seAudioSource);
+        //    }
+        //}
 
         // ジョイコンの右スティックを押すとメインカメラとサブカメラを切り替える
         if (Input.GetKeyDown(KeyCode.JoystickButton11) || Input.GetKeyDown(KeyCode.Space))

@@ -72,14 +72,14 @@ public class PlayerWalkManager : MonoBehaviour
         if (_power.moveWalkPower >= 0.9)
         {
             // プレイヤーを移動させる動力を保存 
-            //float moveSpeed = power * _moveSpeed;
+            float moveSpeed = power * _moveSpeed;
             //Debug.Log("modeSpeed : " + moveSpeed);
 
             // カメラの向きを取得
             Vector3 cameraForward = Vector3.Scale(_playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
             //Debug.Log("cameraForward : " + cameraForward);
 
-            Vector3 moveForward = cameraForward * power;
+            Vector3 moveForward = transform.forward * moveSpeed;
             // プレイヤーを移動させる
             _rb.AddForce(moveForward);
             //Debug.Log(moveForward);

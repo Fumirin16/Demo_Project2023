@@ -50,11 +50,11 @@ public class kakiwakeManager : MonoBehaviour
     {
         _Text.text = hitolist.Count.ToString();
 
-        if(hitolist.Count > 5)
+        if(hitolist.Count > 3)
         {
             _Text.text = "OK";
         }
-        if (SEflag && hitolist.Count > 5)
+        if (SEflag && hitolist.Count > 3)
         {
             _audioManager.PlaySESound(SEData.SE.Correct);
             SEflag = false;
