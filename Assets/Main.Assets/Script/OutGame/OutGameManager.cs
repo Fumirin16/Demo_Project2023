@@ -40,6 +40,12 @@ public class OutGameManager : MonoBehaviour
     private GameObject _clearText;
 
     [SerializeField]
+    private GameObject _skup;
+
+    [SerializeField]
+    private GameObject textMoji;
+
+    [SerializeField]
     private Vector3 _cameraMove;
 
     [SerializeField]
@@ -61,6 +67,8 @@ public class OutGameManager : MonoBehaviour
     [SerializeField]
     private CameratoAudioManager _cameraSystem;
 
+    private bool _istext;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -74,6 +82,7 @@ public class OutGameManager : MonoBehaviour
     private void Start()
     {
         _noActiveArea.SetActive(false);
+        _istext = false;
     }
 
     private void Update()
@@ -129,8 +138,14 @@ public class OutGameManager : MonoBehaviour
                 }
 
             }
+            _skup.SetActive(true);
 
             _clearText.SetActive(true);
+            if (!_istext)
+            {
+                StartCoroutine(text());
+
+            }
 
             if (Input.GetKeyDown(KeyCode.JoystickButton3))
             {
