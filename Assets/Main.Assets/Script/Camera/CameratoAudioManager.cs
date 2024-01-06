@@ -113,7 +113,7 @@ public class CameratoAudioManager : MonoBehaviour
             ray = new Ray(_mainCamera.transform.position, positionVector);
 
             // Rayを可視化するデバック
-            //Debug.DrawRay(_mainCamera.transform.position, positionVector, UnityEngine.Color.red);
+            Debug.DrawRay(_mainCamera.transform.position, positionVector, UnityEngine.Color.red);
 
         }
 
@@ -125,7 +125,7 @@ public class CameratoAudioManager : MonoBehaviour
             ray = new Ray(_leftCamera.transform.position, positionVector);
 
             // Rayを可視化するデバック
-            //Debug.DrawRay(_mainCamera.transform.position, positionVector, UnityEngine.Color.red);
+            Debug.DrawRay(_leftCamera.transform.position, positionVector, UnityEngine.Color.red);
         }
         if (_switchButton)
         {
@@ -161,7 +161,7 @@ public class CameratoAudioManager : MonoBehaviour
                     _finishCanvas.worldCamera = _leftCamera;
                     _situationCanvas.worldCamera = _leftCamera;
 
-                    _leftCamera.transform.RotateAround(playerObj.position, Vector3.up, input * 3f);
+                    _leftCamera.transform.RotateAround(playerObj.position, Vector3.forward, input * 3f);
 
                     // Rayをカメラからプレイヤーに飛ばす
                     ray = new Ray(_leftCamera.transform.position, positionVector);
