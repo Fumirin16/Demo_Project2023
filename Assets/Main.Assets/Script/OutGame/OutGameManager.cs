@@ -155,6 +155,17 @@ public class OutGameManager : MonoBehaviour
         }
     }
 
+    IEnumerator text()
+    {
+        textMoji.SetActive(true);
+
+        yield return new WaitForSeconds(6);
+
+        textMoji.SetActive(false);
+
+        _istext = true;
+    }
+
     public void  GameClear()
     {
         _audioSystem.StopSound(_audioSystem.bgmAudioSource);
