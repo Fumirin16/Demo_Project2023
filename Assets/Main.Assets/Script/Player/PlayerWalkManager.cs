@@ -40,6 +40,8 @@ public class PlayerWalkManager : MonoBehaviour
 
     public bool _isActive=false;
 
+    private int time;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -62,14 +64,15 @@ public class PlayerWalkManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        time++;
+        Debug.Log(time);
         if (!_isActive)
         {
             this.transform.position = _startPos;
         }
 
-        float power = _power.moveWalkPower;
-        if (_power.moveWalkPower >= 0.9)
+        float power = 2;
+        if (_power.moveWalkPower >= 0.9|| (time>=100&&time<=120))
         {
             // プレイヤーを移動させる動力を保存 
             float moveSpeed = power * _moveSpeed;
@@ -83,6 +86,8 @@ public class PlayerWalkManager : MonoBehaviour
             // プレイヤーを移動させる
             _rb.AddForce(moveForward, ForceMode.Impulse);
             //Debug.Log(moveForward);
+
+            time = 0;
         }
         else
         {

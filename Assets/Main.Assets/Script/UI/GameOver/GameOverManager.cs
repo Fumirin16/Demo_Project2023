@@ -13,8 +13,8 @@ public class GameOverManager : MonoBehaviour
 {
     #region ---Fields---
 
-    [SerializeField]
-    private VideoPlayer _gameOverVideo;
+    //[SerializeField]
+    //private VideoPlayer _gameOverVideo;
 
     [SerializeField]
     private float _activTime = 3f;
@@ -78,7 +78,7 @@ public class GameOverManager : MonoBehaviour
         _toBackImage=_toBackSelect.GetComponent<Image>();
         _toBackScale = _toBackSelect.GetComponent<RectTransform>();
 
-        _gameOverVideo.Play();
+        //_gameOverVideo.Play();
 
         _onemoreImage.enabled = true;
 
@@ -163,7 +163,7 @@ public class GameOverManager : MonoBehaviour
 
         _SceneNum = SceneNum;
 
-        _gameOverVideo.Stop();
+        //_gameOverVideo.Stop();
     }
 
     #endregion ---Methods---

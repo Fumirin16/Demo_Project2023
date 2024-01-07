@@ -121,6 +121,10 @@ public class CameratoAudioManager : MonoBehaviour
         {
             _leftCamera.transform.RotateAround(playerObj.position, Vector3.up, input * 3f);
 
+            _riactionCanvas.worldCamera = _leftCamera;
+            _finishCanvas.worldCamera = _leftCamera;
+            _situationCanvas.worldCamera = _leftCamera;
+
             // Rayをカメラからプレイヤーに飛ばす
             ray = new Ray(_leftCamera.transform.position, positionVector);
 
