@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// 作成者：山﨑晶
+// カメラに関するスクリプト
+
 public class CameratoAudioManager : MonoBehaviour
 {
     [SerializeField]

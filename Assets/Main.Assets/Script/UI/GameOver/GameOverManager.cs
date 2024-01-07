@@ -1,68 +1,126 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
-using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
-// �쐬�ҁF�R���� 
-// �Q�[���I�[�o�[��UI���o����
+// 作成者：山﨑晶 
+// ゲームオーバーのUI演出処理
 
 public class GameOverManager : MonoBehaviour
 {
     #region ---Fields---
 
-    //[SerializeField]
-    //private VideoPlayer _gameOverVideo;
+    private const int _space = 4;
 
+    [Header("=== Video ===")]
+    /// <summary>
+    /// ゲームオーバーのVideo
+    /// </summary>
     [SerializeField]
-    private float _activTime = 3f;
+    private VideoPlayer _gameOverVideo;
 
+    [Space(_space),Header("=== Button ===")]
+    /// <summary>
+    /// リトライボタンのオブジェクト
+    /// </summary>
     [SerializeField]
-    private GameObject _oneMoreObj;
+    private GameObject _moreButtonObj;
 
+    /// <summary>
+    /// リトライボタンの画像のRect Transform
+    /// </summary>
     [SerializeField]
-    private GameObject _oneMoreSelect;
+    private RectTransform _moreImageScale;
 
-    private Image _onemoreImage;
-
-    private RectTransform _onemoreScale;
-
+    /// <summary>
+    /// リトライボタンの選択中のオブジェクト
+    /// </summary>
     [SerializeField]
-    private RectTransform _onemoreButton;
+    private GameObject _modeSelectObj;
 
+    /// <summary>
+    /// リトライボタンの選択中の画像
+    /// </summary>
+    private Image _moreSelectImage;
+
+    /// <summary>
+    /// リトライボタンの選択中の画像のRect Transform
+    /// </summary>
+    private RectTransform _moreScale;
+
+    /// <summary>
+    /// タイトルボタンのオブジェクト
+    /// </summary>
     [SerializeField]
-    private GameObject _toBackObj;
+    private GameObject _backButtonObj;
 
+    /// <summary>
+    /// タイトルボタンの画像のRect Transform
+    /// </summary>
     [SerializeField]
-    private GameObject _toBackSelect;
+    private RectTransform _backScale;
 
-    private Image _toBackImage;
-
-    private RectTransform _toBackScale;
-
+    /// <summary>
+    /// タイトルボタンの選択中の画像のオブジェクト
+    /// </summary>
     [SerializeField]
-    private RectTransform _toBackButton;
+    private GameObject _backSelectObj;
 
+    /// <summary>
+    /// タイトルボタンの選択中の画像
+    /// </summary>
+    private Image _backSelectImage;
+
+    /// <summary>
+    /// タイトルボタンの選択中の画像のRect Transform
+    /// </summary>
+    private RectTransform _backSelectScale;
+
+    [Space(1)]
+    /// <summary>
+    /// ボタンを表示するまでの時間
+    /// </summary>
+    [SerializeField]
+    private float _buttonActivTime = 3f;
+
+    /// <summary>
+    /// ボタンの画像の初期サイズ
+    /// </summary>
+    private Vector3 _buttonScale = new Vector3(1, 1, 1);
+
+    /// <summary>
+    /// ボタンの画像の拡大サイズ
+    /// </summary>
+    private float _changeScale = 1.1f;
+
+    [Space(_space),Header("=== Script ===")]
+    /// <summary>
+    /// system_Audioのスクリプト
+    /// </summary>
     [SerializeField]
     private AudioManager _audioiSystem;
 
-    [SerializeField]
-    private TranstionScenes _transSystem;
-
+    /// <summary>
+    /// 選択中のボタン情報
+    /// </summary>
     private GameObject _buttonObj;
 
-    private Vector3 _buttonScale = new Vector3(1, 1, 1);
-
-    private float _changeScale = 1.1f;
-
+    /// <summary>
+    /// ボタンを押したかの判定
+    /// </summary>
     private bool _isClick = false;
 
+    /// <summary>
+    /// シーンの番号
+    /// </summary>
     private int _SceneNum;
 
-    private float _limitTime = 120f;
-
+    /// <summary>
+    /// 時間を保存する値
+    /// </summary>
     private float time;
 
     #endregion ---Fields---
@@ -72,98 +130,119 @@ public class GameOverManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _onemoreImage=_oneMoreSelect.GetComponent<Image>();
-        _onemoreScale = _oneMoreSelect.GetComponent<RectTransform>();
+        // リトライボタンの選択中の画像オブジェクトからImageコンポーネントを取得
+        _moreSelectImage=_modeSelectObj.GetComponent<Image>();
+        // リトライボタンの選択中の画像オブジェクトからRectTrandoformコンポーネントを取得
+        _moreScale = _modeSelectObj.GetComponent<RectTransform>();
 
-        _toBackImage=_toBackSelect.GetComponent<Image>();
-        _toBackScale = _toBackSelect.GetComponent<RectTransform>();
+        // タイトルボタンの選択中の画像オブジェクトからImageコンポーネントを取得
+        _backSelectImage=_backSelectObj.GetComponent<Image>();
+        // タイトルボタンの選択中の画像オブジェクトからRectTransformコンポーネントを取得
+        _backSelectScale = _backSelectObj.GetComponent<RectTransform>();
 
-        //_gameOverVideo.Play();
+        // リトライボタンの選択中の画像をアクティブにしておく
+        _moreSelectImage.enabled = true;
 
-        _onemoreImage.enabled = true;
+        // タイトルボタンの選択中の画像を非アクティブにしておく
+        _backSelectImage.enabled = false;
 
-        _toBackImage.enabled = false;
+        // リトライボタンを非表示にする
+        _moreButtonObj.SetActive(false);
 
-        _oneMoreObj.SetActive(false);
+        // タイトルボタンを非表示にしておく
+        _backButtonObj.SetActive(false);
 
-        _toBackObj.SetActive(false);
-
+        // ボタンを押した判定をオフにする
         _isClick = false;
+
+        // 時間を０にする
         time = 0;
 
+        // シーンの番号をタイトルの番号にする
         _SceneNum = 0;
 
-        // �����ɑI����Ԃɂ���I�u�W�F�N�g��ݒ肷��
-        EventSystem.current.SetSelectedGameObject(_oneMoreObj);
+        // ui_GameOverVideoを再生
+        _gameOverVideo.Play();
+
+        // 初期に選択状態にするオブジェクトを設定する
+        EventSystem.current.SetSelectedGameObject(_moreButtonObj);
     }
 
     // Update is called once per frame
     void Update()
     {
-        time++;
-        if (time >= _activTime)
+        // 時間を計測
+        time += Time.deltaTime;
+
+        // 時間が_buttonActivTimeより長くなった場合
+        if (time >= _buttonActivTime)
         {
-            if (!_oneMoreObj.activeSelf || !_toBackObj.activeSelf)
+            // リトライボタンもしくはタイトルボタンが非表示担っていた場合
+            if (!_moreButtonObj.activeSelf || !_backButtonObj.activeSelf)
             {
-                _oneMoreObj.SetActive(true);
-                _toBackObj.SetActive(true);
+                // リトライボタンを表示する
+                _moreButtonObj.SetActive(true);
+
+                // タイトルボタンを表示する
+                _backButtonObj.SetActive(true);
             }
 
-            // ���݁A�I������Ă���{�^���̏���ۑ�����
+            // 現在、選択されているボタンの情報を保存する
             _buttonObj = EventSystem.current.currentSelectedGameObject;
-            Debug.Log(_buttonObj);
-            if (_buttonObj == _oneMoreObj)
+            // Debug.Log("_buttonObj : " + _buttonObj);
+
+            // _buttonObjに保存されている情報がリトライボタンと同じだった場合、Trueの結果が与えられる。タイトルボタンだった場合、falseの結果が与えられる。
+            // リトライボタンの選択中の画像を表示する
+            _moreSelectImage.enabled = _buttonObj == _moreButtonObj ? true : false;
+
+            // タイトルボタンの選択中の画像を非表示にする
+            _backSelectImage.enabled = _buttonObj == _moreButtonObj ? false : true;
+
+            // リトライボタンの画像のサイズを拡大する
+            _moreScale.transform.localScale = _buttonObj == _moreButtonObj ? new Vector3(_changeScale, _changeScale, _changeScale) : _buttonScale;
+            // リトライボタンの選択中の画像のサイズを拡大する
+            _moreImageScale.transform.localScale = _buttonObj == _moreButtonObj ? new Vector3(_changeScale, _changeScale, _changeScale) : _buttonScale;
+
+            // タイトルボタンの画像のサイズを初期サイズに設定する
+            _backScale.transform.localScale = _buttonObj == _moreButtonObj ? _buttonScale : new Vector3(_changeScale, _changeScale, _changeScale);
+            // 
+            _backSelectScale.transform.localScale = _buttonObj == _moreButtonObj ? _buttonScale : new Vector3(_changeScale, _changeScale, _changeScale);
+
+            // ui_GameOverVideoが流れ終わった場合
+            if (!_gameOverVideo.isPlaying)
             {
-                _onemoreImage.enabled = true;
-
-                _toBackImage.enabled = false;
-
-                _onemoreButton.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
-                _onemoreScale.transform.localScale=new Vector3(_changeScale, _changeScale, _changeScale);
-
-                _toBackButton.transform.localScale = _buttonScale;
-                _toBackScale.transform.localScale = _buttonScale;
+                // タイトルに戻る
+                SceneManager.LoadScene(0);
             }
-            if (_buttonObj == _toBackObj)
-            {
-                _onemoreImage.enabled = false;
-
-                _toBackImage.enabled = true;
-
-                _onemoreButton.transform.localScale = _buttonScale;
-                _onemoreScale.transform.localScale = _buttonScale;
-
-                _toBackButton.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
-                _toBackScale.transform.localScale = new Vector3(_changeScale, _changeScale, _changeScale);
-            }
-
-            //if (time > _limitTime)
-            //{
-            //    if (!_gameOverVideo.isPlaying)
-            //    {
-            //        _transSystem.Trans_Scene(0);
-            //    }
-            //}
-
         }
 
+        // ボタンを押された判定がオンになり、再生していたSEが鳴り終わった場合
         if (_isClick&& _audioiSystem.CheckPlaySound(_audioiSystem.seAudioSource))
         {
-            _transSystem.Trans_Scene(_SceneNum);
+            SceneManager.LoadScene(_SceneNum);
         }
     }
 
+    /// <summary>
+    /// ボタンが押されたときの関数
+    /// </summary>
+    /// <param name="SceneNum"> 遷移したいシーンの番号 </param>
     public void OnClickButton(int SceneNum)
     {
-        _audioiSystem.StopSound(_audioiSystem.bgmAudioSource);
-
-        _audioiSystem.PlaySESound(SEData.SE.ClickButton);
-
+        // ボタンが押された判定をオンにする
         _isClick = true;
 
+        // 遷移したいシーンの番号を設定する
         _SceneNum = SceneNum;
 
-        //_gameOverVideo.Stop();
+        // BGMを止める
+        _audioiSystem.StopSound(_audioiSystem.bgmAudioSource);
+
+        // クリック音を再生する
+        _audioiSystem.PlaySESound(SEData.SE.ClickButton);
+
+        // ui_GameOverVideoを止める
+        _gameOverVideo.Stop();
     }
 
     #endregion ---Methods---

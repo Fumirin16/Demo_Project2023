@@ -1,41 +1,44 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // 作成者：山﨑晶
 // ゲームクリア画面のUI演出のソースコード
 
 public class GameClearManager : MonoBehaviour
 {
-    #region ---Fields---
-
+    /// <summary>
+    /// 遷移するまでの時間
+    /// </summary>
     [SerializeField]
-    private float _transTIme=600f;
+    private float _transTIme = 600f;
 
-    [SerializeField]
-    private TranstionScenes _transSystem;
-
+    /// <summary>
+    /// 時間を保存する値
+    /// </summary>
     private float time;
-    #endregion ---Fields---
-
-    #region ---Methods---
 
     private void Update()
     {
-        time ++;
+        // 時間を測定
+        time += Time.deltaTime;
+
+        // 時間が_transTimeより長くなった場合
         if (time >= _transTIme)
         {
-            _transSystem.Trans_Scene(0);
+            // タイトル画面に遷移する
+            SceneManager.LoadScene(0);
         }
 
+        // ジョイコンのRボタンとAボタンが押された場合
         if (Input.GetKey(KeyCode.JoystickButton14))
         {
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
             {
-                _transSystem.Trans_Scene(0);
+                // タイトル画面に遷移する
+                SceneManager.LoadScene(0);
             }
         }
     }
-
-    #endregion ---Methods---
 }

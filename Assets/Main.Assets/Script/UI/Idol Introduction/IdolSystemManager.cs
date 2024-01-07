@@ -1,31 +1,33 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// 作成者：山崎晶
+// アイドル紹介画面のボタンを押してタイトル画面に戻るソース
 
 public class IdolSystemManager : MonoBehaviour
 {
+    /// <summary>
+    /// AudioSystemのスクリプト
+    /// </summary>
     [SerializeField]
     private AudioManager _audioSystem;
-
-    [SerializeField]
-    private TranstionScenes _transSystem;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //_audioSystem.PlayBGMSound(BGMData.BGM.Title);
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        // Aボタンを押した場合
+        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space))
         {
+            // クリック音を再生
             _audioSystem.PlaySESound(SEData.SE.ClickButton);
 
+            // BGMを止める
             _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
-            _transSystem.Trans_Scene(0);
+            // タイトル画面に遷移する
+            SceneManager.LoadScene(0);
         }
     }
 }

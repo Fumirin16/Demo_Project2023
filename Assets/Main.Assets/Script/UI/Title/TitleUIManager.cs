@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Transactions;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
+// 作成者：山﨑晶
 // タイトル画面のUI演出をするソースコード
-//  作成者：山﨑晶
 
 public class TitleUIManager : MonoBehaviour
 {
@@ -18,14 +16,14 @@ public class TitleUIManager : MonoBehaviour
     /// <summary>
     /// インスペクターの間隔
     /// </summary>
-    private const int _inspectorSpace = 4;
+    private const int _space = 4;
 
-    [Header("=== Title Logo ===")]
+    [Header("=== Video ===")]
     /// <summary>
     /// タイトルスタートを再生するオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _titleStartobj;
+    private GameObject _titleStartObj;
 
     /// <summary>
     /// タイトルスタートのVideoPlayer
@@ -43,9 +41,13 @@ public class TitleUIManager : MonoBehaviour
     /// </summary>
     private VideoPlayer _titleLogoVideo;
 
-    [Space(_inspectorSpace)]
+    /// <summary>
+    /// タイトルの画像
+    /// </summary>
+    [SerializeField]
+    private Image _titleImage;
 
-    [Header("=== Button UI ===")]
+    [Space(_space), Header("=== Button ===")]
     /// <summary>
     /// スタートボタンのオブジェクト
     /// </summary>
@@ -56,7 +58,7 @@ public class TitleUIManager : MonoBehaviour
     /// スタートボタンの選択中の画像
     /// </summary>
     [SerializeField]
-    private Image[] _startButtonImage=new Image[2];
+    private Image[] _startButtonImage = new Image[2];
 
     /// <summary>
     /// アイドル紹介ボタンのオブジェクト
@@ -83,11 +85,6 @@ public class TitleUIManager : MonoBehaviour
     private RectTransform _creditButtonImage;
 
     /// <summary>
-    /// クレジットボタン画像のRect Transformの初期Scale
-    /// </summary>
-    private Vector3 _creditScale = new Vector3(1, 1, 1);
-
-    /// <summary>
     /// 退場ボタンのオブジェクト
     /// </summary>
     [SerializeField]
@@ -99,20 +96,15 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField]
     private RectTransform _endButtonImage;
 
-    /// <summary>
-    /// 退場ボタン画像のRect Transformの初期Scale
-    /// </summary>
-    private Vector3 _endScale = new Vector3(1, 1, 1);
+    private Vector3 _buttonScaleIniti = new Vector3(1, 1, 1);
 
     /// <summary>
     /// クレジットボタンと退場ボタンのScaleを変更する値
     /// </summary>
     [SerializeField]
-    private float _buttonScaleChange = 1.4f;
+    private Vector3 _buttonScaleChange = new Vector3(1.4f, 1.4f, 1.4f);
 
-    [Space(_inspectorSpace)]
-
-    [Header("=== Camera Move ===")]
+    [Space(_space), Header("=== Camera Move ===")]
     /// <summary>
     /// メインカメラのオブジェクト
     /// </summary>
@@ -128,35 +120,27 @@ public class TitleUIManager : MonoBehaviour
     /// <summary>
     /// メインカメラの初期位置
     /// </summary>
-    private Vector3 _startPostion;
+    private Vector3 _startPostion = new Vector3(0, 0, 0);
 
     /// <summary>
     /// メインカメラの移動先
     /// </summary>
     [SerializeField]
-    private Vector3 _endPosition;
+    private Vector3 _endPosition = new Vector3(0, 0, 0);
 
     /// <summary>
     /// メインカメラの初期位置と移動先の距離
     /// </summary>
-    private float _distance;
+    private float _distance = 0f;
 
     /// <summary>
     /// 現在のゲーム内時間
     /// </summary>
-    private float _time;
+    private float _time = 0;
 
-    [Space(_inspectorSpace)]
-
-    [Header("=== Use Script ===")]
+    [Space(_space), Header("=== Script ===")]
     /// <summary>
-    /// TranstionSceneのクラス
-    /// </summary>
-    [SerializeField]
-    private TranstionScenes _transScene;
-
-    /// <summary>
-    /// AudioManagerのクラス
+    /// system_Audioのスクリプト
     /// </summary>
     [SerializeField]
     private AudioManager _audioSystem;
@@ -164,7 +148,7 @@ public class TitleUIManager : MonoBehaviour
     /// <summary>
     /// UI演出の現在の順番
     /// </summary>
-    private int _uiCounter = 10;
+    private int _uiCounter = 0;
 
     /// <summary>
     /// 選択されてるオブジェクト
@@ -178,7 +162,7 @@ public class TitleUIManager : MonoBehaviour
     private void Start()
     {
         // ui_TitleStartVideoからVideoPlayerコンポーネントを取得
-        _titleStartVideo = _titleStartobj.GetComponent<VideoPlayer>();
+        _titleStartVideo = _titleStartObj.GetComponent<VideoPlayer>();
 
         // ui_TitleLogoVideoからVideoPlayerコンポーネントを取得
         _titleLogoVideo = _titleLogoObj.GetComponent<VideoPlayer>();
@@ -190,7 +174,7 @@ public class TitleUIManager : MonoBehaviour
         _titleLogoVideo.isLooping = true;
 
         // タイトルスタートを表示
-        _titleStartobj.SetActive(true);
+        _titleStartObj.SetActive(true);
 
         // タイトルロゴを非表示
         _titleLogoObj.SetActive(false);
@@ -209,10 +193,10 @@ public class TitleUIManager : MonoBehaviour
         _idolButtonImage.enabled = false;
 
         // クレジットボタン画像のScaleを初期Scaleに設定する
-        _creditButtonImage.transform.localScale = _creditScale;
+        _creditButtonImage.transform.localScale = _buttonScaleIniti;
 
         // 退場ボタン画像のScaleを初期Scaleに設定する
-        _endButtonImage.transform.localScale = _endScale;
+        _endButtonImage.transform.localScale = _buttonScaleIniti;
 
         // スタートボタンを非アクティブにする
         _startButtonObj.SetActive(false);
@@ -235,21 +219,19 @@ public class TitleUIManager : MonoBehaviour
         // 初期に選択状態にしておくボタンを設定する
         EventSystem.current.SetSelectedGameObject(_startButtonObj);
     }
-    /*
-     * 選択中画像を非表示・表示を設定しておく理由：Unity側で間違って非表示・表示の設定をしても正常に動くようにするため
-     */
 
     private void Update()
     {
         // 再生してからUI演出の処理を稼働させるための処理
-        if (_titleStartVideo.isPlaying && _uiCounter == 10)
+        if (_titleStartVideo.isPlaying)
         {
             _audioSystem.ChangeBGMVolume(1);
 
             // タイトルのBGMを再生する
             _audioSystem.PlayBGMSound(BGMData.BGM.Title);
 
-            _uiCounter = 0;
+            // UI演出の値を１にする
+            _uiCounter = 1;
         }
 
         // _uiCounterの値によって処理を変える
@@ -257,194 +239,244 @@ public class TitleUIManager : MonoBehaviour
         {
             // 再生されてるタイトルスタートが終わった後の演出
             case (int)UIdirecton.StartLogo:
-                // タイトルスタートが流れ終わった場合
-                if (!_titleStartVideo.isPlaying)
-                {
-                    _titleStartVideo.Stop();
-                    // タイトルロゴを表示
-                    _titleLogoObj.SetActive(true);
-
-                    // タイトルロゴを再生する
-                    _titleLogoVideo.Play();
-
-                    // タイトルスタートを非表示
-                    _titleStartobj.SetActive(false);
-
-                    _uiCounter = 1;
-                }
-
+                ActiveVideo();
                 break;
 
             // ボタンを表示する演出
             case (int)UIdirecton.Button:
-                // スタートボタンをアクティブにする
-                _startButtonObj.SetActive(true);
-
-                // アイドル紹介ボタンをアクティブにする
-                _idolButtonObj.SetActive(true);
-
-                // クレジットボタンをアクティブにする
-                _creditButtonObj.SetActive(true);
-
-                // 退場ボタンをアクティブにする
-                _endButtonObj.SetActive(true);
-
-                _uiCounter = 2;
+                OnActiveButton();
                 break;
 
             // 選択されているボタンの演出
             case (int)UIdirecton.Select:
-                // 現在、選択されているボタンの情報を保存する
-                _buttonObj = EventSystem.current.currentSelectedGameObject;
-                //Debug.Log("_buttonobj : " + _buttonObj);
-                // 選択されているボタンがスタートボタンな場合
-                if (_buttonObj == _startButtonObj)
-                {
-                    // スタートボタンの選択中の画像を表示
-                    _startButtonImage[0].enabled = true;
-                    _startButtonImage[1].enabled = true;
-
-                    // アイドル紹介ボタンの選択中の画像を非表示
-                    _idolButtonImage.enabled = false;
-
-                    if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Z))
-                    {
-                        //Debug.Log("Input");
-                        _audioSystem.PlaySESound(SEData.SE.ClickButton);
-
-                        // タイトルロゴを非表示
-                        _titleLogoObj.SetActive(false);
-
-                        // スタートボタンをアクティブにする
-                        _startButtonObj.SetActive(false);
-
-                        // アイドル紹介ボタンをアクティブにする
-                        _idolButtonObj.SetActive(false);
-
-                        // クレジットボタンをアクティブにする
-                        _creditButtonObj.SetActive(false);
-
-                        // 退場ボタンをアクティブにする
-                        _endButtonObj.SetActive(false);
-
-                        _time = Time.time;
-
-                        _uiCounter = 3;
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.Y))
-                    {
-                        _audioSystem.PlaySESound(SEData.SE.ClickButton);
-
-                        // タイトルロゴを非表示
-                        _titleLogoObj.SetActive(false);
-
-                        // スタートボタンをアクティブにする
-                        _startButtonObj.SetActive(false);
-
-                        // アイドル紹介ボタンをアクティブにする
-                        _idolButtonObj.SetActive(false);
-
-                        // クレジットボタンをアクティブにする
-                        _creditButtonObj.SetActive(false);
-
-                        // 退場ボタンをアクティブにする
-                        _endButtonObj.SetActive(false);
-
-                        _time = Time.time;
-
-                        _uiCounter = 4;
-                    }
-                }
-                // 選択されているボタンがアイドル紹介ボタンな場合
-                if (_buttonObj == _idolButtonObj)
-                {
-                    // スタートボタンの選択中の画像を非表示
-                    _startButtonImage[0].enabled = false;
-                    _startButtonImage[1].enabled = false;
-
-                    // アイドル紹介ボタンの選択中の画像を表示
-                    _idolButtonImage.enabled = true;
-
-                    // クレジットボタンのScaleを初期Scaleに固定
-                    _creditButtonObj.transform.localScale = _creditScale;
-                }
-                // 選択されているボタンがクレジットボタンな場合
-                if (_buttonObj == _creditButtonObj)
-                {
-                    // アイドル紹介ボタンの選択中の画像を非表示
-                    _idolButtonImage.enabled = false;
-
-                    // クレジットボタンのScaleを変更
-                    _creditButtonObj.transform.localScale = new Vector3(_buttonScaleChange, _buttonScaleChange, _buttonScaleChange);
-
-                    // 退場ボタンのScaleを初期Scaleに固定
-                    _endButtonImage.transform.localScale = _endScale;
-                }
-                if (_buttonObj == _endButtonObj)
-                {
-                    // アイドル紹介ボタンの選択中の画像を非表示
-                    _idolButtonImage.enabled = false;
-
-                    // クレジットボタンを初期Scaleに固定
-                    _creditButtonObj.transform.localScale = _creditScale;
-
-                    // 退場ボタンのScaleのScaleを変更
-                    _endButtonImage.transform.localScale = new Vector3(_buttonScaleChange, _buttonScaleChange, _buttonScaleChange);
-                }
+                SelectButton();
                 break;
 
             // スタートボタンのAボタンが押された後にカメラを動かす演出
             case (int)UIdirecton.ClickAButton:
-                _audioSystem.StopSound(_audioSystem.bgmAudioSource);
-                if (_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-                {
-                    _audioSystem.PlaySESound(SEData.SE.Walk);
-                }
-
-                // カメラを移動する位置を設定する
-                float _positionValue = ((Time.time - _time) / _distance) * _cameraMoveSpeed;
-
-                // カメラを移動させる
-                _mainCamera.transform.position = Vector3.Lerp(_startPostion, _endPosition, _positionValue);
-
-                if (_endPosition == _mainCamera.transform.position)
-                {
-                    _audioSystem.StopSound(_audioSystem.seAudioSource);
-                    _transScene.Trans_Scene(3);
-                }
+                CameraMove(5);
                 break;
 
             // スタートボタンのYボタンが押された後にカメラを動かす演出
             case (int)UIdirecton.ClickYButton:
-                _audioSystem.StopSound(_audioSystem.bgmAudioSource);
-                if (_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-                {
-                    _audioSystem.PlaySESound(SEData.SE.Walk);
-                }
-
-                // カメラを移動する位置を設定する
-                float _postionValue = ((Time.time - _time) / _distance) * _cameraMoveSpeed;
-
-                // カメラを移動させる
-                _mainCamera.transform.position = Vector3.Lerp(_startPostion, _endPosition, _postionValue);
-
-                if (_endPosition == _mainCamera.transform.position)
-                {
-                    _audioSystem.StopSound(_audioSystem.seAudioSource);
-                    _transScene.Trans_Scene(4);
-                }
+                CameraMove(4);
                 break;
+
             default:
                 break;
         }
     }
 
-    public void OnClikButton(int transSceneNum)
+    /// <summary>
+    /// VideoPlayerの演出関数
+    /// </summary>
+    private void ActiveVideo()
     {
+        // タイトルスタートが流れ終わった場合
+        if (!_titleStartVideo.isPlaying)
+        {
+            // タイトル画像を表示する
+            _titleImage.enabled = true;
+
+            // タイトルスタートを停止する
+            _titleStartVideo.Stop();
+
+            // タイトルロゴを表示
+            _titleLogoObj.SetActive(true);
+
+            // タイトルロゴを再生する
+            _titleLogoVideo.Play();
+
+            // タイトルスタートを非表示
+            _titleStartObj.SetActive(false);
+
+            // UI演出を進める
+            _uiCounter = 2;
+        }
+    }
+
+    /// <summary>
+    /// 選択されているときのボタン演出の関数
+    /// </summary>
+    private void OnActiveButton()
+    {
+        // スタートボタンをアクティブにする
+        _startButtonObj.SetActive(true);
+
+        // アイドル紹介ボタンをアクティブにする
+        _idolButtonObj.SetActive(true);
+
+        // クレジットボタンをアクティブにする
+        _creditButtonObj.SetActive(true);
+
+        // 退場ボタンをアクティブにする
+        _endButtonObj.SetActive(true);
+
+        // タイトル画像を非表示にする
+        _titleImage.enabled = false;
+
+        // UI演出を進める
+        _uiCounter = 3;
+    }
+
+    /// <summary>
+    /// ボタンが選択されているときのボタン演出の関数
+    /// </summary>
+    /// <param name="_buttonObj"> 現在選択されているボタン </param>
+    private void SelectButton()
+    {
+        // 現在、選択されているボタンの情報を保存する
+        _buttonObj = EventSystem.current.currentSelectedGameObject;
+        //Debug.Log("_buttonobj : " + _buttonObj);
+
+        // 選択されているボタンがスタートボタンな場合
+        if (_buttonObj == _startButtonObj)
+        {
+            // スタートボタンの選択中の画像を表示
+            _startButtonImage[0].enabled = true;
+            _startButtonImage[1].enabled = true;
+
+            // アイドル紹介ボタンの選択中の画像を非表示
+            _idolButtonImage.enabled = false;
+
+            // AボタンもしくはAキーが押された場合
+            if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.A))
+            {
+                //Debug.Log("Input");
+                _audioSystem.PlaySESound(SEData.SE.ClickButton);
+
+                // タイトルロゴを非表示
+                _titleLogoObj.SetActive(false);
+
+                // スタートボタンをアクティブにする
+                _startButtonObj.SetActive(false);
+
+                // アイドル紹介ボタンをアクティブにする
+                _idolButtonObj.SetActive(false);
+
+                // クレジットボタンをアクティブにする
+                _creditButtonObj.SetActive(false);
+
+                // 退場ボタンをアクティブにする
+                _endButtonObj.SetActive(false);
+
+                // 現在の時間を保存する
+                _time = Time.time;
+
+                // UI演出を進める
+                _uiCounter = 4;
+            }
+
+            // YボタンもしくはYキーが押された場合
+            if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.Y))
+            {
+                _audioSystem.PlaySESound(SEData.SE.ClickButton);
+
+                // タイトルロゴを非表示
+                _titleLogoObj.SetActive(false);
+
+                // スタートボタンをアクティブにする
+                _startButtonObj.SetActive(false);
+
+                // アイドル紹介ボタンをアクティブにする
+                _idolButtonObj.SetActive(false);
+
+                // クレジットボタンをアクティブにする
+                _creditButtonObj.SetActive(false);
+
+                // 退場ボタンをアクティブにする
+                _endButtonObj.SetActive(false);
+
+                // 現在の時間を保存
+                _time = Time.time;
+
+                // UI演出を進める
+                _uiCounter = 5;
+            }
+        }
+        // 選択されているボタンがアイドル紹介ボタンな場合
+        if (_buttonObj == _idolButtonObj)
+        {
+            // スタートボタンの選択中の画像を非表示
+            _startButtonImage[0].enabled = false;
+            _startButtonImage[1].enabled = false;
+
+            // アイドル紹介ボタンの選択中の画像を表示
+            _idolButtonImage.enabled = true;
+
+            // クレジットボタンのScaleを初期Scaleに固定
+            _creditButtonObj.transform.localScale = _buttonScaleIniti;
+        }
+        // 選択されているボタンがクレジットボタンな場合
+        if (_buttonObj == _creditButtonObj)
+        {
+            // アイドル紹介ボタンの選択中の画像を非表示
+            _idolButtonImage.enabled = false;
+
+            // クレジットボタンのScaleを変更
+            _creditButtonObj.transform.localScale = _buttonScaleChange;
+
+            // 退場ボタンのScaleを初期Scaleに固定
+            _endButtonImage.transform.localScale = _buttonScaleIniti;
+        }
+        if (_buttonObj == _endButtonObj)
+        {
+            // アイドル紹介ボタンの選択中の画像を非表示
+            _idolButtonImage.enabled = false;
+
+            // クレジットボタンを初期Scaleに固定
+            _creditButtonObj.transform.localScale = _buttonScaleIniti;
+
+            // 退場ボタンのScaleのScaleを変更
+            _endButtonImage.transform.localScale = _buttonScaleChange;
+        }
+    }
+
+    /// <summary>
+    /// スタートボタンが押された後のカメラを動かす演出の関数
+    /// </summary>
+    /// <param name="sceneNum"> 遷移したいシーンの番号 </param>
+    private void CameraMove(int sceneNum)
+    {
+        // BGMを止める
+        _audioSystem.StopSound(_audioSystem.bgmAudioSource);
+
+        // SEが鳴っていない場合
+        if (_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+        {
+            // 歩いている音を再生する
+            _audioSystem.PlaySESound(SEData.SE.Walk);
+        }
+
+        // カメラを移動する位置を設定する
+        float _postionValue = ((Time.time - _time) / _distance) * _cameraMoveSpeed;
+
+        // カメラを移動させる
+        _mainCamera.transform.position = Vector3.Lerp(_startPostion, _endPosition, _postionValue);
+
+        // カメラが指定の場所に移動した場合
+        if (_endPosition == _mainCamera.transform.position)
+        {
+            // SEを止める
+            _audioSystem.StopSound(_audioSystem.seAudioSource);
+
+            // メインゲームに遷移する
+            SceneManager.LoadScene(sceneNum);
+        }
+    }
+
+    /// <summary>
+    /// ボタンが押されたときの関数
+    /// </summary>
+    /// <param name="sceneNul"> 遷移したいシーンの番号 </param>
+    public void OnClikButton(int sceneNul)
+    {
+        // クリック音を再生する
         _audioSystem.PlaySESound(SEData.SE.ClickButton);
 
+        // ui_titleLogoVideoを止める
         _titleLogoVideo.Stop();
+
         // タイトルロゴを非表示
         _titleLogoObj.SetActive(false);
 
@@ -460,17 +492,25 @@ public class TitleUIManager : MonoBehaviour
         // 退場ボタンをアクティブにする
         _endButtonObj.SetActive(false);
 
-        _transScene.Trans_Scene(transSceneNum);
+        // 指定したシーンに遷移する
+        SceneManager.LoadScene(sceneNul);
     }
 
     #endregion ---Methods---
 
+    #region ---Enum---
+
+    /// <summary>
+    /// UIの演出ラベル
+    /// </summary>
     private enum UIdirecton
     {
-        StartLogo,
+        StartLogo = 1,
         Button,
         Select,
         ClickAButton,
         ClickYButton,
     }
+
+    #endregion ---Enum---
 }

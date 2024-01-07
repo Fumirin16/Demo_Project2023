@@ -23,15 +23,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4953907282799318867}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.4072961, y: -0.566939, z: 0.4177679, w: 0.5815153}
+  m_LocalPosition: {x: 0.6703162, y: -0.21221137, z: -0.0003256062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7645038822486805289}
   - {fileID: 7645038822523483346}
-  m_Father: {fileID: 7895402993073979745}
-  m_RootOrder: 3
+  m_Father: {fileID: 7920418451059066472}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7645038821260307558
 GameObject:
@@ -1636,11 +1636,13 @@ MonoBehaviour:
   _mainCamera: {fileID: 0}
   _leftCamera: {fileID: 0}
   _rightCamera: {fileID: 0}
+  _mainCameraObj: {fileID: 0}
+  _leftCameraObj: {fileID: 0}
+  _rightCameraObj: {fileID: 0}
   _nomal: 1
   _nomalDiffPos: 0
   _switchButton: 0
   _stickButton: 0
-  _locationButton: 0
   _riactionCanvas: {fileID: 0}
   _finishCanvas: {fileID: 0}
   _situationCanvas: {fileID: 0}
@@ -3905,9 +3907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 7645038822523483351}
-  obj: {fileID: 7411178534066674651}
-  setttingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
-  _power: {fileID: 7645038822524983036}
+  _settingManager: {fileID: 0}
+  _movePower: {fileID: 0}
   _isActive: 0
 --- !u!1 &1297276610909654974 stripped
 GameObject:
@@ -6629,9 +6630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 7645038822523483351}
-  obj: {fileID: 7411178534066674651}
-  setttingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
-  _power: {fileID: 7645038822524983036}
+  _settingManager: {fileID: 0}
+  _movePower: {fileID: 0}
   _isActive: 0
 --- !u!114 &7645038821838255155
 MonoBehaviour:

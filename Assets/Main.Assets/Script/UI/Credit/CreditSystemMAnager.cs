@@ -1,31 +1,34 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// 作成者：山﨑晶
+// クレジット画面のボタンを押したときの処理
 
 public class CreditSystemMAnager : MonoBehaviour
 {
+    [Header("=== Script ===")]
+    /// <summary>
+    /// system_Audioのスクリプト
+    /// </summary>
     [SerializeField]
     private AudioManager _audioSystem;
-
-    [SerializeField]
-    private TranstionScenes _transSystem;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //_audioSystem.PlayBGMSound(BGMData.BGM.Title);
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        // Aボタンが押された場合
+        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Space))
         {
+            // クリック音を再生する
             _audioSystem.PlaySESound(SEData.SE.ClickButton);
 
+            // BGMを止める
             _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
-            _transSystem.Trans_Scene(0);
+            // タイトル画面に遷移する
+            SceneManager.LoadScene(0);
         }
     }
 }

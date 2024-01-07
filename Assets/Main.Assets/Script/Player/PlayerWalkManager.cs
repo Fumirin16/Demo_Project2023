@@ -8,6 +8,28 @@ using UnityEngine;
 public class PlayerWalkManager : MonoBehaviour
 {
     #region ---Fields---
+    private const int _space = 4;
+
+    [Header("=== Camera ===")]
+    /// <summary>
+    /// プレイヤーのカメラを取得する変数
+    /// </summary>
+    [SerializeField]
+    private GameObject _playerCamera;
+
+    [Space(_space), Header("=== Script ===")]
+    /// <summary>
+    /// ValueSettingTable
+    /// </summary>
+    [SerializeField]
+    private ValueSettingManager _settingManager;
+
+    /// <summary>
+    /// Col.RightToeBaseのスクリプト
+    /// </summary>
+    [SerializeField]
+    private StandStill _movePower;
+
     /// <summary>
     /// Rigidbodyを保存する変数
     /// </summary>
@@ -16,31 +38,18 @@ public class PlayerWalkManager : MonoBehaviour
     /// <summary>
     /// プレイヤーが動くスピードを保存する変数
     /// </summary>
-    private float _moveSpeed;
-
-    private Vector3 _startPos;
+    private float _moveSpeed = 0f;
 
     /// <summary>
-    /// プレイヤーのカメラを取得する変数
+    /// プレイヤーのスタート位置
     /// </summary>
-    [SerializeField]
-    private GameObject _playerCamera;
-
-    [SerializeField]
-    private GameObject obj;
+    private Vector3 _startPos = new Vector3(0, 0, 0);
 
     /// <summary>
-    /// 値を参照する変数
+    /// プレイヤーが初期位置から移動していいかの判定
     /// </summary>
-    [SerializeField]
-    private ValueSettingManager setttingManager;
-
-    [SerializeField]
-    private StandStill _power;
-
-    public bool _isActive=false;
-
-    private int time;
+    [HideInInspector]
+    public bool _isActive = false;
 
     #endregion ---Fields---
 
@@ -48,54 +57,43 @@ public class PlayerWalkManager : MonoBehaviour
 
     private void Awake()
     {
-        //this.transform.position=new Vector3(obj.transform.localPosition.x,this.transform.position.y,obj.transform.localPosition.z);
+        // プレイヤーの現在の位置を保存する
         _startPos = this.transform.position;
     }
     // Start is called before the first frame update
     void Start()
     {
         // 値を管理するアセットから値を参照して保存する
-        _moveSpeed = setttingManager.MOCOPI_PlayerMoveSpeed;
+        _moveSpeed = _settingManager.MOCOPI_PlayerMoveSpeed;
 
-        // Rigidbody   Q ?   
+        // Rigidbodyを取得する
         _rb = GetComponent<Rigidbody>();
     }
 
-
     private void FixedUpdate()
     {
-        time++;
-        Debug.Log(time);
+        // プレイヤーが動いてはダメな判定だった場合
         if (!_isActive)
         {
+            // プレイヤーを初期位置で固定する
             this.transform.position = _startPos;
         }
 
-        float power = 2;
-        if (_power.moveWalkPower >= 0.9|| (time>=100&&time<=120))
+        // 値を参照する
+        float power = _settingManager.movePower;
+
+        // Powerが1以上だった場合 
+        if (_movePower.moveWalkPower >= 1)
         {
             // プレイヤーを移動させる動力を保存 
             float moveSpeed = power * _moveSpeed;
-            //Debug.Log("modeSpeed : " + moveSpeed);
 
-            // カメラの向きを取得
-            Vector3 cameraForward = Vector3.Scale(_playerCamera.transform.forward, new Vector3(1, 0, 1)).normalized;
-            //Debug.Log("cameraForward : " + cameraForward);
-
+            // プレイヤーの正面の方向を取得する
             Vector3 moveForward = transform.forward * moveSpeed;
+
             // プレイヤーを移動させる
             _rb.AddForce(moveForward, ForceMode.Impulse);
-            //Debug.Log(moveForward);
-
-            time = 0;
         }
-        else
-        {
-            //_rb.velocity = new Vector3(0, 0, 0);
-        }
-
-
-
     }
 
     #endregion ---Methods---
