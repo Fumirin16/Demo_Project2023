@@ -1,259 +1,305 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-// �쐬�ҁF�R����
-// �J�����Ɋւ���X�N���v�g
+// 作成者：山﨑晶
+// カメラに関するスクリプト
 
 public class CameratoAudioManager : MonoBehaviour
 {
+    #region ---Fields---
+
+    [Header("=== Object ===")]
+    /// <summary>
+    /// カメラの回転する動作の中心点
+    /// </summary>
     [SerializeField]
-    private Transform lookAtObj;
+    private Transform _playerObj;
 
+    /// <summary>
+    /// 対象オブジェクトの_layer
+    /// </summary>
     [SerializeField]
-    private Transform playerObj;
+    private LayerMask _layer;
 
-    [SerializeField]
-    private LayerMask layer;
+    /// <summary>
+    /// Ray
+    /// </summary>
+    private Ray _ray;
 
-    private List<GameObject> hitObj=new List<GameObject> ();
+    /// <summary>
+    /// Rayに当たったオブジェクトを格納するリスト
+    /// </summary>
+    private List<GameObject> _hitObj=new List<GameObject> ();
 
-    private GameObject[] saveObj;
+    /// <summary>
+    /// 前回の保存したオブジェクトを格納するリスト
+    /// </summary>
+    private GameObject[] _saveObj;
 
-    [SerializeField]
-    private float radio=1.0f;
+    /// <summary>
+    /// Rawの範囲
+    /// </summary>
+    private float _rawRadio;
 
+    /// <summary>
+    /// カメラとプレイヤーの距離
+    /// </summary>
     private Vector3 _offset;
 
-    float input;
-
-    [SerializeField]
-    private Camera _mainCamera;
-
-    [SerializeField]
-    private Camera _leftCamera;
-
-    [SerializeField]
-    private Camera _rightCamera;
-
+    [Header("=== Camera ===")]
+    /// <summary>
+    /// メインカメラのオブジェクト
+    /// </summary>
     [SerializeField]
     private GameObject _mainCameraObj;
 
+    /// <summary>
+    /// 左肩カメラのオブジェクト
+    /// </summary>
     [SerializeField]
     private GameObject _leftCameraObj;
 
+    /// <summary>
+    /// 右肩カメラのオブジェクト
+    /// </summary>
     [SerializeField]
     private GameObject _rightCameraObj;
 
-    // ���炶�傿���̐^��납��ǐՂ���J����
+    /// <summary>
+    /// メインカメラのCameraコンポーネント
+    /// </summary>
+    private Camera _mainCamera;
+
+    /// <summary>
+    /// 左肩カメラのCameraコンポーネント
+    /// </summary>
+    private Camera _leftCamera;
+
+    /// <summary>
+    /// 右肩カメラのCameraコンポーネント
+    /// </summary>
+    private Camera _rightCamera;
+
+    [Header("=== Camera Function ===")]
+    /// <summary>
+    /// じらじょちゃんの真後ろから追跡する機能
+    /// </summary>
     [SerializeField]
     public bool _nomal = true;
 
-    // ���炶�傿���̌���ւ񂩂�ǐՂ����J����
+    /// <summary>
+    /// じらじょちゃんの肩らへんから追跡する機能
+    /// </summary>
     [SerializeField]
     public bool _nomalDiffPos = false;
 
-    // �X�C�b�`�Ŏ��_�̏ꏊ���؂�ւ��J����
+    /// <summary>
+    /// スイッチで視点の場所が切り替わる機能
+    /// </summary>
     [SerializeField]
     public bool _switchButton = false;
 
-    // �X�e�B�b�N�ړ��Ŏ��_�ړ��ł���J����
+    /// <summary>
+    /// スティック移動で視点移動できる機能
+    /// </summary>
     [SerializeField]
     public bool _stickButton = false;
 
+    [Header("=== Canvas ===")]
+    /// <summary>
+    /// リアクションUIのCanvas
+    /// </summary>
     [SerializeField]
     private Canvas _riactionCanvas;
 
+    /// <summary>
+    /// 終了UIのCanvas
+    /// </summary>
     [SerializeField]
     private Canvas _finishCanvas;
 
+    /// <summary>
+    /// プレイヤーUIのCanvas
+    /// </summary>
     [SerializeField]
     private Canvas _situationCanvas;
 
-    private Ray ray;
+    [Header("=== Object Table ===")]
+    /// <summary>
+    /// ValueSettingTable
+    /// </summary>
+    [SerializeField]
+    private ValueSettingManager _settingSystem;
+
+    #endregion ---Fields---
+
+    #region ---Methods---
 
     // Start is called before the first frame update
     void Start()
     {
+        // Rawの範囲の値を参照して保存する
+        _rawRadio = _settingSystem.cameraHitRadio;
+
+        // カメラオブジェクトからCameraコンポーネントを取得
+        _mainCamera = _mainCameraObj.GetComponent<Camera>();
+        _leftCamera = _leftCameraObj.GetComponent<Camera>();
+        _rightCamera = _rightCameraObj.GetComponent<Camera>();
+
+        // カメラ機能がNomalだった場合
         if (_nomal)
         {
+            // メインカメラのカメラコンポーネントをオンにして、他はオフにする
             _mainCamera.enabled = true;
             _leftCamera.enabled = false;
             _rightCamera.enabled = false;
 
+            // メインカメラをアクティブにして、他はオフにする
             _mainCameraObj.SetActive(true);
             _leftCameraObj.SetActive(false);
             _rightCameraObj.SetActive(false);
 
-            _offset = _mainCamera.transform.position - playerObj.position;
+            // メインカメラとプレイヤーの距離を計算する
+            _offset = _mainCamera.transform.position - _playerObj.position;
         }
 
-        if (_nomalDiffPos|| _switchButton|| _stickButton)
+        // カメラ機能がNomalDiffPos / StickButtonだった場合
+        if (_nomalDiffPos || _stickButton)
         {
+            // 左肩カメラのカメラコンポーネントをオンにして、他はオフにする
             _mainCamera.enabled = false;
             _leftCamera.enabled = true;
             _rightCamera.enabled = false;
 
+            // 左肩カメラをアクティブにして、他はオフにする
+            _mainCameraObj.SetActive(false);
+            _leftCameraObj.SetActive(true);
+            _rightCameraObj.SetActive(false);
+
+            // 左肩カメラとプレイヤーの距離を計算する
+            _offset = _leftCamera.transform.position - _playerObj.position;
+        }
+
+        // カメラ機能がSwitchButtonだった場合
+        if (_switchButton)
+        {
+            // 左肩カメラのカメラコンポーネントをオンにして、他はオフにする
+            _mainCamera.enabled = false;
+            _leftCamera.enabled = true;
+            _rightCamera.enabled = false;
+
+            // 左肩カメラと右肩カメラをアクティブにして、他はオフにする
             _mainCameraObj.SetActive(false);
             _leftCameraObj.SetActive(true);
             _rightCameraObj.SetActive(true);
 
-            _offset = _leftCamera.transform.position - playerObj.position;
+            // 左肩カメラとプレイヤーの距離を計算する
+            _offset = _leftCamera.transform.position - _playerObj.position;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // �Q�_�Ԃ̃x�N�g���𐳋K������
+        // ２点間のベクトルを正規化する
         Vector3 positionVector = _offset.normalized;
 
+        // カメラ機能がNomalだった場合
         if (_nomal)
         {
-            _mainCamera.transform.RotateAround(playerObj.position, Vector3.up, input * 3f);
-
-            // Ray���J��������v���C���[�ɔ�΂�
-            ray = new Ray(_mainCamera.transform.position, positionVector);
-
-            // Ray����������f�o�b�N
-            Debug.DrawRay(_mainCamera.transform.position, positionVector, UnityEngine.Color.red);
-
+            // _rayをカメラからプレイヤーに飛ばす
+            _ray = new Ray(_mainCamera.transform.position, positionVector);
         }
 
+        // カメラ機能がNomalDiffPosだった場合
         if (_nomalDiffPos)
         {
-            _leftCamera.transform.RotateAround(playerObj.position, Vector3.up, input * 3f);
-
+            // canvasのカメラ設定を左肩カメラに設定する
             _riactionCanvas.worldCamera = _leftCamera;
             _finishCanvas.worldCamera = _leftCamera;
             _situationCanvas.worldCamera = _leftCamera;
 
-            // Ray���J��������v���C���[�ɔ�΂�
-            ray = new Ray(_leftCamera.transform.position, positionVector);
-
-            // Ray����������f�o�b�N
-            Debug.DrawRay(_leftCamera.transform.position, positionVector, UnityEngine.Color.red);
+            // _rayをカメラからプレイヤーに飛ばす
+            _ray = new Ray(_leftCamera.transform.position, positionVector);
         }
+
+        // 
         if (_switchButton)
         {
-            if (Input.GetKeyDown(KeyCode.JoystickButton0))
+            if (Input.GetKeyDown(KeyCode.JoystickButton0) && !_rightCamera.enabled)
             {
-                if (!_rightCamera.enabled)
-                {
-                    _leftCamera.enabled = false;
-                    _rightCamera.enabled = true;
+                // 右肩カメラのCameraコンポーネントを有効にして、左肩カメラのCameraコンポーネントを無効にする
+                _leftCamera.enabled = false;
+                _rightCamera.enabled = true;
 
-                    _riactionCanvas.worldCamera = _rightCamera;
-                    _finishCanvas.worldCamera = _rightCamera;
-                    _situationCanvas.worldCamera = _rightCamera;
+                // canvasのカメラ設定を右肩カメラに設定する
+                _riactionCanvas.worldCamera = _rightCamera;
+                _finishCanvas.worldCamera = _rightCamera;
+                _situationCanvas.worldCamera = _rightCamera;
 
-                    _rightCamera.transform.RotateAround(playerObj.position, Vector3.up, input * 3f);
+                // 左肩カメラとプレイヤーの距離を計算する
+                _offset = _rightCamera.transform.position - _playerObj.position;
 
-                    // Ray���J��������v���C���[�ɔ�΂�
-                    ray = new Ray(_rightCamera.transform.position, positionVector);
-
-                    // Ray����������f�o�b�N
-                    //Debug.DrawRay(_rightCamera.transform.position, positionVector, UnityEngine.Color.red);
-                }
-
+                // _rayをカメラからプレイヤーに飛ばす
+                _ray = new Ray(_rightCamera.transform.position, positionVector);
             }
-            if (Input.GetKeyDown(KeyCode.JoystickButton3))
+            if (Input.GetKeyDown(KeyCode.JoystickButton3) && !_leftCamera.enabled)
             {
-                if (!_leftCamera.enabled)
-                {
-                    _leftCamera.enabled = true;
-                    _rightCamera.enabled = false;
+                // 左肩カメラのCameraコンポーネントを有効にして、右肩カメラのCameraコンポーネントを無効にする
+                _leftCamera.enabled = true;
+                _rightCamera.enabled = false;
 
-                    _riactionCanvas.worldCamera = _leftCamera;
-                    _finishCanvas.worldCamera = _leftCamera;
-                    _situationCanvas.worldCamera = _leftCamera;
+                // canvasのカメラ設定を左肩カメラに設定する
+                _riactionCanvas.worldCamera = _leftCamera;
+                _finishCanvas.worldCamera = _leftCamera;
+                _situationCanvas.worldCamera = _leftCamera;
 
-                    _leftCamera.transform.RotateAround(playerObj.position, Vector3.forward, input * 3f);
+                // 左肩カメラとプレイヤーの距離を計算する
+                _offset = _leftCamera.transform.position - _playerObj.position;
 
-                    // Ray���J��������v���C���[�ɔ�΂�
-                    ray = new Ray(_leftCamera.transform.position, positionVector);
-
-                    // Ray����������f�o�b�N
-                    //Debug.DrawRay(_leftCamera.transform.position, positionVector, UnityEngine.Color.red);
-                }
+                // _rayをカメラからプレイヤーに飛ばす
+                _ray = new Ray(_leftCamera.transform.position, positionVector);
             }
         }
 
-        if (_stickButton)
-        {
-            float input = Input.GetAxis("Horizontal") * -1;
+        // 球体のRayを生成する
+        RaycastHit[] _hits = Physics.SphereCastAll(_ray, _rawRadio, positionVector.magnitude, _layer);
 
-            _leftCamera.transform.RotateAround(playerObj.position, Vector3.up, input * 3f);
-            _leftCamera.transform.LookAt(lookAtObj);
+        // 前回のリストを保存する
+        _saveObj = _hitObj.ToArray();
 
-            // Ray���J��������v���C���[�ɔ�΂�
-            ray = new Ray(_leftCamera.transform.position, positionVector);
+        // リストを初期化する
+        _hitObj.Clear();
 
-            // Ray����������f�o�b�N
-            //Debug.DrawRay(_leftCamera.transform.position, positionVector, UnityEngine.Color.red);
-        }
-
-        RaycastHit[] _hits = Physics.SphereCastAll(ray, radio, positionVector.magnitude, layer);
-
-        saveObj = hitObj.ToArray();
-        hitObj.Clear();
-        // �Օ����͈ꎞ�I�ɂ��ׂĕ`��@�\�𖳌��ɂ���B
+        // 遮蔽物は一時的にすべて描画機能を無効にする。
         foreach (RaycastHit _hit in _hits)
         {
-            // �Օ����� Renderer �R���|�[�l���g�𖳌��ɂ���
-            GameObject _renderer = _hit.collider.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.transform.GetChild(2).gameObject;
+            // 遮蔽物の Renderer コンポーネントを無効にする
+            GameObject _renderer = _hit.collider.gameObject.transform.GetChild(0).gameObject;
+
+            // オブジェクトが存在していた場合
             if (_renderer != null)
             {
-                hitObj.Add(_renderer);
+                // 当たったオブジェクトをリストに追加する
+                _hitObj.Add(_renderer);
+
+                //当たったオブジェクトを非表示にする
                 _renderer.SetActive(false);
             }
         }
 
-        // �O��܂őΏۂŁA����ΏۂłȂ��Ȃ������̂́A�\�������ɖ߂��B
-        foreach (GameObject _renderer in saveObj.Except(hitObj))
+        // 前回まで対象で、今回対象でなくなったものは、表示を元に戻す。
+        foreach (GameObject _renderer in _saveObj.Except(_hitObj))
         {
-            // �Օ����łȂ��Ȃ��� Renderer �R���|�[�l���g��L���ɂ���
+            // オブジェクトが存在していた場合
             if (_renderer != null)
             {
+                // オブジェクトを表示する
                 _renderer.SetActive(true);
             }
         }
-
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Stage") && _mainCameraObj.activeSelf)
-        {
-            _mainCameraObj.GetComponent<SphereCollider>().isTrigger = true;
-        }
-
-        if (collision.gameObject.CompareTag("Stage") && _leftCameraObj.activeSelf)
-        {
-            _leftCameraObj.GetComponent<SphereCollider>().isTrigger = true;
-        }
-
-        if (collision.gameObject.CompareTag("Stage") && _rightCameraObj.activeSelf)
-        {
-            _rightCameraObj.GetComponent<SphereCollider>().isTrigger = true;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Stage") && _mainCameraObj.activeSelf)
-        {
-            _mainCameraObj.GetComponent<SphereCollider>().isTrigger = false;
-        }
-
-        if (other.gameObject.CompareTag("Stage") && _leftCameraObj.activeSelf)
-        {
-            _leftCameraObj.GetComponent<SphereCollider>().isTrigger = false;
-        }
-
-        if (other.gameObject.CompareTag("Stage") && _rightCameraObj.activeSelf)
-        {
-            _rightCameraObj.GetComponent<SphereCollider>().isTrigger = false;
-        }
-    }
+    #endregion ---Methods---
 }

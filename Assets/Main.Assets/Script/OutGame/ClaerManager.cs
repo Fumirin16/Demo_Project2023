@@ -1,25 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
 
-//  ì¬ÒFRú±» 
-// ƒXƒe[ƒW‚ÌÅ‘P‚É‚ ‚éƒQ[ƒg‚ÆÚG‚µ‚½‚Æ‚«‚ÉƒQ[ƒ€ƒNƒŠƒA‚É‚·‚éˆ—
+// ä½œæˆè€…ï¼šå±±ï¨‘æ™¶ 
+// ã‚¹ãƒ†ãƒ¼ã‚¸ã®æœ€å–„ã«ã‚ã‚‹ã‚²ãƒ¼ãƒˆã¨æ¥è§¦ã—ãŸã¨ãã«ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã«ã™ã‚‹å‡¦ç†
 
 public class ClaerManager : MonoBehaviour
 {
-    // ’l‚ğQÆ‚·‚é‚½‚ß‚Éæ“¾‚·‚é•Ï”
+    // å€¤ã‚’å‚ç…§ã™ã‚‹ãŸã‚ã«å–å¾—ã™ã‚‹å¤‰æ•°
     [SerializeField]
-    private ValueSettingManager settingManager;
+    private ValueSettingManager _settingSystem;
 
-    //  ƒNƒŠƒA”»’è‚Æ“–‚½‚Á‚½ê‡
+    //  ã‚¯ãƒªã‚¢åˆ¤å®šã¨å½“ãŸã£ãŸå ´åˆ
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //  ƒQ[ƒ€ƒNƒŠƒA‚Ì”»’è‚ğ‚·‚é
-            settingManager.gameClear = true;
-
-            //Debug.Log("ƒNƒŠƒA‚É‚È‚Á‚½");
+            //  ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã®åˆ¤å®šã‚’ã™ã‚‹
+            _settingSystem.gameClear = true;
         }
     }
 }

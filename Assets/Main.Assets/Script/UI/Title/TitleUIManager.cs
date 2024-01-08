@@ -13,11 +13,6 @@ public class TitleUIManager : MonoBehaviour
 {
     #region ---Fields---
 
-    /// <summary>
-    /// インスペクターの間隔
-    /// </summary>
-    private const int _space = 4;
-
     [Header("=== Video ===")]
     /// <summary>
     /// タイトルスタートを再生するオブジェクト
@@ -47,7 +42,7 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField]
     private Image _titleImage;
 
-    [Space(_space), Header("=== Button ===")]
+    [Header("=== Button ===")]
     /// <summary>
     /// スタートボタンのオブジェクト
     /// </summary>
@@ -104,7 +99,7 @@ public class TitleUIManager : MonoBehaviour
     [SerializeField]
     private Vector3 _buttonScaleChange = new Vector3(1.4f, 1.4f, 1.4f);
 
-    [Space(_space), Header("=== Camera Move ===")]
+    [Header("=== Camera Move ===")]
     /// <summary>
     /// メインカメラのオブジェクト
     /// </summary>
@@ -138,7 +133,7 @@ public class TitleUIManager : MonoBehaviour
     /// </summary>
     private float _time = 0;
 
-    [Space(_space), Header("=== Script ===")]
+    [Header("=== Script ===")]
     /// <summary>
     /// system_Audioのスクリプト
     /// </summary>

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // 作成者：山﨑晶
 // しゃがんだ時にSEを再生する
@@ -8,7 +6,6 @@ using UnityEngine;
 public class PlayerBodyDownManager : MonoBehaviour
 {
     #region ---Fields---
-    private const int _space = 4;
 
     [Header("=== Object ===")]
     /// <summary>
@@ -23,19 +20,24 @@ public class PlayerBodyDownManager : MonoBehaviour
     [SerializeField]
     private GameObject _stageFloor;
 
-    [Space(_space),Header("=== Distance ===")]
+    [Header("=== Distance ===")]
     /// <summary>
     /// 床と腰の距離の判定用値
     /// </summary>
-    [SerializeField]
-    private float _cheackDis=1f;
+    private float _cheackDis;
 
     /// <summary>
     /// しゃがんだかを判定する
     /// </summary>
     private bool _isDown=false;
 
-    [Space(_space),Header("=== Script ===")]
+    [Header("=== Script ===")]
+    /// <summary>
+    /// ValueSettingTable
+    /// </summary>
+    [SerializeField]
+    private ValueSettingManager _settingSystem;
+
     /// <summary>
     /// system_Audioのスクリプト
     /// </summary>
@@ -43,6 +45,12 @@ public class PlayerBodyDownManager : MonoBehaviour
     private AudioManager _audioSystem;
 
     #endregion ---Fields---
+
+    private void Start()
+    {
+        // しゃがんだ判定の値を参照して保存する
+        _cheackDis = _settingSystem.downBorder;
+    }
 
     // Update is called once per frame
     void Update()

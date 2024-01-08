@@ -1,11 +1,7 @@
-﻿using Cinemachine;
-using Mocopi.Receiver;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 //  ゲームがゲームオーバー・クリアになった時の処理
 //  作成者：山﨑晶
@@ -13,8 +9,6 @@ using UnityEngine.UI;
 public class OutGameManager : MonoBehaviour
 {
     #region ---Fields---
-
-    private const int _space = 4;
 
     [Header("=== Character ===")]
     /// <summary>
@@ -32,12 +26,12 @@ public class OutGameManager : MonoBehaviour
     /// <summary>
     /// プレイヤーの固定位置
     /// </summary>
-    private Vector3 _endPos = new Vector3(0, 0, 0);
+    private Vector3 _endPos;
 
     /// <summary>
     /// プレイヤーが固定されたかの判定
     /// </summary>
-    private bool _isFixation = false;
+    private bool _isFixation;
 
     /// <summary>
     /// 警備員のオブジェクト
@@ -52,7 +46,7 @@ public class OutGameManager : MonoBehaviour
     private GameObject _guardAnimatorObj;
 
 
-    [Space(_space), Header("=== Camera ===")]
+    [Header("=== Camera ===")]
     /// <summary>
     /// 注目する注視点のオブジェクト
     /// </summary>
@@ -83,8 +77,7 @@ public class OutGameManager : MonoBehaviour
     [SerializeField]
     private float _cameraSpeed;
 
-
-    [Space(_space), Header("=== Text ===")]
+    [ Header("=== Text ===")]
     /// <summary>
     /// クリアテキストのオブジェクト
     /// </summary>
@@ -104,12 +97,17 @@ public class OutGameManager : MonoBehaviour
     private TextMeshProUGUI _moriageText;
 
     /// <summary>
+    /// ボタンテキストのオブジェクト
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI _buttonText;
+
+    /// <summary>
     /// 盛り上げテキストが表示されたかの判定
     /// </summary>
     private bool _isMoriage;
 
-
-    [Space(_space), Header("=== Script ===")]
+    [Header("=== Script ===")]
     /// <summary>
     /// ValueSettingTable
     /// </summary>
@@ -143,6 +141,18 @@ public class OutGameManager : MonoBehaviour
     {
         // 周囲の観客を消すオブジェクトを非アクティブにする
         _noActiveArea.SetActive(false);
+
+        // スキップテキストを表示する
+        _skipText.enabled = false;
+
+        // クリアテキストを表示する
+        _clearText.enabled = false;
+
+        // ボタンテキストを表示する
+        _buttonText.enabled = false;
+
+        // 盛り上げテキストを表示する
+        _moriageText.enabled = false;
 
         // テキストが表示されたかの判定をオフにする
         _isMoriage = false;
@@ -235,8 +245,94 @@ public class OutGameManager : MonoBehaviour
             StartCoroutine(text());
         }
 
-        // Yボタンを押した場合
-        if (Input.GetKeyDown(KeyCode.JoystickButton3))
+        // Aボタンが押された場合　デバッグ用にFキー
+        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.F))
+        {
+            // SEが鳴っていたら止める
+            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+            {
+                _audioSystem.StopSound(_audioSystem.seAudioSource);
+            }
+
+            // 歓声を再生する
+            _audioSystem.PlaySESound(SEData.SE.Cheer);
+        }
+
+        // Bボタンが押された場合　デバッグ用にGキー
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.G))
+        {
+            // SEが鳴っていたら止める
+            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+            {
+                _audioSystem.StopSound(_audioSystem.seAudioSource);
+            }
+
+            // 叫びを再生する
+            _audioSystem.PlaySESound(SEData.SE.Shout);
+        }
+
+        // Xボタンが押された場合　デバッグ用にHキー
+        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.H))
+        {
+            // SEが鳴っていたら止める
+            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+            {
+                _audioSystem.StopSound(_audioSystem.seAudioSource);
+            }
+
+            // ランダムな値を設定する
+            int randam = (int)Random.Range(1, 3);
+
+            // 設定した値を元にSEを再生する
+            switch (randam)
+            {
+                case 1:
+                    // Mao1を再生する
+                    _audioSystem.PlaySESound(SEData.SE.MaoShout1);
+                    break;
+                case 2:
+                    // Mao2を再生する
+                    _audioSystem.PlaySESound(SEData.SE.MaoShout2);
+                    break;
+                case 3:
+                    // Mao3を再生する
+                    _audioSystem.PlaySESound(SEData.SE.MaoShout3);
+                    break;
+            }
+        }
+
+        // Yボタンが押された場合　デバッグ用にJキー
+        if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.J))
+        {
+            // SEが鳴っていたら止める
+            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+            {
+                _audioSystem.StopSound(_audioSystem.seAudioSource);
+            }
+
+            // ランダムな値を設定する
+            int randam = (int)Random.Range(1, 3);
+
+            // 設定した値を元にSEを再生する
+            switch (randam)
+            {
+                case 1:
+                    // Ran1を再生する
+                    _audioSystem.PlaySESound(SEData.SE.RanShout1);
+                    break;
+                case 2:
+                    // Ran2を再生する
+                    _audioSystem.PlaySESound(SEData.SE.RanShout2);
+                    break;
+                case 3:
+                    // Ran3を再生する
+                    _audioSystem.PlaySESound(SEData.SE.RanShout3);
+                    break;
+            }
+        }
+
+        // Rボタンを押した場合　デバッグ用にKキー
+        if (Input.GetKeyDown(KeyCode.JoystickButton14) || Input.GetKeyDown(KeyCode.K))
         {
             // クリア演出をスキップする
             GameClear();
@@ -254,6 +350,9 @@ public class OutGameManager : MonoBehaviour
 
         // クリアテキストを表示する
         _clearText.enabled = true;
+
+        // ボタンテキストを表示する
+        _buttonText.enabled = true;
 
         // 盛り上げテキストを表示する
         _moriageText.enabled = true;

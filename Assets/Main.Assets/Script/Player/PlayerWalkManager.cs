@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // 作成者：山﨑晶
 // プレイヤーのMocopiを使用した移動のソースコード
@@ -8,7 +6,6 @@ using UnityEngine;
 public class PlayerWalkManager : MonoBehaviour
 {
     #region ---Fields---
-    private const int _space = 4;
 
     [Header("=== Camera ===")]
     /// <summary>
@@ -17,7 +14,7 @@ public class PlayerWalkManager : MonoBehaviour
     [SerializeField]
     private GameObject _playerCamera;
 
-    [Space(_space), Header("=== Script ===")]
+    [ Header("=== Script ===")]
     /// <summary>
     /// ValueSettingTable
     /// </summary>
@@ -28,7 +25,7 @@ public class PlayerWalkManager : MonoBehaviour
     /// Col.RightToeBaseのスクリプト
     /// </summary>
     [SerializeField]
-    private StandStill _movePower;
+    private StandStillManager _movePower;
 
     /// <summary>
     /// Rigidbodyを保存する変数
@@ -36,20 +33,15 @@ public class PlayerWalkManager : MonoBehaviour
     private Rigidbody _rb;
 
     /// <summary>
-    /// プレイヤーが動くスピードを保存する変数
-    /// </summary>
-    private float _moveSpeed = 0f;
-
-    /// <summary>
     /// プレイヤーのスタート位置
     /// </summary>
-    private Vector3 _startPos = new Vector3(0, 0, 0);
+    private Vector3 _startPos;
 
     /// <summary>
     /// プレイヤーが初期位置から移動していいかの判定
     /// </summary>
     [HideInInspector]
-    public bool _isActive = false;
+    public bool _isActive;
 
     #endregion ---Fields---
 
@@ -63,15 +55,15 @@ public class PlayerWalkManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 値を管理するアセットから値を参照して保存する
-        _moveSpeed = _settingManager.MOCOPI_PlayerMoveSpeed;
-
         // Rigidbodyを取得する
         _rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
     {
+        // 歩く力の値を参照して保存する
+        float _moveSpeed = _movePower.moveWalkPower;
+
         // プレイヤーが動いてはダメな判定だった場合
         if (!_isActive)
         {
@@ -79,21 +71,11 @@ public class PlayerWalkManager : MonoBehaviour
             this.transform.position = _startPos;
         }
 
-        // 値を参照する
-        float power = _settingManager.movePower;
+        // プレイヤーの正面の方向を取得する
+        Vector3 moveForward = transform.forward * _moveSpeed;
 
-        // Powerが1以上だった場合 
-        if (_movePower.moveWalkPower >= 1)
-        {
-            // プレイヤーを移動させる動力を保存 
-            float moveSpeed = power * _moveSpeed;
-
-            // プレイヤーの正面の方向を取得する
-            Vector3 moveForward = transform.forward * moveSpeed;
-
-            // プレイヤーを移動させる
-            _rb.AddForce(moveForward, ForceMode.Impulse);
-        }
+        // プレイヤーを移動させる
+        _rb.AddForce(moveForward, ForceMode.Impulse);
     }
 
     #endregion ---Methods---

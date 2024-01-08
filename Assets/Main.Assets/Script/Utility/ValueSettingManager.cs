@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// �쐬�ҁG�R����
-// �l���Ǘ�����A�Z�b�g
+// 作成者：山﨑晶
+// メインゲームに使用する値をInspector上で編集できるTable作成
 
 [CreateAssetMenu]
 public class ValueSettingManager : ScriptableObject
@@ -13,87 +12,127 @@ public class ValueSettingManager : ScriptableObject
 
     // === Player ===
     [Header("=== PLAYER MOCOPI ===")]
-    [Range(1f,1000f),Tooltip("�����݂����Ƃ��̃v���C���[�̑���")]
-    public float MOCOPI_PlayerMoveSpeed = 1f;
-
-    [Range(0f,5f),Tooltip("�����݂����Ƃ��̏��Ƒ��̋��������ꂽ�Ƃ��̔��������l")]
-    public float FootDistanceFoor = 0.1f;
-
-    [Range(1,100)]
+    /// <summary>
+    /// 足踏みで動かしたときのプレイヤーの歩く力の値
+    /// </summary>
+    [Range(1, 100), Tooltip("足踏みで動かしたときのプレイヤーの歩く力の値")]
     public int movePower = 1;
 
+    /// <summary>
+    /// 足踏みを認識する境目の値
+    /// </summary>
+    [Range(0f, 5f), Tooltip("足踏みを認識する境目の値")]
+    public float walkBorder = 0.2f;
+
+    /// <summary>
+    /// しゃがみを認識する境目の値
+    /// </summary>
+    [Range(0f, 10f), Tooltip("しゃがみを認識する境目の値")]
+    public float downBorder = 0.7f;
+
+    /// <summary>
+    /// 足踏みをしたときの歩いている時間の値
+    /// </summary>
+    [Range(0, 100), Tooltip("足踏みをしたときの歩いている時間の値")]
+    public int activeMoveTime = 4;
+
+    /// <summary>
+    /// プレイヤーが回転するスピード
+    /// </summary>
     [Header("=== PLAYER JOYSTIC ===")]
-    [Range(0f, 10f),Tooltip("�R���g���[���[�ő��삵���Ƃ��Ƀv���C���[����]���鑬��")]
+    [Range(0f, 10f), Tooltip("プレイヤーが回転するスピード")]
     public float PlayerRotateSpeed = 0.5f;
 
-    [Range(0f, 10f),Tooltip("�R���g���[���[�ő��삵���Ƃ��Ƀv���C���[����������")]
+    /// <summary>
+    /// プレイヤーが移動するスピード
+    /// </summary>
+    [Range(0f, 10f), Tooltip("プレイヤーが移動するスピード")]
     public float JOYSTIC_PlayerMoveSpeed = 0.5f;
+
+    [Header("=== PLAYER CAMERA ===")]
+    /// <summary>
+    /// カメラの観客を非表示にする範囲
+    /// </summary>
+    [Range(0f, 100f), Tooltip("カメラの観客を非表示にする範囲")]
+    public float cameraHitRadio = 1.0f;
 
     // === NPC ===
     [Header("=== NPC ===")]
     /// <summary>
-    /// ���b�œ��B�������̕ϐ�
+    /// 目的地に到達するまでの時間
     /// </summary>
-    [Range(0f,10f),Tooltip("���b�œ��B������")]
+    [Range(0f, 10f), Tooltip("_posへ到達するまで何秒の変数。値が小さいほど、_target に速く到達")]
     public float smoothTime = 1.0f;
 
     // === GuardMan ===
     [Header("=== GUARDMAN ===")]
-    [Range(0f,100f),Tooltip("�x�����̓����̑����̒l�iNavMeshAgent->Speed�j")]
+    /// <summary>
+    /// 警備員のSpeed
+    /// </summary>
+    [Range(0f, 100f), Tooltip("警備員のNavMeshAgent->Speedを設定する")]
     public float guardMoveSpeed = 2f;
 
-    [Range(0f, 1000f),Tooltip("�x�����̉�]�̑����̒l�iNavMeshAgent->AngularSpeed�j")]
+    /// <summary>
+    /// 警備員のAngularSpeed
+    /// </summary>
+    [Range(0f, 1000f), Tooltip("警備員のNavMeshAgent->AngularSpeedを設定する")]
     public float guardAngularSpeed = 120f;
 
-    [Range(0f, 100f),Tooltip("�x�����̍ō������x�̒l�iNavMeshAgent->Acceleration�j")]
+    /// <summary>
+    /// 警備員のAcceleration
+    /// </summary>
+    [Range(0f, 100f), Tooltip("警備員のNavMeshAgent->Accelerationを設定する")]
     public float guardAcceleration = 8f;
 
     // === Audio ===
     [Header("=== AUDIO ===")]
     /// <summary>
-    /// BGM�ASE���܂߂��S�̉��ʂ̕ϐ�
+    /// BGM/SEを含む全体の音量
     /// </summary>
-    [Range(0f, 1f),Tooltip("BGM/SE���܂߂��S�̂̉��ʂ𒲐߂���l")]
+    [Range(0f, 1f), Tooltip("BGM/SEを含む全体の音量")]
     public float masterVolume = 1;
 
     /// <summary>
-    /// BGM�̑S�̉��ʂ̕ϐ�
+    /// BGMの全体の音量
     /// </summary>
-    [ Range(0f, 1f),Tooltip("BGM�̑S�̂̉��ʂ𒲐߂���l")]
+    [Range(0f, 1f), Tooltip("BGMの全体の音量")]
     public float bgmMasterVolume = 1;
 
     /// <summary>
-    /// SE�̑S�̉��ʂ̕ϐ�
+    /// SEの全体の音量
     /// </summary>
-    [Range(0f, 1f),Tooltip("SE�̑S�̂̉��ʂ𒲐߂���l")]
+    [Range(0f, 1f), Tooltip("SEの全体の音量")]
     public float seMasterVolume = 1;
 
     /// <summary>
-    /// BGM�̉����f�[�^�̃��X�g
+    /// BGMの音声データ
     /// </summary>
-    [Tooltip("BGM�̉����f�[�^")]
+    [Tooltip("BGMの音声データ")]
     public List<BGMData> bgmSoundDatas;
 
     /// <summary>
-    /// SE�̉����f�[�^�̃��X�g
+    /// SEの音声データ
     /// </summary>
-    [Tooltip("SE�̉����f�[�^")]
+    [Tooltip("SEの音声データ")]
     public List<SEData> seSoundDatas;
 
     // === MainGameUI ===
     [Header("=== UI TIMER ===")]
-    [Range(0f, 180f),Tooltip("���C���Q�[���̐�������")]
+    /// <summary>
+    /// メインゲームの制限時間
+    /// </summary>
+    [Range(0f, 180f), Tooltip("制限時間")]
     public float GameLimitTime = 128f;
 
     // === InGame ===
+    [Header("=== IN GAME ===")]
     /// <summary>
-    /// �Q�[���I�[�o�[�̔����ۑ�����ϐ�
+    /// ゲームオーバーの判定
     /// </summary>
-    //[HideInInspector]
     public bool gameOver = false;
 
     /// <summary>
-    /// �Q�[���N���A�̔����ۑ�����ϐ�
+    /// ゲームクリアの判定
     /// </summary>
     //[HideInInspector]
     public bool gameClear = false;
@@ -101,14 +140,16 @@ public class ValueSettingManager : ScriptableObject
     #endregion ---Fields---
 }
 
+#region ---Class---
+
 /// <summary>
-/// BGM�̉����f�[�^
+/// BGMの音声データクラス
 /// </summary>
 [Serializable]
 public class BGMData
 {
     /// <summary>
-    /// BGM�̃��x��
+    /// BGMラベル
     /// </summary>
     public enum BGM
     {
@@ -120,30 +161,30 @@ public class BGMData
     }
 
     /// <summary>
-    /// �񋓌^�̐錾
+    /// BGMラベルの宣言
     /// </summary>
     public BGM bgm;
 
     /// <summary>
-    /// BGM��AudioClip
+    /// BGMのAudioClip
     /// </summary>
     public AudioClip audioClip;
 
     /// <summary>
-    /// BGM�̉���
+    /// BGMの音量
     /// </summary>
     [Range(0f, 1f)]
     public float volume = 1;
 }
 
 /// <summary>
-/// SE�̉����f�[�^
+/// SEの音声データクラス
 /// </summary>
 [Serializable]
 public class SEData
 {
     /// <summary>
-    /// SE�̃��x��
+    /// SEラベル
     /// </summary>
     public enum SE
     {
@@ -159,22 +200,31 @@ public class SEData
         WalkVoice,
         BodyDownVoice,
         KakiwakeVoice,
+        Cheer,
+        Shout,
+        MaoShout1,
+        MaoShout2,
+        MaoShout3,
+        RanShout1,
+        RanShout2,
+        RanShout3,
     }
 
     /// <summary>
-    /// �񋓌^�̐錾
+    /// SEラベルの宣言
     /// </summary>
     public SE se;
 
     /// <summary>
-    /// SE��AudioClip
+    /// SEのAudioClip
     /// </summary>
     public AudioClip audioClip;
 
     /// <summary>
-    /// SE�̉���
+    /// SEの音量
     /// </summary>
     [Range(0f, 1f)]
     public float volume = 1;
 }
 
+#endregion ---Class---

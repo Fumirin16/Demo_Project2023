@@ -34,7 +34,7 @@ public class WalkManager : MonoBehaviour
     /// <summary>
     /// StandStill参照するための変数
     /// </summary>
-    [SerializeField] StandStill _standStill;
+    [SerializeField] StandStillManager _standStill;
 
     /// <summary>
     /// TutorialManager参照するための変数
@@ -67,16 +67,16 @@ public class WalkManager : MonoBehaviour
     void Update()
     {
         // 足踏みした回数をText表示
-        _countText.text = _standStill.WalkCount.ToString();
+        _countText.text = _standStill.walkCount.ToString();
 
         // 指定した回数以上足踏み出来たらずっとOK表示
-        if(_standStill.WalkCount > _clearCount)
+        if(_standStill.walkCount > _clearCount)
         {
             _countText.text = "OK";
         }
 
         // OKサウンドを鳴らす
-        if (SEflag && _standStill.WalkCount > _clearCount)
+        if (SEflag && _standStill.walkCount > _clearCount)
         {
             _audioManager.PlaySESound(SEData.SE.Correct);
             SEflag = false;

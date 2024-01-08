@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
@@ -13,8 +11,6 @@ public class GameOverManager : MonoBehaviour
 {
     #region ---Fields---
 
-    private const int _space = 4;
-
     [Header("=== Video ===")]
     /// <summary>
     /// ゲームオーバーのVideo
@@ -22,7 +18,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField]
     private VideoPlayer _gameOverVideo;
 
-    [Space(_space),Header("=== Button ===")]
+    [Header("=== Button ===")]
     /// <summary>
     /// リトライボタンのオブジェクト
     /// </summary>
@@ -96,7 +92,7 @@ public class GameOverManager : MonoBehaviour
     /// </summary>
     private float _changeScale = 1.1f;
 
-    [Space(_space),Header("=== Script ===")]
+    [Header("=== Script ===")]
     /// <summary>
     /// system_Audioのスクリプト
     /// </summary>
@@ -121,7 +117,7 @@ public class GameOverManager : MonoBehaviour
     /// <summary>
     /// 時間を保存する値
     /// </summary>
-    private float time;
+    private float _time;
 
     #endregion ---Fields---
 
@@ -156,7 +152,7 @@ public class GameOverManager : MonoBehaviour
         _isClick = false;
 
         // 時間を０にする
-        time = 0;
+        _time = 0;
 
         // シーンの番号をタイトルの番号にする
         _SceneNum = 0;
@@ -172,10 +168,10 @@ public class GameOverManager : MonoBehaviour
     void Update()
     {
         // 時間を計測
-        time += Time.deltaTime;
+        _time += Time.deltaTime;
 
         // 時間が_buttonActivTimeより長くなった場合
-        if (time >= _buttonActivTime)
+        if (_time >= _buttonActivTime)
         {
             // リトライボタンもしくはタイトルボタンが非表示担っていた場合
             if (!_moreButtonObj.activeSelf || !_backButtonObj.activeSelf)

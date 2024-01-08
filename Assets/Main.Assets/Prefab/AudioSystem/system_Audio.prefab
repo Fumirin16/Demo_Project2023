@@ -304,4 +304,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmAudioSource: {fileID: 4377230494871250557}
   seAudioSource: {fileID: 215747373319802177}
-  settingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
+  _settingSystem: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}

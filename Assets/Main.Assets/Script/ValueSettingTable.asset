@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca194aa37857da43b02eec6ce22211e, type: 3}
   m_Name: ValueSettingTable
   m_EditorClassIdentifier: 
-  MOCOPI_PlayerMoveSpeed: 20
-  FootDistanceFoor: 0.001
-  movePower: 2
+  movePower: 12
+  walkBorder: 0.2
+  downBorder: 0.7
+  activeMoveTime: 4
   PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.05
+  cameraHitRadio: 1
   smoothTime: 1
   guardMoveSpeed: 2
   guardAngularSpeed: 120
@@ -77,6 +79,30 @@ MonoBehaviour:
   - se: 9
     audioClip: {fileID: 8300000, guid: 2c37bf9d85dc46c4c818690e7be62759, type: 3}
     volume: 1
+  - se: 12
+    audioClip: {fileID: 8300000, guid: 73ef865b718b7594b8a45195c87acb31, type: 3}
+    volume: 1
+  - se: 13
+    audioClip: {fileID: 8300000, guid: c375e940bb4f14b47be985dd21cc5c9a, type: 3}
+    volume: 1
+  - se: 14
+    audioClip: {fileID: 8300000, guid: b944199bdad10d64d92bb2c2258671b3, type: 3}
+    volume: 1
+  - se: 15
+    audioClip: {fileID: 8300000, guid: 217b76086293fc74fbedf4be9f0a5f39, type: 3}
+    volume: 1
+  - se: 16
+    audioClip: {fileID: 8300000, guid: 11105de0efebc344da1c3d1031afc485, type: 3}
+    volume: 1
+  - se: 17
+    audioClip: {fileID: 8300000, guid: 7f98f8d6a9fb7ad4488bab2b75827fff, type: 3}
+    volume: 1
+  - se: 18
+    audioClip: {fileID: 8300000, guid: faa12ef5f0682a94e9265685c7234048, type: 3}
+    volume: 1
+  - se: 19
+    audioClip: {fileID: 8300000, guid: 63c92fccc4f518845b9be93e69ea5294, type: 3}
+    volume: 1
   GameLimitTime: 128
-  gameOver: 1
+  gameOver: 0
   gameClear: 0

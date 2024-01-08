@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // 作成者：山﨑晶
 // ゲームクリア後に周辺の観客を消す処理

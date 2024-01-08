@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 //  作成者：山﨑晶   
 //  BGM、SEを制御するソースコード
@@ -9,14 +7,15 @@ public class AudioManager:MonoBehaviour
 {
     #region ---Fields---
 
+    [Header("=== Audio Source ===")]
     /// <summary>
-    /// BGM  AudioSource
+    /// BGM Audio Source
     /// </summary>
     [SerializeField]
     public AudioSource bgmAudioSource;
 
     /// <summary>
-    /// SE  AudioSource
+    /// SE Audio Source
     /// </summary>
     [SerializeField]
     public AudioSource seAudioSource;
@@ -36,10 +35,12 @@ public class AudioManager:MonoBehaviour
     /// </summary>
     private float _bgmMasterVolume;
 
+    [Header("=== Object Table ===")]
     /// <summary>
     /// 値を参照するために取得する変数
     /// </summary>
-    public ValueSettingManager settingManager;
+    [SerializeField]
+    private ValueSettingManager _settingSystem;
 
     #endregion ---Fields---
 
@@ -51,19 +52,19 @@ public class AudioManager:MonoBehaviour
     private void Start()
     {
         // 値を参照したものを保存する
-        _masterVolume = settingManager.masterVolume;
-        _seMasterVolume = settingManager.seMasterVolume;
-        _bgmMasterVolume = settingManager.bgmMasterVolume;
+        _masterVolume = _settingSystem.masterVolume;
+        _seMasterVolume = _settingSystem.seMasterVolume;
+        _bgmMasterVolume = _settingSystem.bgmMasterVolume;
     }
 
     /// <summary>
     /// BGMを再生する関数
     /// </summary>
-    /// <param name="bgm">  ?流すBGMのタイトル(列挙型) </param>
+    /// <param name="bgm"> BGMのタイトル(列挙型) </param>
     public void PlayBGMSound(BGMData.BGM bgm)
     {
         // 音声データから該当するデータを保存する   
-        BGMData data = settingManager.bgmSoundDatas.Find(data => data.bgm == bgm);
+        BGMData data = _settingSystem.bgmSoundDatas.Find(data => data.bgm == bgm);
 
         // AudioClipをAudioSourceに設定する
         bgmAudioSource.clip = data.audioClip;
@@ -78,11 +79,11 @@ public class AudioManager:MonoBehaviour
     /// <summary>
     /// SEを再生する関数
     /// </summary>
-    /// <param name="se">  ?流すSEのタイトル(列挙型) </param>
+    /// <param name="se"> SEのタイトル(列挙型) </param>
     public void PlaySESound(SEData.SE se)
     {
         // 音声データから該当するデータを保存する
-        SEData data = settingManager.seSoundDatas.Find(data => data.se == se);
+        SEData data = _settingSystem.seSoundDatas.Find(data => data.se == se);
 
         // SEの音量を設定する
         seAudioSource.volume = data.volume * _seMasterVolume * _masterVolume;
