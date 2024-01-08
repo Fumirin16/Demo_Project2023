@@ -1627,15 +1627,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd37cbd6c532eb4c9c59a1e189062bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAtObj: {fileID: 7645038822486805289}
-  playerObj: {fileID: 0}
-  layer:
+  _playerObj: {fileID: 0}
+  _layer:
     serializedVersion: 2
-    m_Bits: 64
-  radio: 0.4
-  _mainCamera: {fileID: 0}
-  _leftCamera: {fileID: 0}
-  _rightCamera: {fileID: 0}
+    m_Bits: 0
   _mainCameraObj: {fileID: 0}
   _leftCameraObj: {fileID: 0}
   _rightCameraObj: {fileID: 0}
@@ -1646,6 +1641,7 @@ MonoBehaviour:
   _riactionCanvas: {fileID: 0}
   _finishCanvas: {fileID: 0}
   _situationCanvas: {fileID: 0}
+  _settingSystem: {fileID: 0}
 --- !u!1 &7645038822524983024
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,10 +1716,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _footObj: {fileID: 7645038822524983024}
+  _stageFloor: {fileID: 0}
   moveWalkPower: 0
-  settingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
-  audioManager: {fileID: 0}
-  WalkCount: 0
+  walkCount: 0
+  _settingSystem: {fileID: 0}
+  _audioSystem: {fileID: 0}
 --- !u!54 &7645038822524983037
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6609,14 +6606,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!81 &7645038821838255166
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7411178534066674651}
-  m_Enabled: 1
 --- !u!114 &7645038821838255154
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -103,6 +103,12 @@ public class OutGameManager : MonoBehaviour
     private TextMeshProUGUI _buttonText;
 
     /// <summary>
+    /// 中断テキストのオブジェクト
+    /// </summary>
+    [SerializeField]
+    private TextMeshProUGUI _stopGameText;
+
+    /// <summary>
     /// 盛り上げテキストが表示されたかの判定
     /// </summary>
     private bool _isMoriage;
@@ -142,17 +148,20 @@ public class OutGameManager : MonoBehaviour
         // 周囲の観客を消すオブジェクトを非アクティブにする
         _noActiveArea.SetActive(false);
 
-        // スキップテキストを表示する
+        // スキップテキストを非表示する
         _skipText.enabled = false;
 
-        // クリアテキストを表示する
+        // クリアテキストを非表示する
         _clearText.enabled = false;
 
-        // ボタンテキストを表示する
+        // ボタンテキストを非表示する
         _buttonText.enabled = false;
 
-        // 盛り上げテキストを表示する
+        // 盛り上げテキストを非表示する
         _moriageText.enabled = false;
+
+        // 中断テキストを非表示する
+        _stopGameText.enabled = true;
 
         // テキストが表示されたかの判定をオフにする
         _isMoriage = false;
@@ -178,6 +187,14 @@ public class OutGameManager : MonoBehaviour
         {
             GameClearFunc();
         }
+
+        if (!_settingManager.gameOver && !_settingManager.gameClear)
+        {
+            if (Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.LeftAlt))
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 
     /// <summary>
@@ -185,11 +202,6 @@ public class OutGameManager : MonoBehaviour
     /// </summary>
     private void GameClearFunc()
     {
-        if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-        {
-            // SEを止める
-            _audioSystem.StopSound(_audioSystem.seAudioSource);
-        }
         // 位置が固定されてない判定になっていた場合
         if (!_isFixation)
         {
@@ -248,12 +260,6 @@ public class OutGameManager : MonoBehaviour
         // Aボタンが押された場合　デバッグ用にFキー
         if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.F))
         {
-            // SEが鳴っていたら止める
-            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-            {
-                _audioSystem.StopSound(_audioSystem.seAudioSource);
-            }
-
             // 歓声を再生する
             _audioSystem.PlaySESound(SEData.SE.Cheer);
         }
@@ -261,74 +267,8 @@ public class OutGameManager : MonoBehaviour
         // Bボタンが押された場合　デバッグ用にGキー
         if (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.G))
         {
-            // SEが鳴っていたら止める
-            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-            {
-                _audioSystem.StopSound(_audioSystem.seAudioSource);
-            }
-
             // 叫びを再生する
             _audioSystem.PlaySESound(SEData.SE.Shout);
-        }
-
-        // Xボタンが押された場合　デバッグ用にHキー
-        if (Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.H))
-        {
-            // SEが鳴っていたら止める
-            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-            {
-                _audioSystem.StopSound(_audioSystem.seAudioSource);
-            }
-
-            // ランダムな値を設定する
-            int randam = (int)Random.Range(1, 3);
-
-            // 設定した値を元にSEを再生する
-            switch (randam)
-            {
-                case 1:
-                    // Mao1を再生する
-                    _audioSystem.PlaySESound(SEData.SE.MaoShout1);
-                    break;
-                case 2:
-                    // Mao2を再生する
-                    _audioSystem.PlaySESound(SEData.SE.MaoShout2);
-                    break;
-                case 3:
-                    // Mao3を再生する
-                    _audioSystem.PlaySESound(SEData.SE.MaoShout3);
-                    break;
-            }
-        }
-
-        // Yボタンが押された場合　デバッグ用にJキー
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.J))
-        {
-            // SEが鳴っていたら止める
-            if (!_audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
-            {
-                _audioSystem.StopSound(_audioSystem.seAudioSource);
-            }
-
-            // ランダムな値を設定する
-            int randam = (int)Random.Range(1, 3);
-
-            // 設定した値を元にSEを再生する
-            switch (randam)
-            {
-                case 1:
-                    // Ran1を再生する
-                    _audioSystem.PlaySESound(SEData.SE.RanShout1);
-                    break;
-                case 2:
-                    // Ran2を再生する
-                    _audioSystem.PlaySESound(SEData.SE.RanShout2);
-                    break;
-                case 3:
-                    // Ran3を再生する
-                    _audioSystem.PlaySESound(SEData.SE.RanShout3);
-                    break;
-            }
         }
 
         // Rボタンを押した場合　デバッグ用にKキー
@@ -345,6 +285,9 @@ public class OutGameManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator text()
     {
+        // 中断テキストを非表示にする
+        _stopGameText.enabled = false;
+
         // スキップテキストを表示する
         _skipText.enabled = true;
 
