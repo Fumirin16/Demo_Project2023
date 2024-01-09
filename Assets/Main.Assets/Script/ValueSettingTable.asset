@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca194aa37857da43b02eec6ce22211e, type: 3}
   m_Name: ValueSettingTable
   m_EditorClassIdentifier: 
-  movePower: 12
-  walkBorder: 0.2
+  movePower: 24
+  walkBorder: 0.16
   downBorder: 0.7
-  activeMoveTime: 4
+  activeMoveTime: 1
   PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.05
   cameraHitRadio: 1
@@ -105,4 +105,4 @@ MonoBehaviour:
     volume: 0.5
   GameLimitTime: 128
   gameOver: 0
-  gameClear: 1
+  gameClear: 0

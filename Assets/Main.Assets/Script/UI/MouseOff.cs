@@ -15,8 +15,8 @@ public class MouseOff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // +ボタンもしくはエスケープキーを押した場合
-        if (Input.GetKeyDown(KeyCode.JoystickButton9)||Input.GetKeyDown(KeyCode.Escape))
+        // SLボタンもしくはエスケープキーを押した場合
+        if (Input.GetKeyDown(KeyCode.JoystickButton5) ||Input.GetKeyDown(KeyCode.Escape))
         {
             // マウスが非表示の場合
             if (!Cursor.visible)

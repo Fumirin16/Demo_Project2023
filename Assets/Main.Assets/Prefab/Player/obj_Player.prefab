@@ -6726,6 +6726,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
   _guardsmanAnim: {fileID: 0}
+--- !u!81 &3712433003818000481
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411178534066674651}
+  m_Enabled: 1
 --- !u!4 &7551399395553691576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -9019768938391297742, guid: 2f74a3afdce2acc42ba15cdc6060700d, type: 3}

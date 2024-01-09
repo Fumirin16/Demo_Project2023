@@ -203,13 +203,6 @@ public class GameOverManager : MonoBehaviour
             _backScale.transform.localScale = _buttonObj == _moreButtonObj ? _buttonScale : new Vector3(_changeScale, _changeScale, _changeScale);
             // 
             _backSelectScale.transform.localScale = _buttonObj == _moreButtonObj ? _buttonScale : new Vector3(_changeScale, _changeScale, _changeScale);
-
-            // ui_GameOverVideoが流れ終わった場合
-            if (!_gameOverVideo.isPlaying)
-            {
-                // タイトルに戻る
-                SceneManager.LoadScene(0);
-            }
         }
 
         // ボタンを押された判定がオンになり、再生していたSEが鳴り終わった場合

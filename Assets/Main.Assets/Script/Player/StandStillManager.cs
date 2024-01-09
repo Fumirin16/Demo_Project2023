@@ -107,13 +107,16 @@ public class StandStillManager : MonoBehaviour
     {
         // 二点の距離を保存する
         _footPos = _footObj.transform.position.y - _stageFloor.position.y;
-        //Debug.Log("StandStill  distancce : " + _footPos);
+        Debug.Log("StandStill  distancce : " + _footPos);
 
         // 距離が_distanceValueより短かった場合
         if (_moveFoot && _footPos < _distanceValue)
         {
             // 歩く力を０にする
             moveWalkPower = 0;
+
+            // フレーム数を０にする
+            _frameCount = 0;
 
             // 足踏みを計測する判定をオンにする
             _isCount = true;
@@ -151,8 +154,6 @@ public class StandStillManager : MonoBehaviour
             // フレーム数が_activeWalkより多かった場合
             if (_frameCount > _activeWalk)
             {
-                // フレーム数を０にする
-                _frameCount = 0;
 
                 // 足踏みをした判定にする
                 _moveFoot = true;

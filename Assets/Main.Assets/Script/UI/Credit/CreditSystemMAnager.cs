@@ -6,12 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class CreditSystemMAnager : MonoBehaviour
 {
-    [Header("=== Script ===")]
     /// <summary>
     /// system_Audioのスクリプト
     /// </summary>
     [SerializeField]
     private AudioManager _audioSystem;
+
+    /// <summary>
+    /// 画面を遷移する判定
+    /// </summary>
+    private bool _isTrans;
+
+    private void Start()
+    {
+        // 遷移する判定をオフにする
+        _isTrans = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,6 +35,13 @@ public class CreditSystemMAnager : MonoBehaviour
             // BGMを止める
             _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
+            // 遷移する判定をオンにする
+            _isTrans = true;
+        }
+
+        // 遷移する判定がオンで、音が鳴り終わった場合
+        if (_isTrans && _audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
+        {
             // タイトル画面に遷移する
             SceneManager.LoadScene(0);
         }

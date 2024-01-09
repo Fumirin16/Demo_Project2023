@@ -218,7 +218,7 @@ public class TitleUIManager : MonoBehaviour
     private void Update()
     {
         // 再生してからUI演出の処理を稼働させるための処理
-        if (_titleStartVideo.isPlaying)
+        if (_titleStartVideo.isPlaying && _uiCounter == 0)
         {
             _audioSystem.ChangeBGMVolume(1);
 
@@ -249,7 +249,7 @@ public class TitleUIManager : MonoBehaviour
 
             // スタートボタンのAボタンが押された後にカメラを動かす演出
             case (int)UIdirecton.ClickAButton:
-                CameraMove(5);
+                CameraMove(3);
                 break;
 
             // スタートボタンのYボタンが押された後にカメラを動かす演出

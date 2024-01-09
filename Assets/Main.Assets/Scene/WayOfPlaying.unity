@@ -3401,8 +3401,6 @@ GameObject:
   - component: {fileID: 353350459}
   - component: {fileID: 353350461}
   - component: {fileID: 353350460}
-  - component: {fileID: 353350463}
-  - component: {fileID: 353350464}
   m_Layer: 0
   m_Name: Coll.human_low:_r_foot
   m_TagString: Untagged
@@ -3451,39 +3449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef2b87818a56064b926871454f01541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &353350463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353350458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 181eb316817e0c64380d98db74a17adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _footObj: {fileID: 353350458}
-  moveWalkPower: 0
-  settingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
-  audioManager: {fileID: 2051079852}
-  WalkCount: 0
---- !u!54 &353350464
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353350458}
-  serializedVersion: 2
-  m_Mass: 0.01
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0
 --- !u!1 &360739568
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,9 +4069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 1193330091}
-  obj: {fileID: 406687074}
-  setttingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
-  _power: {fileID: 353350463}
+  _settingManager: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
+  _movePower: {fileID: 406687084}
   _isActive: 0
 --- !u!114 &406687083
 MonoBehaviour:
@@ -4128,6 +4092,24 @@ MonoBehaviour:
   _agent: {fileID: 0}
   _controller: {fileID: 0}
   _gameoverObj: {fileID: 0}
+--- !u!114 &406687084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406687074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181eb316817e0c64380d98db74a17adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _footObj: {fileID: 690968908}
+  _stageFloor: {fileID: 1221124412}
+  moveWalkPower: 0
+  walkCount: 0
+  _settingSystem: {fileID: 11400000, guid: e46b11eca545e2745a61e0142bb69bf7, type: 2}
+  _audioSystem: {fileID: 2051079852}
 --- !u!1 &411999469
 GameObject:
   m_ObjectHideFlags: 0
@@ -4441,7 +4423,7 @@ MonoBehaviour:
   _countText: {fileID: 977965862}
   _walkPanel: {fileID: 450020249}
   _audioManager: {fileID: 2051079852}
-  _standStill: {fileID: 353350463}
+  _standStill: {fileID: 406687084}
   _tutorialManager: {fileID: 1368248248}
   _panel: {fileID: 1308945789}
 --- !u!65 &453935247
@@ -11876,7 +11858,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1193330091}
-  m_LocalRotation: {x: 0.15295261, y: 0.00000007121685, z: -0.0000000110225, w: 0.98823357}
+  m_LocalRotation: {x: 0.15295263, y: 0.000000049871907, z: -0.000000007718864, w: 0.98823357}
   m_LocalPosition: {x: 0, y: 2.5, z: -7.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11967,6 +11949,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6747821089213896189, guid: 953354ac004d11d46ace83d2aba8e262, type: 3}
   m_PrefabInstance: {fileID: 1575075696}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1221124412 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7162144552548415759, guid: 61a3c3b1c527dc340a9b796ffa09fd21, type: 3}
+  m_PrefabInstance: {fileID: 1600611609}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1227741097
 PrefabInstance:
@@ -17006,7 +16993,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643368521}
-  m_LocalRotation: {x: 0.15295261, y: 0.00000007121685, z: -0.0000000110225, w: 0.98823357}
+  m_LocalRotation: {x: 0.15295263, y: 0.000000049871907, z: -0.000000007718864, w: 0.98823357}
   m_LocalPosition: {x: 0, y: 2.5, z: -7.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
