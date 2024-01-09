@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 // 作成者：山﨑晶
 // クレジット画面のボタンを押したときの処理
 
-public class CreditSystemMAnager : MonoBehaviour
+public class CreditSystemManager : MonoBehaviour
 {
     /// <summary>
     /// system_Audioのスクリプト

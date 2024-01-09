@@ -18,7 +18,7 @@ MonoBehaviour:
   activeMoveTime: 1
   PlayerRotateSpeed: 2
   JOYSTIC_PlayerMoveSpeed: 0.05
-  cameraHitRadio: 1
+  cameraHitRadio: 2
   smoothTime: 1
   guardMoveSpeed: 2
   guardAngularSpeed: 120

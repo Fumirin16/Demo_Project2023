@@ -195,7 +195,7 @@ public class CameratoAudioManager : MonoBehaviour
             _rightCameraObj.SetActive(true);
 
             // 左肩カメラとプレイヤーの距離を計算する
-            _offset = _leftCamera.transform.position - _playerObj.position;
+            _offset = _playerObj.position-_leftCamera.transform.position ;
         }
     }
 
@@ -204,6 +204,8 @@ public class CameratoAudioManager : MonoBehaviour
     {
         // ２点間のベクトルを正規化する
         Vector3 positionVector = _offset.normalized;
+
+        Debug.Log(positionVector);
 
         // カメラ機能がNomalだった場合
         if (_nomal)
@@ -222,6 +224,8 @@ public class CameratoAudioManager : MonoBehaviour
 
             // _rayをカメラからプレイヤーに飛ばす
             _ray = new Ray(_leftCamera.transform.position, positionVector);
+
+            Debug.DrawRay(_leftCamera.transform.position, positionVector, UnityEngine.Color.red);
         }
 
         // 
@@ -276,7 +280,7 @@ public class CameratoAudioManager : MonoBehaviour
         foreach (RaycastHit _hit in _hits)
         {
             // 遮蔽物の Renderer コンポーネントを無効にする
-            GameObject _renderer = _hit.collider.gameObject.transform.GetChild(0).gameObject;
+            GameObject _renderer = _hit.collider.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
 
             // オブジェクトが存在していた場合
             if (_renderer != null)
