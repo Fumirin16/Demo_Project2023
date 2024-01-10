@@ -55,12 +55,12 @@ public class AroundGuardsmanController : MonoBehaviour
 
     #region ---Methods---
 
-    // Start is called before the first frame update
     void Start()
     {
-        //NavMeshAgent取得
+        // NavMeshAgent取得
         _agent = GetComponent<NavMeshAgent>();
-        //NavMeshAgentの値を参照して保存
+
+        // NavMeshAgentの値を参照して保存
         _agent.speed = settingManager.guardMoveSpeed;
         _agent.angularSpeed = settingManager.guardAngularSpeed;
         _agent.acceleration = settingManager.guardAcceleration;
@@ -70,15 +70,15 @@ public class AroundGuardsmanController : MonoBehaviour
         _agent.autoBraking = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //エージェントが現目標地点に近づいてきたら次の目標地点を選択
+        // エージェントが現目標地点に近づいてきたら次の目標地点を選択
         if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
         {
             GotoNextPoint();
         }
 
+        // trueだったら_targetのところに向かう
         if (_targetFlag)
         {
             _agent.destination = _target.transform.position;
@@ -92,14 +92,15 @@ public class AroundGuardsmanController : MonoBehaviour
 
     void GotoNextPoint()
     {
-        //地点がなにも設定されていないときに返す
+        // 地点がなにも設定されていないときに返す
         if (_points.Length == 0)
         {
             return;
         }
 
-        //エージェントが現在設定された目標地点に行くように設定
+        // エージェントが現在設定された目標地点に行くように設定
         _agent.destination = _points[_nextPoint].position;
+
         // 配列内の次の位置を目標地点に設定し必要ならば出発地点にもどる
         _nextPoint = (_nextPoint + 1) % _points.Length;
 
@@ -109,7 +110,7 @@ public class AroundGuardsmanController : MonoBehaviour
         }
     }
 
-    //視界に入ったら追いかけてくる
+    // 視界に入ったら追いかけてくる
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -130,8 +131,8 @@ public class AroundGuardsmanController : MonoBehaviour
         {
             //Debug.Log("視界でた");
             _targetFlag = false;
-            _SEflag = true;
             _haken.gameObject.SetActive(false);
+            _SEflag = true;
         }
     }
     #endregion ---Methods---

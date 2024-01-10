@@ -12,27 +12,6 @@ public class PlayerController : MonoBehaviour
     #region ---Fields---
 
     /// <summary>
-    /// 左右回転の数値を取得する変数
-    /// </summary>
-    float _rot;
-    float _vertical;
-
-    /// <summary>
-    /// 回転スピードを取得する変数数字が大きいほど速くなる
-    /// </summary>
-    float _rotateSpeed;
-
-    /// <summary>
-    /// 前後移動スピードを取得する変数数字が大きいほど速くなる
-    /// </summary>
-    float _positionSpeed;
-
-    /// <summary>
-    /// カメラが切り替え判定
-    /// </summary>
-    bool _cameraActive = true;
-
-    /// <summary>
     /// カメラオブジェクト参照する変数
     /// </summary>
     [SerializeField] GameObject _mainCamera;
@@ -57,6 +36,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AroundGuardsmanController _controller;
 
     [SerializeField] GameObject _gameoverObj;
+
+    /// <summary>
+    /// 左右回転の数値を取得する変数
+    /// </summary>
+    float _rot;
+    float _vertical;
+
+    /// <summary>
+    /// 回転スピードを取得する変数数字が大きいほど速くなる
+    /// </summary>
+    float _rotateSpeed;
+
+    /// <summary>
+    /// 前後移動スピードを取得する変数数字が大きいほど速くなる
+    /// </summary>
+    float _positionSpeed;
+
+    /// <summary>
+    /// カメラが切り替え判定
+    /// </summary>
+    bool _cameraActive = true;
+
 
     #endregion ---Fields---
 
