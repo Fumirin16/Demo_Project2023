@@ -27,6 +27,12 @@ public class WalkManager : MonoBehaviour
     [SerializeField] GameObject _walkPanel;
 
     /// <summary>
+    /// チュートリアルパネル表示
+    /// </summary>
+    [Tooltip("Walkチュートリアルパネルをアタッチ")]
+    [SerializeField] GameObject _panel;
+
+    /// <summary>
     /// AudioManager参照するための変数
     /// </summary>
     [SerializeField] AudioManager _audioManager;
@@ -51,7 +57,6 @@ public class WalkManager : MonoBehaviour
     /// </summary>
     bool SEflag = true;
 
-    [SerializeField] GameObject _panel;
 
     #endregion ---Fields---
 

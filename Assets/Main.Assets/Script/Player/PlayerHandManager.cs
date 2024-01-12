@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHandManager : MonoBehaviour
 {
+    /// <summary>
+    /// Žè‚É“–‚½‚Á‚½Žž‚Ì‰¹Žæ“¾
+    /// </summary>
+    [Tooltip("Žè‚É“–‚½‚Á‚½Žž‚Ì‰¹‘}“ü")]
     [SerializeField] AudioClip _hit;
 
     AudioSource _audioSource;
 
     bool _SEflag = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();

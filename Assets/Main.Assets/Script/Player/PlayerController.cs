@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;  // ナビゲーション使う際に必要
+using UnityEngine.AI;
 
 // 作成者：地引翼
 // プレイヤーの動き
@@ -12,33 +9,41 @@ public class PlayerController : MonoBehaviour
     #region ---Fields---
 
     /// <summary>
-    /// カメラオブジェクト参照する変数
+    /// メインカメラオブジェクト参照
     /// </summary>
+    [Tooltip("メインカメラアタッチ")]
     [SerializeField] GameObject _mainCamera;
+
+    /// <summary>
+    /// サブカメラオブジェクト参照
+    /// </summary>
+    [Tooltip("サブカメラアタッチ")]
     [SerializeField] GameObject _subCamera;
 
     /// <summary>
-    /// カメラオブジェクト参照する変数
+    /// ゲームオーバーモーションをするオブジェクトを取得
     /// </summary>
-    [SerializeField] Animator _animator;
+    [Tooltip("ゲームオーバーモーションオブジェクトアタッチ")]
+    [SerializeField] GameObject _gameoverObj;
+
+    // 警備員のNavMeshAgent、AroundGuardsmanControllerを参照する
+    [Tooltip("巡回警備員をアタッチ")]
+    [SerializeField] NavMeshAgent _agent;
+    [Tooltip("巡回警備員をアタッチ")]
+    [SerializeField] AroundGuardsmanController _controller;
 
     /// <summary>
     /// ValueSettingManager参照する変数
     /// </summary>
-    public ValueSettingManager settingManager;
+    [SerializeField] ValueSettingManager settingManager;
 
     /// <summary>
     /// AudioManager参照する変数
     /// </summary>
-    public AudioManager audioManager;
-
-    [SerializeField] NavMeshAgent _agent;
-    [SerializeField] AroundGuardsmanController _controller;
-
-    [SerializeField] GameObject _gameoverObj;
+    [SerializeField] AudioManager audioManager;
 
     /// <summary>
-    /// 左右回転の数値を取得する変数
+    /// 回転の数値を取得する変数
     /// </summary>
     float _rot;
     float _vertical;
@@ -54,7 +59,7 @@ public class PlayerController : MonoBehaviour
     float _positionSpeed;
 
     /// <summary>
-    /// カメラが切り替え判定
+    /// カメラの切り替え判定
     /// </summary>
     bool _cameraActive = true;
 
@@ -75,13 +80,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // 左右回転の数値取得
+        // 回転の数値取得
         _rot = Input.GetAxis("Horizontal");
         //_vertical = Input.GetAxis("Vertical");
 
         // 回転
         transform.Rotate(new Vector3(0, _rot * _rotateSpeed, 0));
 
+        // カメラを上下に回転させる
         //_mainCamera.transform.Rotate(_vertical * _rotateSpeed, 0, 0);
 
         //// 前後移動
@@ -132,26 +138,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if(collision.gameObject.tag == "Guardman")
-    //    {
-    //        _animator.Play("GameOver");
-    //        Debug.Log("aaaaaa");
-    //    }
-    //}
-
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Guardman"))
         {
+            // 警備員の動きを止める
             _controller.enabled = false;
             _agent.enabled = false;
-            _gameoverObj.SetActive(true);
+
+            // 現在のオブジェクトを非表示
             gameObject.SetActive(false);
-            _gameoverObj.transform .position = transform.position;
-            //_animator.Play("GameOver");
-            //Debug.Log("aaaaaa");
+
+            // ゲームオーバーオブジェクトを現在位置にセット
+            _gameoverObj.transform.position = transform.position;
+            // ゲームオーバーオブジェクトを表示
+            _gameoverObj.SetActive(true);
+            //Debug.Log("playerhit");
         }
     }
     #endregion ---Methods---

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// コライダーに入ってきたらリストに追加する
+
 public class kakiwakeobj : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
