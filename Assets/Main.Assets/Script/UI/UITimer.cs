@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,17 +11,22 @@ public class UITimer : MonoBehaviour
     /// <summary>
     /// Sliderオブジェクト変数
     /// </summary>
+    [Tooltip("時間制限のUIをアタッチ")]
     [SerializeField] Slider timeSlider;
 
+    // スクリプト参照変数
+    [SerializeField]　ValueSettingManager settingManager;
+    [SerializeField] OutGameManager gameManager;
+
+    /// <summary>
+    /// 時間制限変数
+    /// </summary>
     float maxTime;
 
-    [SerializeField]
-    private ValueSettingManager settingManager;
-
-    [SerializeField] OutGameManager gameManager;
     #endregion ---Fields---
 
-    // Start is called before the first frame update
+    #region ---Methods---
+
     void Start()
     {
         maxTime = settingManager.GameLimitTime;
@@ -34,7 +37,6 @@ public class UITimer : MonoBehaviour
         timeSlider.maxValue = maxTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //スライダーの現在値の設定
@@ -44,11 +46,12 @@ public class UITimer : MonoBehaviour
         {
             // ゲームオーバーの判定をtrueにする
             settingManager.gameOver = true;
-            Debug.Log("時間です");
+            //Debug.Log("時間です");
         }
         else if (timeSlider.value == maxTime && settingManager.gameClear)
         {
             gameManager.GameClear();
         }
     }
+    #endregion ---Methods---
 }

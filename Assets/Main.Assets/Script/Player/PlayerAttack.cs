@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // 作成者：地引翼
@@ -8,6 +6,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    #region ---Fields---
+
     /// <summary>
     /// 頭オブジェクト取得
     /// </summary>
@@ -43,6 +43,10 @@ public class PlayerAttack : MonoBehaviour
     /// </summary>
     float _distance;
 
+    #endregion ---Fields---
+
+    #region ---Methods---
+
     void Update()
     {
         // _distance = 頭のY座標 - 右手のY座標
@@ -66,4 +70,5 @@ public class PlayerAttack : MonoBehaviour
             //Debug.Log("Position解除");
         }
     }
+    #endregion ---Methods---
 }

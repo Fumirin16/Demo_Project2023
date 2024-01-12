@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 観客を弾き飛ばすためのスクリプト。仕様変更のため未実装
+
 public class AddForce : MonoBehaviour
 {
     Rigidbody _rb;
 
-    public Vector3 force = new Vector3(10.0f, 10.0f, 0.0f);
+    [SerializeField] Vector3 force = new Vector3(10.0f, 10.0f, 0.0f);
+
     // Start is called before the first frame update
     void Start()
     {

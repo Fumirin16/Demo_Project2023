@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// Bボタンを押したらパネルを閉じる
 
 public class PanelManager : MonoBehaviour
 {
+    /// <summary>
+    /// エリアに入ったら
+    /// </summary>
     bool flag = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-    private void OnEnable()
+    void OnEnable()
     {
         flag = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown (KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.B))

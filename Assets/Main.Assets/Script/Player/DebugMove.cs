@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// ジョイコンのABXYボタンで移動で移動
 
 public class DebugMove : MonoBehaviour
 {
-    public float positionSpeed;
+    /// <summary>
+    /// 移動スピードを取得
+    /// </summary>
+    [Tooltip("移動スピードをセット")]
+    [SerializeField] float positionSpeed;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetKey(KeyCode.JoystickButton1))
@@ -31,6 +28,5 @@ public class DebugMove : MonoBehaviour
         {
             transform.position -= transform.right * positionSpeed;
         }
-
     }
 }

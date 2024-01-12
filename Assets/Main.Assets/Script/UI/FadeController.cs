@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -7,19 +6,84 @@ using TMPro;
 
 public class FadeController : MonoBehaviour
 {
+    #region ---Fields---
+
+    /// <summary>
+    /// UITimer取得
+    /// </summary>
     [SerializeField] UITimer _timer;
+
+    /// <summary>
+    /// 警備員のAroundGuardsmanController取得
+    /// </summary>
+    [Tooltip("巡回警備員をアタッチ")]
     [SerializeField] AroundGuardsmanController _controller;
-    [SerializeField] AudioManager _audio;
-    [SerializeField] PlayerWalkManager _walk;
-    [SerializeField] TextMeshProUGUI _countdownText;
-    [SerializeField] Image _countdownImage;
-    [SerializeField] Image _fadePanel;
-    [SerializeField] Animator _animator;
+
+    /// <summary>
+    /// 警備員のNavMeshAgent取得
+    /// </summary>
+    [Tooltip("巡回警備員をアタッチ")]
     [SerializeField] NavMeshAgent guardsman;
+
+    /// <summary>
+    /// AudioManager取得
+    /// </summary>
+    [SerializeField] AudioManager _audio;
+
+    /// <summary>
+    /// PlayerWalkManager取得
+    /// </summary>
+    [SerializeField] PlayerWalkManager _walk;
+
+    /// <summary>
+    /// countdownText取得
+    /// </summary>
+    [Tooltip("countdownTextアタッチ")]
+    [SerializeField] TextMeshProUGUI _countdownText;
+
+    /// <summary>
+    /// countdownImage取得
+    /// </summary>
+    [Tooltip("countdownImageアタッチ")]
+    [SerializeField] Image _countdownImage;
+
+    /// <summary>
+    /// フェードパネル取得
+    /// </summary
+    [Tooltip("フェードパネルアタッチ")]
+    [SerializeField] Image _fadePanel;
+
+    /// <summary>
+    /// フェードアニメーター取得
+    /// </summary>
+    [Tooltip("フェードアニメーターアタッチ")]
+    [SerializeField] Animator _animator;
+
+    /// <summary>
+    /// らんアニメーション再生
+    /// </summary>
+    [Tooltip("まおモデルアタッチ")]
     [SerializeField] Animator _maoAnim;
+
+    /// <summary>
+    /// らんアニメーション再生
+    /// </summary>
+    [Tooltip("らんモデルアタッチ")]
     [SerializeField] Animator _ranAnim;
+
+    /// <summary>
+    /// カウントダウン
+    /// </summary>
     static float _countdown = 4f;
+
+    /// <summary>
+    /// 経過時間
+    /// </summary
     int _count;
+
+    #endregion ---Fields---
+
+    #region ---Methods---
 
     void Start()
     {
@@ -42,11 +106,17 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アニメーションイベント用の関数
+    /// </summary>
     public void Fade()
     {
         StartCoroutine("Color_FadeIn");
     }
 
+    /// <summary>
+    /// スタート前のカウントダウン
+    /// </summary>
     IEnumerator Color_FadeIn()
     {
         _countdownText.gameObject.SetActive(true);
@@ -54,16 +124,20 @@ public class FadeController : MonoBehaviour
 
         while (_countdown > 0)
         {
+            // カウントダウン計算、表示
             _countdown -= Time.deltaTime;
             _countdownImage.fillAmount = _countdown % 1.0f;
             _count = (int)_countdown;
             _countdownText.text = _count.ToString();
 
+            // カウントダウンが終わったら
             if (FadeTimeOver())
             {
                 _timer.enabled = true;
                 guardsman.enabled = true;
                 _controller.enabled = true;
+
+                // アニメーション再生
                 _maoAnim.Play("dance");
                 _ranAnim.Play("dance");
 
@@ -80,8 +154,12 @@ public class FadeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// カウントダウンが終わったら返す
+    /// </summary>
     public static bool FadeTimeOver()
     {
         return _countdown <= 0;
     }
+    #endregion ---Methods---
 }

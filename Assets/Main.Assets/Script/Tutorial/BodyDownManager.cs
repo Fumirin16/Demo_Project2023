@@ -26,6 +26,12 @@ public class BodyDownManager : MonoBehaviour
     [SerializeField] GameObject _bodyDownPanel;
 
     /// <summary>
+    /// チュートリアルしゃがみパネル取得
+    /// </summary>
+    [Tooltip("BodyDownPanel2アタッチ")]
+    [SerializeField] GameObject _panel;
+
+    /// <summary>
     /// AudioManager参照するための変数
     /// </summary>
     [SerializeField] AudioManager _audioManager;
@@ -54,8 +60,6 @@ public class BodyDownManager : MonoBehaviour
     /// SEを一度だけ再生させるbool
     /// </summary>
     bool SEflag = true;
-
-    [SerializeField] GameObject _panel;
 
     #endregion ---Fields---
 
