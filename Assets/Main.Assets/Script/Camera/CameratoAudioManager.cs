@@ -52,47 +52,37 @@ public class CameratoAudioManager : MonoBehaviour
     /// メインカメラのオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _mainCameraObj;
+    private CameraInfo _mainCameraObj;
 
     /// <summary>
     /// 左肩カメラのオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _leftCameraObj;
+    private CameraInfo _leftCameraObj;
 
     /// <summary>
     /// 右肩カメラのオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _rightCameraObj;
+    private CameraInfo _rightCameraObj;
 
     /// <summary>
-    /// メインカメラのCameraコンポーネント
+    /// Rayを飛ばす場所を指定するオブジェクト
     /// </summary>
-    private Camera _mainCamera;
-
-    /// <summary>
-    /// 左肩カメラのCameraコンポーネント
-    /// </summary>
-    private Camera _leftCamera;
-
-    /// <summary>
-    /// 右肩カメラのCameraコンポーネント
-    /// </summary>
-    private Camera _rightCamera;
+    private CameraInfo _cameraInfoObj;
 
     [Header("=== Camera Function ===")]
     /// <summary>
     /// じらじょちゃんの真後ろから追跡する機能
     /// </summary>
     [SerializeField]
-    public bool _nomal = true;
+    public bool _normal = true;
 
     /// <summary>
     /// じらじょちゃんの肩らへんから追跡する機能
     /// </summary>
     [SerializeField]
-    public bool _nomalDiffPos = false;
+    public bool _normalDiffPos = false;
 
     /// <summary>
     /// スイッチで視点の場所が切り替わる機能
@@ -142,130 +132,140 @@ public class CameratoAudioManager : MonoBehaviour
         // Rawの範囲の値を参照して保存する
         _rawRadio = _settingSystem.cameraHitRadio;
 
-        // カメラオブジェクトからCameraコンポーネントを取得
-        _mainCamera = _mainCameraObj.GetComponent<Camera>();
-        _leftCamera = _leftCameraObj.GetComponent<Camera>();
-        _rightCamera = _rightCameraObj.GetComponent<Camera>();
+        // オブジェクトとコンポーネントを初期化する
+        _mainCameraObj = new CameraInfo(_mainCameraObj.cameraObj);
+        _leftCameraObj = new CameraInfo(_leftCameraObj.cameraObj);
+        _rightCameraObj = new CameraInfo(_rightCameraObj.cameraObj);
 
         // カメラ機能がNomalだった場合
-        if (_nomal)
+        if (_normal)
         {
-            // メインカメラのカメラコンポーネントをオンにして、他はオフにする
-            _mainCamera.enabled = true;
-            _leftCamera.enabled = false;
-            _rightCamera.enabled = false;
-
-            // メインカメラをアクティブにして、他はオフにする
-            _mainCameraObj.SetActive(true);
-            _leftCameraObj.SetActive(false);
-            _rightCameraObj.SetActive(false);
-
-            // メインカメラとプレイヤーの距離を計算する
-            _offset = _mainCamera.transform.position - _playerObj.position;
+            // カメラのアクティブの設定と距離の測定をする
+            CameraInit(_mainCameraObj.cameraObj, true, false, false);
         }
 
         // カメラ機能がNomalDiffPos / StickButtonだった場合
-        if (_nomalDiffPos || _stickButton)
+        if (_normalDiffPos || _stickButton)
         {
-            // 左肩カメラのカメラコンポーネントをオンにして、他はオフにする
-            _mainCamera.enabled = false;
-            _leftCamera.enabled = true;
-            _rightCamera.enabled = false;
-
-            // 左肩カメラをアクティブにして、他はオフにする
-            _mainCameraObj.SetActive(false);
-            _leftCameraObj.SetActive(true);
-            _rightCameraObj.SetActive(false);
-
-            // 左肩カメラとプレイヤーの距離を計算する
-            _offset = _leftCamera.transform.position - _playerObj.position;
+            // カメラのアクティブの設定と距離の測定をする
+            CameraInit(_leftCameraObj.cameraObj, false, true, false);
         }
 
         // カメラ機能がSwitchButtonだった場合
         if (_switchButton)
         {
-            // 左肩カメラのカメラコンポーネントをオンにして、他はオフにする
-            _mainCamera.enabled = false;
-            _leftCamera.enabled = true;
-            _rightCamera.enabled = false;
-
-            // 左肩カメラと右肩カメラをアクティブにして、他はオフにする
-            _mainCameraObj.SetActive(false);
-            _leftCameraObj.SetActive(true);
-            _rightCameraObj.SetActive(true);
-
-            // 左肩カメラとプレイヤーの距離を計算する
-            _offset = _playerObj.position-_leftCamera.transform.position ;
+            // カメラのアクティブの設定と距離の測定をする
+            CameraInit(_leftCameraObj.cameraObj, false, true, true,false);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // ２点間のベクトルを正規化する
-        Vector3 positionVector = _offset.normalized;
-
-        Debug.Log(positionVector);
-
         // カメラ機能がNomalだった場合
-        if (_nomal)
+        if (_normal)
         {
-            // _rayをカメラからプレイヤーに飛ばす
-            _ray = new Ray(_mainCamera.transform.position, positionVector);
+            _cameraInfoObj = new CameraInfo(_mainCameraObj.cameraObj);
         }
 
         // カメラ機能がNomalDiffPosだった場合
-        if (_nomalDiffPos)
+        if (_normalDiffPos)
         {
             // canvasのカメラ設定を左肩カメラに設定する
-            _riactionCanvas.worldCamera = _leftCamera;
-            _finishCanvas.worldCamera = _leftCamera;
-            _situationCanvas.worldCamera = _leftCamera;
+            _riactionCanvas.worldCamera = _leftCameraObj.cameraComp;
+            _finishCanvas.worldCamera = _leftCameraObj.cameraComp;
+            _situationCanvas.worldCamera = _leftCameraObj.cameraComp;
 
-            // _rayをカメラからプレイヤーに飛ばす
-            _ray = new Ray(_leftCamera.transform.position, positionVector);
-
-            Debug.DrawRay(_leftCamera.transform.position, positionVector, UnityEngine.Color.red);
+            _cameraInfoObj = new CameraInfo(_leftCameraObj.cameraObj);
         }
 
-        // 
+        // カメラの機能がSwitchButtonだった場合
         if (_switchButton)
         {
-            if (Input.GetKeyDown(KeyCode.JoystickButton0) && !_rightCamera.enabled)
+            if (Input.GetKeyDown(KeyCode.JoystickButton0) && !_rightCameraObj.cameraComp.enabled)
             {
-                // 右肩カメラのCameraコンポーネントを有効にして、左肩カメラのCameraコンポーネントを無効にする
-                _leftCamera.enabled = false;
-                _rightCamera.enabled = true;
-
-                // canvasのカメラ設定を右肩カメラに設定する
-                _riactionCanvas.worldCamera = _rightCamera;
-                _finishCanvas.worldCamera = _rightCamera;
-                _situationCanvas.worldCamera = _rightCamera;
-
-                // 左肩カメラとプレイヤーの距離を計算する
-                _offset = _rightCamera.transform.position - _playerObj.position;
-
-                // _rayをカメラからプレイヤーに飛ばす
-                _ray = new Ray(_rightCamera.transform.position, positionVector);
+                // 右肩カメラの設定をする
+                SwitchButtonCamera(false, true, _rightCameraObj);
             }
-            if (Input.GetKeyDown(KeyCode.JoystickButton3) && !_leftCamera.enabled)
+            if (Input.GetKeyDown(KeyCode.JoystickButton3) && !_leftCameraObj.cameraComp.enabled)
             {
-                // 左肩カメラのCameraコンポーネントを有効にして、右肩カメラのCameraコンポーネントを無効にする
-                _leftCamera.enabled = true;
-                _rightCamera.enabled = false;
-
-                // canvasのカメラ設定を左肩カメラに設定する
-                _riactionCanvas.worldCamera = _leftCamera;
-                _finishCanvas.worldCamera = _leftCamera;
-                _situationCanvas.worldCamera = _leftCamera;
-
-                // 左肩カメラとプレイヤーの距離を計算する
-                _offset = _leftCamera.transform.position - _playerObj.position;
-
-                // _rayをカメラからプレイヤーに飛ばす
-                _ray = new Ray(_leftCamera.transform.position, positionVector);
+                // 左肩カメラの設定をする
+                SwitchButtonCamera(true, false, _leftCameraObj);
             }
         }
+
+        // Rayに当たったオブジェクトの表示非表示をする
+        RayFunc(_cameraInfoObj);
+    }
+
+    /// <summary>
+    /// カメラのアクティブと距離の初期化する関数
+    /// </summary>
+    /// <param name="offset"> 距離を保存する変数 </param>
+    /// <param name="cameraObj"> 距離を測定するカメラのオブジェクト </param>
+    /// <param name="main"> メインカメラのアクティブ </param>
+    /// <param name="left"> 左肩カメラのアクティブ </param>
+    /// <param name="right"> 右肩カメラのアクティブ </param>
+    /// <param name="switchCamera"> SwitchButton機能用のカメラコンポーネントのアクティブ </param>
+    private void CameraInit(GameObject cameraObj, bool main, bool left, bool right,bool switchCamera=true)
+    {
+        // カメラのカメラコンポーネントのオンオフを設定する
+        _mainCameraObj.cameraComp.enabled = main;
+        _leftCameraObj.cameraComp.enabled = left;
+        if (!switchCamera)
+        {
+            _rightCameraObj.cameraComp.enabled = switchCamera;
+        }
+        else
+        {
+            _rightCameraObj.cameraComp.enabled = right;
+        }
+
+        // カメラのアクティブを設定する
+        _mainCameraObj.cameraObj.SetActive(main);
+        _leftCameraObj.cameraObj.SetActive(left);
+        _rightCameraObj.cameraObj.SetActive(right);
+
+        // カメラとプレイヤーの距離を計算する
+        _offset = cameraObj.transform.position - _playerObj.position;
+    }
+
+    /// <summary>
+    /// SwitchButtonの時のカメラとcanvasの設定とRayの設定をする関数
+    /// </summary>
+    /// <param name="left"> 左肩カメラのアクティブ </param>
+    /// <param name="right"> 右肩カメラのアクティブ </param>
+    /// <param name="cameraObj"> canvasに設定したいカメラのオブジェクト </param>
+    /// <param name="pos"> _offsetの正規化 </param>
+    private void SwitchButtonCamera(bool left,bool right,CameraInfo cameraObj)
+    {
+        // 左肩カメラのCameraコンポーネントと右肩カメラのCameraコンポーネントのアクティブを設定する
+        _leftCameraObj.cameraComp.enabled = left;
+        _rightCameraObj.cameraComp.enabled = right;
+
+        // canvasのカメラ設定をする
+        _riactionCanvas.worldCamera = cameraObj.cameraComp;
+        _finishCanvas.worldCamera = cameraObj.cameraComp;
+        _situationCanvas.worldCamera = cameraObj.cameraComp;
+
+        // カメラとプレイヤーの距離を計算する
+        _offset = cameraObj.cameraObj.transform.position - _playerObj.position;
+
+        // Rayを飛ばすカメラオブジェクトを設定する
+        _cameraInfoObj = new CameraInfo(cameraObj.cameraObj);
+    }
+
+    /// <summary>
+    /// カメラから出るRayに当たったオブジェクトを表示非表示する関数
+    /// </summary>
+    /// <param name="cameraObj"> Rayを飛ばすカメラのオブジェクト </param>
+    private void RayFunc(CameraInfo cameraObj)
+    {
+        // ２点間のベクトルを正規化する
+        Vector3 positionVector = _offset.normalized;
+
+        // _rayをカメラからプレイヤーに飛ばす
+        _ray = new Ray(cameraObj.cameraObj.transform.position, positionVector);
 
         // 球体のRayを生成する
         RaycastHit[] _hits = Physics.SphereCastAll(_ray, _rawRadio, positionVector.magnitude, _layer);
@@ -306,4 +306,37 @@ public class CameratoAudioManager : MonoBehaviour
     }
 
     #endregion ---Methods---
+
+    #region ---Struct---
+
+    /// <summary>
+    /// カメラオブジェクトの構造体
+    /// </summary>
+    [System.Serializable]
+    private struct CameraInfo
+    {
+        /// <summary>
+        /// カメラのオブジェクト
+        /// </summary>
+        public GameObject cameraObj;
+
+        /// <summary>
+        /// カメラのCameraコンポーネント
+        /// </summary>
+        public Camera cameraComp;
+
+        /// <summary>
+        /// カメラのオブジェクトとコンポーネントを設定するコンストラクタ
+        /// </summary>
+        /// <param name="obj"></param>
+        public CameraInfo(GameObject obj)
+        {
+            // カメラのオブジェクトを設定する
+            this.cameraObj= obj;
+            // カメラのCameraコンポーネントを設定する
+            this.cameraComp = obj.GetComponent<Camera>();
+        }
+    }
+
+    #endregion ---Struct---
 }

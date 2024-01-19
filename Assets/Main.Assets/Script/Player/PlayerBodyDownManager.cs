@@ -29,7 +29,7 @@ public class PlayerBodyDownManager : MonoBehaviour
     /// <summary>
     /// しゃがんだかを判定する
     /// </summary>
-    private bool _isDown=false;
+    private bool _isDown = false;
 
     [Header("=== Script ===")]
     /// <summary>
@@ -59,7 +59,7 @@ public class PlayerBodyDownManager : MonoBehaviour
         float _distance = _hip.transform.position.y - _stageFloor.transform.position.y;
 
         // 距離が_cheackDisより短くなった場合
-        if (_distance <= _cheackDis&&!_isDown)
+        if (_distance <= _cheackDis && !_isDown)
         {
             // SEを再生する
             _audioSystem.PlaySESound(SEData.SE.Squwat);
@@ -67,9 +67,8 @@ public class PlayerBodyDownManager : MonoBehaviour
             // しゃがんだ判定をオンにする
             _isDown = true;
         }
-
         // 距離が_cheackDisより長くなった場合
-        if (_distance >= _cheackDis && _isDown)
+        else
         {
             // しゃがんだ判定をオフにする
             _isDown = false;

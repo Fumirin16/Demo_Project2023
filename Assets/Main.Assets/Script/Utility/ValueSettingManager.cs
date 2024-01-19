@@ -56,6 +56,12 @@ public class ValueSettingManager : ScriptableObject
     [Range(0f, 100f), Tooltip("カメラの観客を非表示にする範囲")]
     public float cameraHitRadio = 1.0f;
 
+    /// <summary>
+    /// ゲームクリア後にステージを見上げる速さ
+    /// </summary>
+    [Range(0f,10f),Tooltip("ゲームクリア時にステージを見上げる速さ")]
+    public float stageLookCamera = 1.0f;
+
     // === NPC ===
     [Header("=== NPC ===")]
     /// <summary>
@@ -65,7 +71,7 @@ public class ValueSettingManager : ScriptableObject
     public float smoothTime = 1.0f;
 
     // === GuardMan ===
-    [Header("=== GUARDMAN ===")]
+    [Header("=== GUARDSMAN ===")]
     /// <summary>
     /// 警備員のSpeed
     /// </summary>

@@ -463,8 +463,8 @@ public class TitleUIManager : MonoBehaviour
     /// <summary>
     /// ボタンが押されたときの関数
     /// </summary>
-    /// <param name="sceneNul"> 遷移したいシーンの番号 </param>
-    public void OnClikButton(int sceneNul)
+    /// <param name="sceneNum"> 遷移したいシーンの番号 </param>
+    public void OnClikButton(int sceneNum)
     {
         // クリック音を再生する
         _audioSystem.PlaySESound(SEData.SE.ClickButton);
@@ -488,7 +488,7 @@ public class TitleUIManager : MonoBehaviour
         _endButtonObj.SetActive(false);
 
         // 指定したシーンに遷移する
-        SceneManager.LoadScene(sceneNul);
+        SceneManager.LoadScene(sceneNum);
     }
 
     #endregion ---Methods---

@@ -37,13 +37,13 @@ public class OutGameManager : MonoBehaviour
     /// 警備員のオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _guardObj;
+    private GameObject _guardsObj;
 
     /// <summary>
     /// 警備員のアニメーションのオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _guardAnimatorObj;
+    private GameObject _guardsAnimatorObj;
 
 
     [Header("=== Camera ===")]
@@ -74,7 +74,6 @@ public class OutGameManager : MonoBehaviour
     /// <summary>
     /// カメラが動く速さ
     /// </summary>
-    [SerializeField]
     private float _cameraSpeed;
 
     [ Header("=== Text ===")]
@@ -165,6 +164,8 @@ public class OutGameManager : MonoBehaviour
 
         // テキストが表示されたかの判定をオフにする
         _isMoriage = false;
+
+        _cameraSpeed = _settingManager.stageLookCamera;
     }
 
     private void Update()
@@ -176,7 +177,7 @@ public class OutGameManager : MonoBehaviour
             _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
             // プレイヤーと警備員の動きを止める関数の呼び出し
-            DontMove_AntherScript();
+            DontMove_OtherScript();
 
             // シーンを遷移する
             SceneManager.LoadScene(6);
@@ -219,17 +220,17 @@ public class OutGameManager : MonoBehaviour
         _noActiveArea.SetActive(true);
 
         // プレイヤーと警備員の動きを止める関数の呼び出し
-        DontMove_AntherScript();
+        DontMove_OtherScript();
 
         // メインカメラ視点を使用している場合
-        if (_cameraSystem._nomal)
+        if (_cameraSystem._normal)
         {
             // メインカメラをステージの注視点に向けて移動させる
             CameraMode(_mainCamera);
         }
 
         // 左肩カメラ視点もしくは左肩カメラを使用していた場合
-        if (_cameraSystem._nomalDiffPos || _cameraSystem._stickButton)
+        if (_cameraSystem._normalDiffPos || _cameraSystem._stickButton)
         {
             // 左肩カメラをステージの注視点に向けて移動させる
             CameraMode(_leftCamera);
@@ -335,7 +336,7 @@ public class OutGameManager : MonoBehaviour
     /// <summary>
     ///  オブジェクトの動きを止める関数
     /// </summary>
-    private void DontMove_AntherScript()
+    private void DontMove_OtherScript()
     {
         //  プレイヤーのMocopiを止める
         //_playerObj.GetComponent<MocopiAvatar>().enabled = false;
@@ -347,13 +348,13 @@ public class OutGameManager : MonoBehaviour
         _playerObj.GetComponent<PlayerWalkManager>().enabled = false;
 
         // 警備員の移動を止める 
-        _guardObj.GetComponent<AroundGuardsmanController>().enabled = false;
+        _guardsObj.GetComponent<AroundGuardsmanController>().enabled = false;
 
         // 警備員の動作を止める
-        _guardObj.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        _guardsObj.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
 
         // 警備員のアニメーションを止める
-        _guardAnimatorObj.GetComponent<Animator>().enabled = false;
+        _guardsAnimatorObj.GetComponent<Animator>().enabled = false;
     }
 
     #endregion ---Methods---

@@ -398,8 +398,8 @@ MonoBehaviour:
   _backButtonObj: {fileID: 2145856073}
   _backScale: {fileID: 1648750232}
   _backSelectObj: {fileID: 198797566}
-  _buttonActivTime: 3
-  _audioiSystem: {fileID: 659038837}
+  _buttonActiveTime: 3
+  _audioSystem: {fileID: 659038837}
 --- !u!4 &684094054
 Transform:
   m_ObjectHideFlags: 0

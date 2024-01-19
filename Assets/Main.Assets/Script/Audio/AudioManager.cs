@@ -7,17 +7,15 @@ public class AudioManager:MonoBehaviour
 {
     #region ---Fields---
 
-    [Header("=== Audio Source ===")]
+    [Header("=== Audio Table ===")]
     /// <summary>
     /// BGM Audio Source
     /// </summary>
-    [SerializeField]
     public AudioSource bgmAudioSource;
 
     /// <summary>
     /// SE Audio Source
     /// </summary>
-    [SerializeField]
     public AudioSource seAudioSource;
 
     /// <summary>

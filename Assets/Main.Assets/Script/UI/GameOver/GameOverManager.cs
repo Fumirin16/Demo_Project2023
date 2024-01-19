@@ -80,7 +80,7 @@ public class GameOverManager : MonoBehaviour
     /// ボタンを表示するまでの時間
     /// </summary>
     [SerializeField]
-    private float _buttonActivTime = 3f;
+    private float _buttonActiveTime = 3f;
 
     /// <summary>
     /// ボタンの画像の初期サイズ
@@ -97,7 +97,7 @@ public class GameOverManager : MonoBehaviour
     /// system_Audioのスクリプト
     /// </summary>
     [SerializeField]
-    private AudioManager _audioiSystem;
+    private AudioManager _audioSystem;
 
     /// <summary>
     /// 選択中のボタン情報
@@ -170,8 +170,8 @@ public class GameOverManager : MonoBehaviour
         // 時間を計測
         _time += Time.deltaTime;
 
-        // 時間が_buttonActivTimeより長くなった場合
-        if (_time >= _buttonActivTime)
+        // 時間が_buttonActiveTimeより長くなった場合
+        if (_time >= _buttonActiveTime)
         {
             // リトライボタンもしくはタイトルボタンが非表示担っていた場合
             if (!_moreButtonObj.activeSelf || !_backButtonObj.activeSelf)
@@ -206,7 +206,7 @@ public class GameOverManager : MonoBehaviour
         }
 
         // ボタンを押された判定がオンになり、再生していたSEが鳴り終わった場合
-        if (_isClick&& _audioiSystem.CheckPlaySound(_audioiSystem.seAudioSource))
+        if (_isClick&& _audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
         {
             SceneManager.LoadScene(_SceneNum);
         }
@@ -225,10 +225,10 @@ public class GameOverManager : MonoBehaviour
         _SceneNum = SceneNum;
 
         // BGMを止める
-        _audioiSystem.StopSound(_audioiSystem.bgmAudioSource);
+        _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
         // クリック音を再生する
-        _audioiSystem.PlaySESound(SEData.SE.ClickButton);
+        _audioSystem.PlaySESound(SEData.SE.ClickButton);
 
         // ui_GameOverVideoを止める
         _gameOverVideo.Stop();
