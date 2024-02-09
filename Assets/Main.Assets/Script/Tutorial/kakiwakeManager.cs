@@ -60,12 +60,12 @@ public class kakiwakeManager : MonoBehaviour
     /// <summary>
     /// 音が鳴り終わったか
     /// </summary>
-    bool isAudioEnd;
+    bool _isAudioEnd;
 
     /// <summary>
     /// 一度だけ音鳴らす
     /// </summary>
-    bool SEflag = true;
+    bool _SEflag = true;
 
     #endregion ---Fields---
 
@@ -78,29 +78,23 @@ public class kakiwakeManager : MonoBehaviour
         _vcam.SetActive(true);
     }
 
-    void Start()
-    {
-        _tutorialManager = _tutorialSystem.GetComponent<TutorialManager>();
-    }
-
     void Update()
     {
         // Text表示
         _Text.text = hitolist.Count.ToString();
 
-        if(hitolist.Count > _hitoCount)
+        if (hitolist.Count > _hitoCount && _SEflag)
         {
             _Text.text = "OK";
-        }
-        if (SEflag && hitolist.Count > _hitoCount)
-        {
+
+            // OKサウンドを鳴らす
             _audioManager.PlaySESound(SEData.SE.Correct);
-            SEflag = false;
-            isAudioEnd = true;
+            _SEflag = false;
+            _isAudioEnd = true;
         }
 
         // 音が鳴り終わったら次のフェーズへ
-        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && isAudioEnd)
+        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && _isAudioEnd)
         {
             _kakiwakePanel.SetActive(false);
             gameObject.SetActive(false);

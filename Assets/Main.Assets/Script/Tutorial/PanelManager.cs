@@ -7,21 +7,21 @@ public class PanelManager : MonoBehaviour
     /// <summary>
     /// ƒGƒŠƒA‚É“ü‚Á‚½‚ç
     /// </summary>
-    bool flag = true;
+    bool _flag = true;
 
     void OnEnable()
     {
-        flag = true;
+        _flag = true;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown (KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.B))
+        if(_flag && (Input.GetKeyDown (KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.B)))
         {
-            if(flag)
+            if(_flag)
             {
                 gameObject.SetActive(false);
-                flag = false;
+                _flag = false;
             }
         }
     }

@@ -12,16 +12,16 @@ public class UITimer : MonoBehaviour
     /// Sliderオブジェクト変数
     /// </summary>
     [Tooltip("時間制限のUIをアタッチ")]
-    [SerializeField] Slider timeSlider;
+    [SerializeField] Slider _timeSlider;
 
     // スクリプト参照変数
-    [SerializeField]　ValueSettingManager settingManager;
-    [SerializeField] OutGameManager gameManager;
+    [SerializeField]　ValueSettingManager _settingManager;
+    [SerializeField] OutGameManager _gameManager;
 
     /// <summary>
     /// 時間制限変数
     /// </summary>
-    float maxTime;
+    float _maxTime;
 
     #endregion ---Fields---
 
@@ -29,28 +29,33 @@ public class UITimer : MonoBehaviour
 
     void Start()
     {
-        maxTime = settingManager.GameLimitTime;
-
-        timeSlider = GetComponent<Slider>();
+        _maxTime = _settingManager.GameLimitTime;
 
         //スライダーの最大値の設定
-        timeSlider.maxValue = maxTime;
+        _timeSlider.maxValue = _maxTime;
     }
 
     void Update()
     {
         //スライダーの現在値の設定
-        timeSlider.value += Time.deltaTime;
+        _timeSlider.value += Time.deltaTime;
 
-        if (timeSlider.value == maxTime&& !settingManager.gameClear)
+        if (_timeSlider.value >= _maxTime)
+        {
+            GameEndFunc();
+        }
+    }
+
+    void GameEndFunc()
+    {
+        if (_settingManager.gameClear)
+        {
+            _gameManager.GameClear();
+        }
+        else
         {
             // ゲームオーバーの判定をtrueにする
-            settingManager.gameOver = true;
-            //Debug.Log("時間です");
-        }
-        else if (timeSlider.value == maxTime && settingManager.gameClear)
-        {
-            gameManager.GameClear();
+            _settingManager.gameOver = true;
         }
     }
     #endregion ---Methods---

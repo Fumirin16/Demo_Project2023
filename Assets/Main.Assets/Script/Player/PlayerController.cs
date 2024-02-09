@@ -35,12 +35,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// ValueSettingManager参照する変数
     /// </summary>
-    [SerializeField] ValueSettingManager settingManager;
+    [SerializeField] ValueSettingManager _settingManager;
 
     /// <summary>
     /// AudioManager参照する変数
     /// </summary>
-    [SerializeField] AudioManager audioManager;
+    [SerializeField] AudioManager _audioManager;
 
     /// <summary>
     /// 回転の数値を取得する変数
@@ -71,8 +71,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         // 値を参照したものを保存する
-        _rotateSpeed = settingManager.PlayerRotateSpeed;
-        _positionSpeed = settingManager.JOYSTIC_PlayerMoveSpeed;
+        _rotateSpeed = _settingManager.PlayerRotateSpeed;
+        _positionSpeed = _settingManager.JOYSTIC_PlayerMoveSpeed;
 
         //サブカメラを非アクティブにする
         _subCamera.SetActive(false);
@@ -123,18 +123,7 @@ public class PlayerController : MonoBehaviour
         // ジョイコンの右スティックを押すとメインカメラとサブカメラを切り替える
         if (Input.GetKeyDown(KeyCode.JoystickButton11) || Input.GetKeyDown(KeyCode.Space))
         {
-            if(_cameraActive)
-            {
-                _mainCamera.SetActive(false);
-                _subCamera.SetActive(true);
-                _cameraActive = false;
-            }
-            else
-            {
-                _mainCamera.SetActive(true);
-                _subCamera.SetActive(false);
-                _cameraActive = true;
-            }
+            CameraChangeActive();
         }
     }
 
@@ -154,6 +143,22 @@ public class PlayerController : MonoBehaviour
             // ゲームオーバーオブジェクトを表示
             _gameoverObj.SetActive(true);
             //Debug.Log("playerhit");
+        }
+    }
+
+    void CameraChangeActive()
+    {
+        if (_cameraActive)
+        {
+            _mainCamera.SetActive(false);
+            _subCamera.SetActive(true);
+            _cameraActive = false;
+        }
+        else
+        {
+            _mainCamera.SetActive(true);
+            _subCamera.SetActive(false);
+            _cameraActive = true;
         }
     }
     #endregion ---Methods---

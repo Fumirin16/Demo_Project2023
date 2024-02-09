@@ -65,14 +65,11 @@ public class TutorialManager : MonoBehaviour
         _phase[_phaseCount].SetActive(true);
 
         // ボタン入力でフェーズが進む
-        if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.A))
+        if (!_pushFlag && (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.A)))
         {
-            if (_pushFlag == false)
-            {
-                _phase[_phaseCount].SetActive(false);
-                _phaseCount++;
-                _pushFlag = true;
-            }
+            _phase[_phaseCount].SetActive(false);
+            _phaseCount++;
+            _pushFlag = true;
         }
         else
         {
@@ -94,7 +91,7 @@ public class TutorialManager : MonoBehaviour
             case 3:
                 _fadeAnimator.Play("FadeOut");
                 break;
-                default:
+            default:
                 break;
         }
     }

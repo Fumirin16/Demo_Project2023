@@ -14,12 +14,14 @@ public class FPSDisplay : MonoBehaviour
     /// </summary>
     float _fps;
 
+    float _timeFPS = 1.0f;
+
     #endregion ---Fields---
 
     void Update()
     {
         // Time.deltaTimeは前回のフレームからの経過時間（秒）を表す変数
-        _fps = 1.0f / Time.deltaTime;
+        _fps = _timeFPS / Time.deltaTime;
         //Debug.Log(_fps.ToString("F2"));
     }
 }

@@ -19,14 +19,10 @@ public class PlayerHandManager : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Audience")
+        if(_SEflag && collision.gameObject.CompareTag("Audience"))
         {
-            if (_SEflag)
-            {
-                _audioSource.PlayOneShot(_hit);
-                //Debug.Log("ìñÇΩÇ¡ÇΩ");
-                _SEflag = false;
-            }
+            _audioSource.PlayOneShot(_hit);
+            _SEflag = false;
         }
     }
 
@@ -35,7 +31,6 @@ public class PlayerHandManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Audience"))
         {
             _SEflag = true;
-            //Debug.Log("èoÇΩ");
         }
     }
 }

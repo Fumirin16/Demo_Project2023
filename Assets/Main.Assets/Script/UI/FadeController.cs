@@ -23,7 +23,7 @@ public class FadeController : MonoBehaviour
     /// 警備員のNavMeshAgent取得
     /// </summary>
     [Tooltip("巡回警備員をアタッチ")]
-    [SerializeField] NavMeshAgent guardsman;
+    [SerializeField] NavMeshAgent _guardsman;
 
     /// <summary>
     /// AudioManager取得
@@ -81,6 +81,11 @@ public class FadeController : MonoBehaviour
     /// </summary
     int _count;
 
+    /// <summary>
+    /// 経過時間
+    /// </summary
+    float _amount = 1.0f;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -89,7 +94,7 @@ public class FadeController : MonoBehaviour
     {
         _timer.enabled = false;
         _fadePanel.enabled = true;
-        guardsman.enabled = false;
+        _guardsman.enabled = false;
         _controller.enabled = false;
         _countdown = 4f;
 
@@ -126,7 +131,7 @@ public class FadeController : MonoBehaviour
         {
             // カウントダウン計算、表示
             _countdown -= Time.deltaTime;
-            _countdownImage.fillAmount = _countdown % 1.0f;
+            _countdownImage.fillAmount = _countdown % _amount;
             _count = (int)_countdown;
             _countdownText.text = _count.ToString();
 
@@ -134,7 +139,7 @@ public class FadeController : MonoBehaviour
             if (FadeTimeOver())
             {
                 _timer.enabled = true;
-                guardsman.enabled = true;
+                _guardsman.enabled = true;
                 _controller.enabled = true;
 
                 // アニメーション再生
