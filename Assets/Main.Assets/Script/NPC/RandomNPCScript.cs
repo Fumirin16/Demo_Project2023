@@ -12,6 +12,11 @@ public class RandomNPCScript : MonoBehaviour
     /// <summary>
     /// 生成するゲームオブジェクト
     /// </summary>
+    float _size = 0.5f;
+
+    /// <summary>
+    /// 生成するゲームオブジェクト
+    /// </summary>
     [SerializeField][Tooltip("生成するGameObject")]
     GameObject _createPrefab;
 
@@ -62,7 +67,7 @@ public class RandomNPCScript : MonoBehaviour
             // 生成するオブジェクトの座標を保存する
             Vector3 _pos = new Vector3(_x, _y, _z);
             // 各軸についてのボックスサイズの半分を保存
-            Vector3 _halfExtents = new Vector3(0.5f, 0.5f, 0.5f);
+            Vector3 _halfExtents = new Vector3(_size, _size, _size);
 
             // 指定したボックスが他のコライダーと重なっているか確認
             if (!Physics.CheckBox(_pos, _halfExtents))

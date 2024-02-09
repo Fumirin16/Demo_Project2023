@@ -54,12 +54,12 @@ public class BodyDownManager : MonoBehaviour
     /// <summary>
     /// 音が鳴り終わったか判定するbool
     /// </summary>
-    bool isAudioEnd;
+    bool _isAudioEnd;
 
     /// <summary>
     /// SEを一度だけ再生させるbool
     /// </summary>
-    bool SEflag = true;
+    bool _SEflag = true;
 
     #endregion ---Fields---
 
@@ -87,21 +87,19 @@ public class BodyDownManager : MonoBehaviour
         _countTimeText.text = _count.ToString("F1");
 
         // 指定した回数以上足踏み出来たらずっとOK表示
-        if (_count > _clearCount)
+        // OKサウンドを鳴らす
+        if (_count > _clearCount && _SEflag)
         {
             _countTimeText.text = "OK";
-        }
 
-        // OKサウンドを鳴らす
-        if (SEflag && _count > _clearCount)
-        {
+            // OKサウンドを鳴らす
             _audioManager.PlaySESound(SEData.SE.Correct);
-            SEflag = false;
-            isAudioEnd = true;
+            _SEflag = false;
+            _isAudioEnd = true;
         }
 
         // SEが鳴り終わったら
-        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && isAudioEnd)
+        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && _isAudioEnd)
         {
             _bodyDownPanel.SetActive(false);
             gameObject.SetActive(false);

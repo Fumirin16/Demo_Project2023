@@ -15,6 +15,11 @@ public class AroundGuardsmanController : MonoBehaviour
     int _nextPoint = 0;
 
     /// <summary>
+    ///  次向かう地点の変数
+    /// </summary>
+    float _distance = 0.5f;
+
+    /// <summary>
     ///  視界入ってるか入ってないか判定する変数
     /// </summary>
     bool _targetFlag = false;
@@ -73,7 +78,7 @@ public class AroundGuardsmanController : MonoBehaviour
     void Update()
     {
         // エージェントが現目標地点に近づいてきたら次の目標地点を選択
-        if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
+        if (!_agent.pathPending && _agent.remainingDistance < _distance)
         {
             GotoNextPoint();
         }
@@ -83,7 +88,7 @@ public class AroundGuardsmanController : MonoBehaviour
         {
             _agent.destination = _target.transform.position;
         }
-        if (!_targetFlag)
+        else
         {
             //Debug.Log(_destPoint);
             _agent.destination = _points[_nextPoint].position;
@@ -104,7 +109,7 @@ public class AroundGuardsmanController : MonoBehaviour
         // 配列内の次の位置を目標地点に設定し必要ならば出発地点にもどる
         _nextPoint = (_nextPoint + 1) % _points.Length;
 
-        if (_nextPoint == 4)
+        if (_nextPoint == _points.Length)
         {
             _nextPoint = 0;
         }
@@ -113,23 +118,18 @@ public class AroundGuardsmanController : MonoBehaviour
     // 視界に入ったら追いかけてくる
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (_SEflag && other.CompareTag("Player"))
         {
-            if(_SEflag)
-            {
-                audioManager.PlaySESound(SEData.SE.FoundSecurity);
-                //Debug.Log("視界入った");
-                _targetFlag = true;
-                _haken.gameObject.SetActive(true);
-                _SEflag = false;
-            }
+            audioManager.PlaySESound(SEData.SE.FoundSecurity);
+            _targetFlag = true;
+            _haken.gameObject.SetActive(true);
+            _SEflag = false;
         }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("視界でた");
             _targetFlag = false;
             _haken.gameObject.SetActive(false);
             _SEflag = true;

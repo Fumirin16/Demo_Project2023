@@ -50,12 +50,12 @@ public class WalkManager : MonoBehaviour
     /// <summary>
     /// 音が鳴り終わったか判定するbool
     /// </summary>
-    bool isAudioEnd;
+    bool _isAudioEnd;
 
     /// <summary>
     /// SEを一度だけ再生させるbool
     /// </summary>
-    bool SEflag = true;
+    bool _SEflag = true;
 
 
     #endregion ---Fields---
@@ -75,21 +75,18 @@ public class WalkManager : MonoBehaviour
         _countText.text = _standStill.walkCount.ToString();
 
         // 指定した回数以上足踏み出来たらずっとOK表示
-        if(_standStill.walkCount > _clearCount)
+        if (_standStill.walkCount > _clearCount && _SEflag)
         {
             _countText.text = "OK";
-        }
 
-        // OKサウンドを鳴らす
-        if (SEflag && _standStill.walkCount > _clearCount)
-        {
+            // OKサウンドを鳴らす
             _audioManager.PlaySESound(SEData.SE.Correct);
-            SEflag = false;
-            isAudioEnd = true;
+            _SEflag = false;
+            _isAudioEnd = true;
         }
 
         // SEが鳴り終わったら
-        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && isAudioEnd)
+        if (_audioManager.CheckPlaySound(_audioManager.seAudioSource) && _isAudioEnd)
         {
             _walkPanel.SetActive(false);
             _tutorialManager._phaseCount++;
