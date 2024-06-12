@@ -14,38 +14,38 @@ public class CameratoAudioManager : MonoBehaviour
     /// カメラの回転する動作の中心点
     /// </summary>
     [SerializeField]
-    private Transform _playerObj;
+    private Transform _axisRotation;
 
     /// <summary>
-    /// 対象オブジェクトの_layer
+    /// 対象オブジェクトのLayer
     /// </summary>
     [SerializeField]
     private LayerMask _layer;
 
     /// <summary>
-    /// Ray
+    /// カメラからプレイヤーに飛ばすRay
     /// </summary>
     private Ray _ray;
 
     /// <summary>
     /// Rayに当たったオブジェクトを格納するリスト
     /// </summary>
-    private List<GameObject> _hitObj=new List<GameObject> ();
+    private List<GameObject> _hitobjList = new List<GameObject>();
 
     /// <summary>
     /// 前回の保存したオブジェクトを格納するリスト
     /// </summary>
-    private GameObject[] _saveObj;
+    private GameObject[] _saveobjArray;
 
     /// <summary>
-    /// Rawの範囲
+    /// Rayの範囲
     /// </summary>
-    private float _rawRadio;
+    private float _rayRadio;
 
     /// <summary>
     /// カメラとプレイヤーの距離
     /// </summary>
-    private Vector3 _offset;
+    private Vector3 _cameraOffset;
 
     [Header("=== Camera ===")]
     /// <summary>
@@ -101,7 +101,7 @@ public class CameratoAudioManager : MonoBehaviour
     /// リアクションUIのCanvas
     /// </summary>
     [SerializeField]
-    private Canvas _riactionCanvas;
+    private Canvas _reactionCanvas;
 
     /// <summary>
     /// 終了UIのCanvas
@@ -120,7 +120,7 @@ public class CameratoAudioManager : MonoBehaviour
     /// ValueSettingTable
     /// </summary>
     [SerializeField]
-    private ValueSettingManager _settingSystem;
+    private ValueSettingManager _setSystema;
 
     #endregion ---Fields---
 
@@ -130,7 +130,7 @@ public class CameratoAudioManager : MonoBehaviour
     void Start()
     {
         // Rawの範囲の値を参照して保存する
-        _rawRadio = _settingSystem.cameraHitRadio;
+        _rayRadio = _setSystema.cameraHitRadio;
 
         // オブジェクトとコンポーネントを初期化する
         _mainCameraObj = new CameraInfo(_mainCameraObj.cameraObj);
@@ -172,7 +172,7 @@ public class CameratoAudioManager : MonoBehaviour
         if (_normalDiffPos)
         {
             // canvasのカメラ設定を左肩カメラに設定する
-            _riactionCanvas.worldCamera = _leftCameraObj.cameraComp;
+            _reactionCanvas.worldCamera = _leftCameraObj.cameraComp;
             _finishCanvas.worldCamera = _leftCameraObj.cameraComp;
             _situationCanvas.worldCamera = _leftCameraObj.cameraComp;
 
@@ -227,7 +227,7 @@ public class CameratoAudioManager : MonoBehaviour
         _rightCameraObj.cameraObj.SetActive(right);
 
         // カメラとプレイヤーの距離を計算する
-        _offset = cameraObj.transform.position - _playerObj.position;
+        _cameraOffset = cameraObj.transform.position - _axisRotation.position;
     }
 
     /// <summary>
@@ -236,7 +236,7 @@ public class CameratoAudioManager : MonoBehaviour
     /// <param name="left"> 左肩カメラのアクティブ </param>
     /// <param name="right"> 右肩カメラのアクティブ </param>
     /// <param name="cameraObj"> canvasに設定したいカメラのオブジェクト </param>
-    /// <param name="pos"> _offsetの正規化 </param>
+    /// <param name="pos"> _cameraOffsetの正規化 </param>
     private void SwitchButtonCamera(bool left,bool right,CameraInfo cameraObj)
     {
         // 左肩カメラのCameraコンポーネントと右肩カメラのCameraコンポーネントのアクティブを設定する
@@ -244,12 +244,12 @@ public class CameratoAudioManager : MonoBehaviour
         _rightCameraObj.cameraComp.enabled = right;
 
         // canvasのカメラ設定をする
-        _riactionCanvas.worldCamera = cameraObj.cameraComp;
+        _reactionCanvas.worldCamera = cameraObj.cameraComp;
         _finishCanvas.worldCamera = cameraObj.cameraComp;
         _situationCanvas.worldCamera = cameraObj.cameraComp;
 
         // カメラとプレイヤーの距離を計算する
-        _offset = cameraObj.cameraObj.transform.position - _playerObj.position;
+        _cameraOffset = cameraObj.cameraObj.transform.position - _axisRotation.position;
 
         // Rayを飛ばすカメラオブジェクトを設定する
         _cameraInfoObj = new CameraInfo(cameraObj.cameraObj);
@@ -262,19 +262,19 @@ public class CameratoAudioManager : MonoBehaviour
     private void RayFunc(CameraInfo cameraObj)
     {
         // ２点間のベクトルを正規化する
-        Vector3 positionVector = _offset.normalized;
+        Vector3 positionVector = _cameraOffset.normalized;
 
         // _rayをカメラからプレイヤーに飛ばす
         _ray = new Ray(cameraObj.cameraObj.transform.position, positionVector);
 
         // 球体のRayを生成する
-        RaycastHit[] _hits = Physics.SphereCastAll(_ray, _rawRadio, positionVector.magnitude, _layer);
+        RaycastHit[] _hits = Physics.SphereCastAll(_ray, _rayRadio, positionVector.magnitude, _layer);
 
         // 前回のリストを保存する
-        _saveObj = _hitObj.ToArray();
+        _saveobjArray = _hitobjList.ToArray();
 
         // リストを初期化する
-        _hitObj.Clear();
+        _hitobjList.Clear();
 
         // 遮蔽物は一時的にすべて描画機能を無効にする。
         foreach (RaycastHit _hit in _hits)
@@ -286,7 +286,7 @@ public class CameratoAudioManager : MonoBehaviour
             if (_renderer != null)
             {
                 // 当たったオブジェクトをリストに追加する
-                _hitObj.Add(_renderer);
+                _hitobjList.Add(_renderer);
 
                 //当たったオブジェクトを非表示にする
                 _renderer.SetActive(false);
@@ -294,7 +294,7 @@ public class CameratoAudioManager : MonoBehaviour
         }
 
         // 前回まで対象で、今回対象でなくなったものは、表示を元に戻す。
-        foreach (GameObject _renderer in _saveObj.Except(_hitObj))
+        foreach (GameObject _renderer in _saveobjArray.Except(_hitobjList))
         {
             // オブジェクトが存在していた場合
             if (_renderer != null)

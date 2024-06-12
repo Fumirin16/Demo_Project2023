@@ -17,6 +17,11 @@ public class GameClearManager : MonoBehaviour
     /// </summary>
     private float time;
 
+    /// <summary>
+    /// タイトル画面に遷移する為の指定番号
+    /// </summary>
+    private const int _toTitle = 0;
+
     private void Update()
     {
         // 時間を測定
@@ -26,7 +31,7 @@ public class GameClearManager : MonoBehaviour
         if (time >= _transTime)
         {
             // タイトル画面に遷移する
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(_toTitle);
         }
 
         // ジョイコンのRボタンとAボタンが押された場合
@@ -35,7 +40,7 @@ public class GameClearManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 // タイトル画面に遷移する
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(_toTitle);
             }
         }
     }

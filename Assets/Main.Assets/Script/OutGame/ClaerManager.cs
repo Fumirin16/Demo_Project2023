@@ -7,15 +7,19 @@ public class ClaerManager : MonoBehaviour
 {
     // 値を参照するために取得する変数
     [SerializeField]
-    private ValueSettingManager _settingSystem;
+    private ValueSettingManager _setSystem;
+
+    // タグの名前を格納する変数
+    private string _playerTag = "Player";
 
     //  クリア判定と当たった場合
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        // 当たったオブジェクトのタグがPlayerだった場合
+        if (other.gameObject.CompareTag(_playerTag))
         {
             //  ゲームクリアの判定をする
-            _settingSystem.gameClear = true;
+            _setSystem.gameClear = true;
         }
     }
 }

@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class TranstionScenes : MonoBehaviour
 {
+    private const int _toMain = 4;
+
     // シーン遷移
     public void Trans_Scene(int sceneIndex)
     {
@@ -15,7 +17,7 @@ public class TranstionScenes : MonoBehaviour
     // リトライ
     public void Trans_Retry()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(_toMain);
     }
 
     // ゲーム終了   

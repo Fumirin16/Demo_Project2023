@@ -38,7 +38,7 @@ public class AudioManager:MonoBehaviour
     /// 値を参照するために取得する変数
     /// </summary>
     [SerializeField]
-    private ValueSettingManager _settingSystem;
+    private ValueSettingManager _setSystem;
 
     #endregion ---Fields---
 
@@ -50,9 +50,9 @@ public class AudioManager:MonoBehaviour
     private void Start()
     {
         // 値を参照したものを保存する
-        _masterVolume = _settingSystem.masterVolume;
-        _seMasterVolume = _settingSystem.seMasterVolume;
-        _bgmMasterVolume = _settingSystem.bgmMasterVolume;
+        _masterVolume = _setSystem.masterVolume;
+        _seMasterVolume = _setSystem.seMasterVolume;
+        _bgmMasterVolume = _setSystem.bgmMasterVolume;
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class AudioManager:MonoBehaviour
     public void PlayBGMSound(BGMData.BGM bgm)
     {
         // 音声データから該当するデータを保存する   
-        BGMData data = _settingSystem.bgmSoundDatas.Find(data => data.bgm == bgm);
+        BGMData data = _setSystem.bgmSoundDatas.Find(data => data.bgm == bgm);
 
         // AudioClipをAudioSourceに設定する
         bgmAudioSource.clip = data.audioClip;
@@ -81,7 +81,7 @@ public class AudioManager:MonoBehaviour
     public void PlaySESound(SEData.SE se)
     {
         // 音声データから該当するデータを保存する
-        SEData data = _settingSystem.seSoundDatas.Find(data => data.se == se);
+        SEData data = _setSystem.seSoundDatas.Find(data => data.se == se);
 
         // SEの音量を設定する
         seAudioSource.volume = data.volume * _seMasterVolume * _masterVolume;

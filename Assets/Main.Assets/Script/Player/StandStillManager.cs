@@ -25,7 +25,7 @@ public class StandStillManager : MonoBehaviour
     /// <summary>
     /// 歩く判定をする距離の差の値
     /// </summary>
-    private float _distanceValue = 0.1f;
+    private float _distanceValue;
 
     /// <summary>
     /// 進む力を保存する変数　
@@ -51,7 +51,7 @@ public class StandStillManager : MonoBehaviour
     /// <summary>
     /// 歩いている時間
     /// </summary>
-    private float _activeWalk;
+    private float _activeWalkTime;
 
     /// <summary>
     /// 足踏みしている回数
@@ -69,7 +69,7 @@ public class StandStillManager : MonoBehaviour
     /// 値を管理するアセットから値を参照する変数
     /// </summary>
     [SerializeField]
-    private ValueSettingManager _settingSystem;
+    private ValueSettingManager _setSystem;
 
     /// <summary>
     /// system_Audioのスクリプト
@@ -85,13 +85,13 @@ public class StandStillManager : MonoBehaviour
     void Start()
     {
         // 床から離れた距離の値を参照して保存する
-        _distanceValue = _settingSystem.walkBorder;
+        _distanceValue = _setSystem.walkBorder;
 
         // 進む力の値を参照して保存する
-        _powerSource = _settingSystem.movePower;
+        _powerSource = _setSystem.movePower;
 
         // 歩いている時間の値を参照して保存する
-        _activeWalk = _settingSystem.activeMoveTime;
+        _activeWalkTime = _setSystem.activeMoveTime;
     }
 
     // Update is called once per frame
@@ -106,8 +106,8 @@ public class StandStillManager : MonoBehaviour
     private void WalkPower()
     {
         // 二点の距離を保存する
-        _footPos = _footObj.transform.position.y - _stageFloor.position.y;
-        Debug.Log("StandStill  distancce : " + _footPos);
+        _footPos = DistanceCheck();
+        //Debug.Log("StandStill  distancce : " + _footPos);
 
         // 距離が_distanceValueより短かった場合
         if (_moveFoot && _footPos < _distanceValue)
@@ -151,14 +151,23 @@ public class StandStillManager : MonoBehaviour
                 _isCount = false;
             }
 
-            // フレーム数が_activeWalkより多かった場合
-            if (_frameCount > _activeWalk)
+            // フレーム数が_activeWalkTimeより多かった場合
+            if (_frameCount > _activeWalkTime)
             {
 
                 // 足踏みをした判定にする
                 _moveFoot = true;
             }
         }
+    }
+
+    /// <summary>
+    /// 足と床の距離を調べる関数
+    /// </summary>
+    /// <returns> 足と床の距離の結果 </returns>
+    private float DistanceCheck()
+    {
+        return _footObj.transform.position.y - _stageFloor.position.y;
     }
 
     #endregion --- Methods ---

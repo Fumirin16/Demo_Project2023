@@ -26,7 +26,7 @@ public class OutGameManager : MonoBehaviour
     /// <summary>
     /// プレイヤーの固定位置
     /// </summary>
-    private Vector3 _endPos;
+    private Vector3 _playerEndPos;
 
     /// <summary>
     /// プレイヤーが固定されたかの判定
@@ -45,13 +45,12 @@ public class OutGameManager : MonoBehaviour
     [SerializeField]
     private GameObject _guardsAnimatorObj;
 
-
     [Header("=== Camera ===")]
     /// <summary>
     /// 注目する注視点のオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _TargetObj;
+    private GameObject _targetObj;
 
     /// <summary>
     /// メインカメラ
@@ -93,7 +92,7 @@ public class OutGameManager : MonoBehaviour
     /// 盛り上げテキストのオブジェクト
     /// </summary>
     [SerializeField]
-    private TextMeshProUGUI _moriageText;
+    private TextMeshProUGUI _litText;
 
     /// <summary>
     /// ボタンテキストのオブジェクト
@@ -105,19 +104,19 @@ public class OutGameManager : MonoBehaviour
     /// 中断テキストのオブジェクト
     /// </summary>
     [SerializeField]
-    private TextMeshProUGUI _stopGameText;
+    private TextMeshProUGUI _pauseText;
 
     /// <summary>
     /// 盛り上げテキストが表示されたかの判定
     /// </summary>
-    private bool _isMoriage;
+    private bool _isLit;
 
     [Header("=== Script ===")]
     /// <summary>
     /// ValueSettingTable
     /// </summary>
     [SerializeField]
-    private ValueSettingManager _settingManager;
+    private ValueSettingManager _setSystem;
 
     /// <summary>
     /// system_Audioのスクリプト
@@ -131,6 +130,21 @@ public class OutGameManager : MonoBehaviour
     [SerializeField]
     private CameratoAudioManager _cameraSystem;
 
+    /// <summary>
+    /// タイトル画面に遷移する為の指定番号
+    /// </summary>
+    private const int _toTitle = 0;
+
+    /// <summary>
+    /// ゲームクリア画面に遷移する為の指定番号
+    /// </summary>
+    private const int _toGameClear = 5;
+
+    /// <summary>
+    /// ゲームオーバー画面に遷移する為の指定番号
+    /// </summary>
+    private const int _toGameOver = 6;
+
     #endregion ---Fields---
 
     #region ---Methods---
@@ -138,8 +152,8 @@ public class OutGameManager : MonoBehaviour
     private void Awake()
     {
         // ゲームオーバー・ゲームクリアの判定をオフにする
-        _settingManager.gameOver = false;
-        _settingManager.gameClear = false;
+        _setSystem.gameOver = false;
+        _setSystem.gameClear = false;
     }
 
     private void Start()
@@ -157,21 +171,22 @@ public class OutGameManager : MonoBehaviour
         _buttonText.enabled = false;
 
         // 盛り上げテキストを非表示する
-        _moriageText.enabled = false;
+        _litText.enabled = false;
 
         // 中断テキストを非表示する
-        _stopGameText.enabled = true;
+        _pauseText.enabled = true;
 
         // テキストが表示されたかの判定をオフにする
-        _isMoriage = false;
+        _isLit = false;
 
-        _cameraSpeed = _settingManager.stageLookCamera;
+        // カメラの動かすスピードを設定する
+        _cameraSpeed = _setSystem.stageLookCamera;
     }
 
     private void Update()
     {
         // ゲームオーバー時の処理  
-        if (_settingManager.gameOver)
+        if (_setSystem.gameOver)
         {
             // BGMを止める
             _audioSystem.StopSound(_audioSystem.bgmAudioSource);
@@ -180,20 +195,22 @@ public class OutGameManager : MonoBehaviour
             DontMove_OtherScript();
 
             // シーンを遷移する
-            SceneManager.LoadScene(6);
+            SceneManager.LoadScene(_toGameOver);
         }
 
         // ゲームクリア時の処理
-        if (_settingManager.gameClear)
+        if (_setSystem.gameClear)
         {
             GameClearFunc();
         }
 
-        if (!_settingManager.gameOver && !_settingManager.gameClear)
+        // ゲームオーバーとゲームクリアの判定がオフの場合
+        if (!_setSystem.gameOver && !_setSystem.gameClear)
         {
-            if (Input.GetKeyDown(KeyCode.JoystickButton4) || Input.GetKeyDown(KeyCode.LeftAlt))
+            // SRボタン（もしくはデバッグ用のLeftAlt）を押すとゲームを中断してタイトル画面に戻る
+            if (Input.GetKeyDown(KeyCode.JoystickButton5) || Input.GetKeyDown(KeyCode.LeftAlt))
             {
-                SceneManager.LoadScene(0);
+                SceneManager.LoadScene(_toTitle);
             }
         }
     }
@@ -207,14 +224,14 @@ public class OutGameManager : MonoBehaviour
         if (!_isFixation)
         {
             // 現在のプレイヤーの位置を保存する
-            _endPos = _playerObj.transform.position;
+            _playerEndPos = _playerObj.transform.position;
 
             // 位置が固定された判定をオンにする
             _isFixation = true;
         }
 
         // プレイヤーの位置を最終位置に固定する
-        _playerObj.transform.position = _endPos;
+        _playerObj.transform.position = _playerEndPos;
 
         // 周囲の観客を消すオブジェクトをアクティブにする
         _noActiveArea.SetActive(true);
@@ -222,6 +239,25 @@ public class OutGameManager : MonoBehaviour
         // プレイヤーと警備員の動きを止める関数の呼び出し
         DontMove_OtherScript();
 
+        // カメラの移動演出をする関数
+        ClearTimeCamera();
+
+        // 盛り上げテキストの表示判定がオフだった場合
+        if (!_isLit)
+        {
+            // テキストの表示演出のコルーチンをスタートする
+            StartCoroutine(text());
+        }
+
+        // SEを流すボタンの関数
+        ClearTimeButton();
+    }
+
+    /// <summary>
+    /// クリア演出の際にカメラの移動をまとめた関数
+    /// </summary>
+    void ClearTimeCamera()
+    {
         // メインカメラ視点を使用している場合
         if (_cameraSystem._normal)
         {
@@ -251,13 +287,13 @@ public class OutGameManager : MonoBehaviour
                 CameraMode(_rightCamera);
             }
         }
+    }
 
-        // 盛り上げテキストの表示判定がオフだった場合
-        if (!_isMoriage)
-        {
-            StartCoroutine(text());
-        }
-
+    /// <summary>
+    /// クリア演出の際にSEを流すボタンをまとめた関数
+    /// </summary>
+    void ClearTimeButton()
+    {
         // Aボタンが押された場合　デバッグ用にFキー
         if (Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.F))
         {
@@ -287,7 +323,7 @@ public class OutGameManager : MonoBehaviour
     private IEnumerator text()
     {
         // 中断テキストを非表示にする
-        _stopGameText.enabled = false;
+        _pauseText.enabled = false;
 
         // スキップテキストを表示する
         _skipText.enabled = true;
@@ -299,16 +335,16 @@ public class OutGameManager : MonoBehaviour
         _buttonText.enabled = true;
 
         // 盛り上げテキストを表示する
-        _moriageText.enabled = true;
+        _litText.enabled = true;
 
         // 処理を待つ
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(_toGameOver);
 
         // 盛り上げテキストを非表示にする
-        _moriageText.enabled = false;
+        _litText.enabled = false;
 
         // 盛り上げテキストの表示判定をオンにする
-        _isMoriage = true;
+        _isLit = true;
     }
 
     /// <summary>
@@ -320,7 +356,7 @@ public class OutGameManager : MonoBehaviour
         _audioSystem.StopSound(_audioSystem.bgmAudioSource);
 
         // シーンを遷移する
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(_toGameClear);
     }
 
     /// <summary>
@@ -330,7 +366,7 @@ public class OutGameManager : MonoBehaviour
     private void CameraMode(GameObject camera)
     {
         // カメラの回転を移動させる
-        camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, Quaternion.LookRotation((_TargetObj.transform.position - camera.transform.position).normalized), _cameraSpeed * Time.deltaTime);
+        camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, Quaternion.LookRotation((_targetObj.transform.position - camera.transform.position).normalized), _cameraSpeed * Time.deltaTime);
     }
 
     /// <summary>

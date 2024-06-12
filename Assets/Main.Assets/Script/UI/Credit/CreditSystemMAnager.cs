@@ -17,6 +17,11 @@ public class CreditSystemManager : MonoBehaviour
     /// </summary>
     private bool _isTrans;
 
+    /// <summary>
+    /// タイトル画面に遷移を指定するようの変数
+    /// </summary>
+    private const int _toTitle = 0;
+
     private void Start()
     {
         // 遷移する判定をオフにする
@@ -43,7 +48,7 @@ public class CreditSystemManager : MonoBehaviour
         if (_isTrans && _audioSystem.CheckPlaySound(_audioSystem.seAudioSource))
         {
             // タイトル画面に遷移する
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(_toTitle);
         }
     }
 }

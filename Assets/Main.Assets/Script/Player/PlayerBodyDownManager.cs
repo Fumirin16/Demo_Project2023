@@ -12,7 +12,7 @@ public class PlayerBodyDownManager : MonoBehaviour
     /// Hipsのオブジェクト
     /// </summary>
     [SerializeField]
-    private GameObject _hip;
+    private GameObject _hipObj;
 
     /// <summary>
     /// ステージの床のオブジェクト
@@ -29,14 +29,14 @@ public class PlayerBodyDownManager : MonoBehaviour
     /// <summary>
     /// しゃがんだかを判定する
     /// </summary>
-    private bool _isDown = false;
+    private bool _isCrouch = false;
 
     [Header("=== Script ===")]
     /// <summary>
     /// ValueSettingTable
     /// </summary>
     [SerializeField]
-    private ValueSettingManager _settingSystem;
+    private ValueSettingManager _setSystem;
 
     /// <summary>
     /// system_Audioのスクリプト
@@ -46,32 +46,45 @@ public class PlayerBodyDownManager : MonoBehaviour
 
     #endregion ---Fields---
 
+    #region ---Methods---
+
     private void Start()
     {
         // しゃがんだ判定の値を参照して保存する
-        _cheackDis = _settingSystem.downBorder;
+        _cheackDis = _setSystem.downBorder;
     }
 
     // Update is called once per frame
     void Update()
     {
         // 腰と床の距離を測定
-        float _distance = _hip.transform.position.y - _stageFloor.transform.position.y;
+        float _distance = DistanceCheck();
 
         // 距離が_cheackDisより短くなった場合
-        if (_distance <= _cheackDis && !_isDown)
+        if (_distance <= _cheackDis && !_isCrouch)
         {
             // SEを再生する
             _audioSystem.PlaySESound(SEData.SE.Squwat);
 
             // しゃがんだ判定をオンにする
-            _isDown = true;
+            _isCrouch = true;
         }
         // 距離が_cheackDisより長くなった場合
         else
         {
             // しゃがんだ判定をオフにする
-            _isDown = false;
+            _isCrouch = false;
         }
     }
+
+    /// <summary>
+    ///  腰と床の距離を調べる関数
+    /// </summary>
+    /// <returns> 腰と床の距離を調べた結果 </returns>
+    private float DistanceCheck()
+    {
+        return _hipObj.transform.position.y - _stageFloor.transform.position.y;
+    }
+
+    #endregion ---Methods---
 }
